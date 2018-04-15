@@ -6,7 +6,7 @@
 package projet2018;
 
 import com.jcraft.jsch.*;
-// TEST
+
 /**
  * Etablit une connexion au serveur de la base de données via un tunnel SSH
  *
