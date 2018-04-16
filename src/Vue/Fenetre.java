@@ -7,11 +7,10 @@ package Vue;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.plaf.metal.MetalToolBarUI;
-import javax.swing.plaf.synth.SynthToolBarUI;
 
 /**
- *
+ * Fenêtre principale de l'interface graphique, affichant le menu et les panel correspondant à chaque item
+ * 
  * @author maxim
  */
 public class Fenetre extends JFrame {
@@ -55,4 +54,6 @@ public class Fenetre extends JFrame {
         b.setFocusPainted(false);
         b.setBorderPainted(false);
     }
+    
+    
 }

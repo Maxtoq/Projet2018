@@ -12,7 +12,7 @@ import java.awt.event.*;
  *
  * @author maxim
  */
-public class Main implements WindowListener {
+public class Main implements ActionListener, WindowListener {
     
     private static Fenetre fen = new Fenetre();
     
@@ -24,6 +24,11 @@ public class Main implements WindowListener {
         new Main();
     }
 
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        
+    }
+    
     @Override
     public void windowOpened(WindowEvent we) {}
     @Override
@@ -38,4 +43,5 @@ public class Main implements WindowListener {
     public void windowActivated(WindowEvent we) {}
     @Override
     public void windowDeactivated(WindowEvent we) {}
+
 }
