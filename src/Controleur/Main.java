@@ -6,42 +6,20 @@
 package Controleur;
 
 import Vue.Fenetre;
-import java.awt.event.*;
 
 /**
  *
  * @author maxim
  */
-public class Main implements ActionListener, WindowListener {
+public class Main {
     
-    private static Fenetre fen = new Fenetre();
+    private static Fenetre fen;
     
     public Main() {
-        fen.addWindowListener(this);
+         fen = new Fenetre(this);
     }
     
     public static void main(String args[]) {
-        new Main();
+        Main controler = new Main();
     }
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        
-    }
-    
-    @Override
-    public void windowOpened(WindowEvent we) {}
-    @Override
-    public void windowClosing(WindowEvent we) { System.exit(0); }
-    @Override
-    public void windowClosed(WindowEvent we) {}
-    @Override
-    public void windowIconified(WindowEvent we) {}
-    @Override
-    public void windowDeiconified(WindowEvent we) {}
-    @Override
-    public void windowActivated(WindowEvent we) {}
-    @Override
-    public void windowDeactivated(WindowEvent we) {}
-
 }
