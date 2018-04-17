@@ -40,6 +40,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         b_hosp = new JButton("-   Hospitalisations");
         initButton(b_hosp);
         
+        b_services.addActionListener(this);
         b_employes.addActionListener(this);
         
         menu.add(b_employes);
@@ -80,6 +81,11 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     
     private void initServicePan(){
         service_pan = new ServicePanel();
+        String[] tri = {"Code","Nom","Batiment","Directeur"};
+        this.setSize(600, 180);
+        JComboBox boxtri = new JComboBox(tri);
+        boxtri.setSelectedIndex(3);
+        
         this.add(service_pan, BorderLayout.CENTER);
         this.setVisible(true);
     }
@@ -90,8 +96,8 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
             initEmployePan();
         }
         if (e.getSource().equals(b_services)) {
-            initEmployePan();
-           /** initServicePan();**/
+          /**  initEmployePan();**/
+           initServicePan();
         }
     }
     
