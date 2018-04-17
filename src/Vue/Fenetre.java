@@ -81,9 +81,6 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     
     private void initServicePan(){
         service_pan = new ServicePanel();
-        String[] tri = {"Code","Nom","Batiment","Directeur"};
-        JComboBox boxtri = new JComboBox(tri);
-        boxtri.setSelectedIndex(3);
         
         this.add(service_pan, BorderLayout.CENTER);
         this.setVisible(true);
