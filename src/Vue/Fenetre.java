@@ -24,8 +24,8 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     private JButton b_malades;
     private JButton b_services;
     private JButton b_hosp;
-    private EmployePanel doct_pan;
-    private EmployePanel infir_pan;
+    private PersonPanel doct_pan;
+    private PersonPanel infir_pan;
     
     public Fenetre(Main _controler) {
         super("Gestion centre hospitalier");
@@ -71,8 +71,8 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     private void initEmployePan() {
         JTabbedPane tab_pan = new JTabbedPane();
                 
-        doct_pan = new EmployePanel(1);
-        infir_pan = new EmployePanel(2);
+        doct_pan = new PersonPanel(1);
+        infir_pan = new PersonPanel(2);
         
         tab_pan.addTab("Docteurs", doct_pan);
         tab_pan.addTab("Infirmiers(ères)", infir_pan);

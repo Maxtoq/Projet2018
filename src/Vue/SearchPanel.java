@@ -54,5 +54,36 @@ public class SearchPanel extends JPanel {
         in_rot.setSelectedIndex(0);
         in_serv.setSelectedIndex(0);
         in_mut.setSelectedIndex(0);
+        
+        initUI();
+        
+        this.setVisible(true);
+    }
+    
+    public void initUI() {
+        // On crée un tableau de JLabel pour l'affichage 
+        /*JLabel
+        // On set un SpringLayout
+        SpringLayout layout = new SpringLayout();
+        this.setLayout(layout);
+        
+        // On ajoute tous les composants
+        this.add(in_num);
+        this.add(in_nom);
+        this.add(in_prenom);
+        this.add(in_tel);
+        this.add(in_adresse);
+        if (type == 1) this.add(in_spec);
+        if (type == 2) {
+            this.add(in_rot);
+            this.add(in_sal);
+            this.add(in_serv);
+        }
+        if (type == 3) this.add(in_mut);
+        this.add(in_search);
+        
+        // On place les composants dans le panel
+        this.add(new JLabel("N° :"));*/
+        
     }
 }

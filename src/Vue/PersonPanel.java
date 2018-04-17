@@ -9,17 +9,18 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- *
+ * Page des items de personnes : Employés (docteurs et infirmiers) et Malades
+ * 
  * @author maxim
  */
-public class EmployePanel extends JPanel {
+public class PersonPanel extends JPanel {
     
-    private int type; // Type d'employé : 1 = docteur, 2 = infirmier
+    private int type; // Type d'employé : 1 = docteur, 2 = infirmier, 3 = malade
     
-    private SearchPanel search_pan;
-    private AddPanel add_pan;
+    public SearchPanel search_pan;
+    public AddPanel add_pan;
     
-    public EmployePanel(int _type) {
+    public PersonPanel(int _type) {
         type = _type;
         
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
