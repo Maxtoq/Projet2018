@@ -14,7 +14,7 @@ import javax.swing.*;
 public class Fenetre extends JFrame implements ActionListener, WindowListener {
     
     private Main controler;
-    
+    private ServicePanel service_pan;
     private JToolBar menu;
     private JButton b_employes;
     private JButton b_malades;
@@ -77,11 +77,21 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         
         this.setVisible(true);
     }
+    
+    private void initServicePan(){
+        service_pan = new ServicePanel();
+        this.add(service_pan, BorderLayout.CENTER);
+        this.setVisible(true);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(b_employes)) {
             initEmployePan();
+        }
+        if (e.getSource().equals(b_services)) {
+            initEmployePan();
+           /** initServicePan();**/
         }
     }
     
