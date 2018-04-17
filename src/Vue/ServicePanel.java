@@ -24,8 +24,14 @@ public class ServicePanel extends JPanel{
       
     public ServicePanel(){
         
+
        
-        this.setSize(800, 400);
+        
+
+        String[] tri = {"Code","Nom","Batiment","Directeur"};
+        JComboBox boxtri = new JComboBox(tri);
+        boxtri.setSelectedIndex(3);
+
         
         
         // On crée le tableau de string pour initialiser la comboBox
