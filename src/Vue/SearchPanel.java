@@ -5,6 +5,7 @@
  */
 package Vue;
 
+import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -37,7 +38,7 @@ public class SearchPanel extends JPanel {
         String[] mutStrings = { "  --", "AG2R", "CCVRP", "CNAMTS", "LMDE", "MAAF", "MAS", "MGEN", "MGSP", "MMA", "MNAM", "MNFTC", "MNH" };
         
         // On initialise tous les composants
-        in_num = new JTextField();
+        in_num = new JTextField(15);
         in_nom = new JTextField();
         in_prenom = new JTextField();
         in_tel = new JTextField();
@@ -62,28 +63,51 @@ public class SearchPanel extends JPanel {
     
     public void initUI() {
         // On crée un tableau de JLabel pour l'affichage 
-        /*JLabel
-        // On set un SpringLayout
-        SpringLayout layout = new SpringLayout();
-        this.setLayout(layout);
+        JLabel[] labels = new JLabel[8];
+        
+        // On crée un panel pour les input de la recherche
+        JPanel input_pan = new JPanel(new GridLayout(0, 4, 10, 5));
         
         // On ajoute tous les composants
-        this.add(in_num);
-        this.add(in_nom);
-        this.add(in_prenom);
-        this.add(in_tel);
-        this.add(in_adresse);
-        if (type == 1) this.add(in_spec);
-        if (type == 2) {
-            this.add(in_rot);
-            this.add(in_sal);
-            this.add(in_serv);
+        labels[0] = new JLabel("N° :");
+        input_pan.add(labels[0]);
+        input_pan.add(in_num);
+        labels[1] = new JLabel("Nom :");
+        input_pan.add(labels[1]);
+        input_pan.add(in_nom);
+        labels[2] = new JLabel("Prénom :");
+        input_pan.add(labels[2]);
+        input_pan.add(in_prenom);
+        labels[3] = new JLabel("Téléphone :");
+        input_pan.add(labels[3]);
+        input_pan.add(in_tel);
+        labels[4] = new JLabel("Adresse :");
+        input_pan.add(labels[4]);
+        input_pan.add(in_adresse);
+        if (type == 1) {
+            labels[5] = new JLabel("Specialité :");
+            input_pan.add(labels[5]);
+            input_pan.add(in_spec);
         }
-        if (type == 3) this.add(in_mut);
-        this.add(in_search);
+        if (type == 2) {
+            labels[5] = new JLabel("Rotation :");
+            input_pan.add(labels[5]);
+            input_pan.add(in_rot);
+            labels[6] = new JLabel("Salaire :");
+            input_pan.add(labels[6]);
+            input_pan.add(in_sal);
+            labels[7] = new JLabel("Service :");
+            input_pan.add(labels[7]);
+            input_pan.add(in_serv);
+        }
+        if (type == 3) {
+            labels[5] = new JLabel("Mutuelle :");
+            input_pan.add(labels[5]);
+            input_pan.add(in_mut);
+        }
+        input_pan.add(in_search);
         
-        // On place les composants dans le panel
-        this.add(new JLabel("N° :"));*/
         
+        this.add(input_pan);
     }
 }
