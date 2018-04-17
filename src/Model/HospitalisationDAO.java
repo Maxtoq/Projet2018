@@ -6,26 +6,26 @@ import java.sql.Connection;
  *
  * @author maxim
  */
-public class DocteurDAO extends DAO<Docteur> {
+public class HospitalisationDAO extends DAO<Hospitalisation> {
 
-    public DocteurDAO(Connection conn) {
+    public HospitalisationDAO(Connection conn) {
         super(conn);
     }
     
     @Override
-    public boolean create(Docteur obj) {
+    public boolean create(Hospitalisation obj) {
         
         return true;
     }
 
     @Override
-    public boolean delete(Docteur obj) {
+    public boolean delete(Hospitalisation obj) {
         
         return true;
     }
 
     @Override
-    public boolean update(Docteur obj) {
+    public boolean update(Hospitalisation obj) {
         
         return true;
     }
