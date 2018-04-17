@@ -18,7 +18,6 @@ public class ServicePanel extends JPanel{
     public ServicePanel(){
         
         String[] tri = {"Code","Nom","Batiment","Directeur"};
-        this.setSize(600, 180);
         JComboBox boxtri = new JComboBox(tri);
         boxtri.setSelectedIndex(3);
         

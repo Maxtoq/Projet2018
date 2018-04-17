@@ -22,7 +22,11 @@ public class Infirmier extends Employe {
         sal = _sal;
     }
     
-    public void setSpec(String _spec) { serv = _spec; }
+    public void setServ(String _serv) { serv = _serv; }
+    public void setRot(String _rot) { serv = _rot; }
+    public void setSal(int _sal) { sal = _sal; }
     
-    //public String getSpec() { return spec; }
+    public String getServ() { return serv; }
+    public String getRot() { return rot; }
+    public int getSal() { return sal; }
 }
