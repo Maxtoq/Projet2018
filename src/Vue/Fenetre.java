@@ -94,7 +94,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         if (e.getSource().equals(b_services)) {
           /**  initEmployePan();**/
            initServicePan();
-        }
+        }  //Nouveau if avec bouton b_hosp + fonction au dessus + nouvelle classe hospanel + cdc pour l'affichage de cette page
     }
     
     @Override
