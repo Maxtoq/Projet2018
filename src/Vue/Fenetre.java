@@ -22,6 +22,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     private JButton b_hosp;
     private PersonPanel doct_pan;
     private PersonPanel infir_pan;
+    private HospPanel hosp_pan;
     
     public Fenetre(Main _controler) {
         super("Gestion centre hospitalier");
@@ -85,6 +86,14 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         this.add(service_pan, BorderLayout.CENTER);
         this.setVisible(true);
     }
+    
+   private void initHospPan(){
+       hosp_pan = new HospPanel();
+        
+        this.add(hosp_pan, BorderLayout.CENTER);
+        this.setVisible(true);
+    }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -95,6 +104,11 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
           /**  initEmployePan();**/
            initServicePan();
         }  //Nouveau if avec bouton b_hosp + fonction au dessus + nouvelle classe hospanel + cdc pour l'affichage de cette page
+       
+       if (e.getSource().equals(b_hosp))  {
+           initHospPan();
+       }
+       
     }
     
     @Override
