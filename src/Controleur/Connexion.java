@@ -91,6 +91,13 @@ public class Connexion {
 
         }
     }
+    
+    /**
+     * Getter de la connexion JDBC
+     * 
+     * @return conn 
+     */
+    public Connection getConn() { return conn; }
 
     /**
      * Méthode qui ajoute la table en parametre dans son ArrayList

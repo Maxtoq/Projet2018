@@ -5,14 +5,14 @@ package Model;
  *
  * @author maxim
  */
-public class Hospitalisation {
+public class Hosp {
     
     private int n_malade;
     private String serv;
     private int n_chambre;
     private int lit;
     
-    public Hospitalisation(int _n_malade, String _serv, int _n_chambre, int _lit) {
+    public Hosp(int _n_malade, String _serv, int _n_chambre, int _lit) {
         n_malade = _n_malade;
         serv = _serv;
         n_chambre = _n_chambre;
