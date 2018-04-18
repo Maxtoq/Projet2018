@@ -2,6 +2,7 @@
 package Controleur;
 
 import Vue.Fenetre;
+import java.sql.SQLException;
 
 /**
  *
@@ -9,13 +10,27 @@ import Vue.Fenetre;
  */
 public class Main {
     
-    private static Fenetre fen;
+    private Fenetre fen;
+    private Connexion conn;
     
     public Main() {
-         fen = new Fenetre(this);
+        fen = new Fenetre(this);
+         
+        try {
+            conn = new Connexion("hopital", "root", "");
+            System.out.println("Connexion réussie");
+        }
+        catch (SQLException e) {
+            System.out.println("SQLException");
+        }
+        catch (ClassNotFoundException e) {
+            System.out.println("ClassNotFoundException");
+        }
     }
     
     public static void main(String args[]) {
         Main controler = new Main();
+        
+        
     }
 }
