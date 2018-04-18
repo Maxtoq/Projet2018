@@ -22,6 +22,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     private JButton b_hosp;
     private PersonPanel doct_pan;
     private PersonPanel infir_pan;
+    private PersonPanel malade_pan;
     private HospPanel hosp_pan;
     
     public Fenetre(Main _controler) {
@@ -71,9 +72,12 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
                 
         doct_pan = new PersonPanel(1);
         infir_pan = new PersonPanel(2);
+        malade_pan = new PersonPanel(3);
+        
         
         tab_pan.addTab("Docteurs", doct_pan);
         tab_pan.addTab("Infirmiers(ères)", infir_pan);
+        tab_pan.addTab("Malades",malade_pan);
         
         this.add(tab_pan, BorderLayout.CENTER);
         

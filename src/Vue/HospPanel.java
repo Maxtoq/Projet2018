@@ -26,8 +26,9 @@ public class HospPanel extends JPanel {
     
     public HospPanel()
     {
-                JLabel[] labels = new JLabel[3];
                 JPanel input_pan = new JPanel(new GridLayout(0, 4, 10, 5));
+
+                JLabel[] labels = new JLabel[3];
         
         // On ajoute tous les composants
         labels[0] = new JLabel("Numéro du malade :");
@@ -42,14 +43,12 @@ public class HospPanel extends JPanel {
         input_pan.add(labels[2]);
         input_pan.add(in_numMalade);
        
+
         this.add(input_pan);
 
     }
     
-    
-    
-    
-    
+     
     
 }
 

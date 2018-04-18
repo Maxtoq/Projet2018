@@ -80,6 +80,7 @@ public class SearchPanel extends JPanel {
         labels[4] = new JLabel("Adresse :");
         input_pan.add(labels[4]);
         input_pan.add(in_adresse);
+        
         if (type == 1) {
             labels[5] = new JLabel("Specialité :");
             input_pan.add(labels[5]);
@@ -100,6 +101,7 @@ public class SearchPanel extends JPanel {
             labels[5] = new JLabel("Mutuelle :");
             input_pan.add(labels[5]);
             input_pan.add(in_mut);
+            
         }
         input_pan.add(in_search);
         
