@@ -15,7 +15,11 @@ public class Main {
     
     public Main() {
         fen = new Fenetre(this);
-         
+        
+        initConnexion();
+    }
+    
+    public void initConnexion() {
         try {
             conn = new Connexion("hopital", "root", "");
             System.out.println("Connexion réussie");
