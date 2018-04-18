@@ -1,4 +1,3 @@
-
 package Model;
 
 /**
@@ -22,7 +21,7 @@ public class Service {
     public void setCode(String _code) { code = _code; }
     public void setNom(String _nom) { nom = _nom; }
     public void setBat(char _bat) { bat = _bat; }
-    public void setDir(String _dir) { code = _dir; }
+    public void setDir(String _dir) { dir = _dir; }
     
     public String getCode() { return code; }
     public String getNom() { return nom; }

@@ -1,6 +1,5 @@
 package Model;
 
-import Model.Employe;
 import java.sql.Connection;
 
 /**

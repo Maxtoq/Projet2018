@@ -1,7 +1,6 @@
 
 package Model;
 
-import Model.Chambre;
 import java.sql.Connection;
 
 /**
