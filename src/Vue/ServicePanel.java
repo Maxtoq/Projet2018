@@ -3,7 +3,10 @@ package Vue;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -45,7 +48,9 @@ public class ServicePanel extends JPanel{
         in_filt.setSelectedIndex(0);
 
         Object data[][] = {
-
+            {"0101", "Toquebim", "1","Poncho"},
+            {"0102","Pec", "3","Nino"},
+            {"0103","Fronto","2", "Chico"}, 
         };
         // On crée un tableau de JLabel pour l'affichage 
         JLabel[] labels = new JLabel[5];
@@ -82,6 +87,19 @@ public class ServicePanel extends JPanel{
         this.tab.getColumn("Batiment").setCellRenderer(new ButtonRenderer());
         this.tab.getColumn("Directeur").setCellRenderer(new ButtonRenderer());
         
+        
+        if (in_filt.getSelectedItem().toString() == "N°Batiment")
+        {
+            JOptionPane.showMessageDialog(null,"alert");
+            TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tab.getModel());
+            tab.setRowSorter(sorter);
+            
+            ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+            sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
+            sorter.setSortKeys(sortKeys);
+        }
     }
+    
+}
+    
 
-} 

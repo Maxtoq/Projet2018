@@ -44,6 +44,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         
         b_services.addActionListener(this);
         b_employes.addActionListener(this);
+        b_hosp.addActionListener(this);
         
         menu.add(b_employes);
         menu.add(b_malades);
@@ -92,6 +93,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     }
     
    private void initHospPan(){
+
        hosp_pan = new HospPanel();
         
         this.add(hosp_pan, BorderLayout.CENTER);
@@ -103,7 +105,9 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(b_employes)) {
             initEmployePan();
+            
         }
+        
         if (e.getSource().equals(b_services)) {
           /**  initEmployePan();**/
            initServicePan();
@@ -113,7 +117,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
            initHospPan();
        }
        
-    }
+    } 
     
     @Override
     public void windowOpened(WindowEvent we) {}

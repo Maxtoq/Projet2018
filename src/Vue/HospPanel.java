@@ -1,12 +1,9 @@
 package Vue;
 
 import java.awt.*;
-import java.awt.event.ActionListener;
 import javax.swing.*;
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
  */
 
 /**
@@ -15,9 +12,7 @@ import javax.swing.*;
  */
 public class HospPanel extends JPanel {
     
-    private JTable tab;
-    private JButton change = new JButton("Changer la taille");
-    
+    public AddPanel add_pan;
     private JTextField in_lit;
     private JTextField in_codeService;
     private JTextField in_numMalade;
@@ -26,6 +21,11 @@ public class HospPanel extends JPanel {
     
     public HospPanel()
     {
+                add_pan = new AddPanel();
+                in_lit = new JTextField(15);
+                in_codeService = new JTextField();
+               in_numMalade = new JTextField();
+
                 JPanel input_pan = new JPanel(new GridLayout(0, 4, 10, 5));
 
                 JLabel[] labels = new JLabel[3];
@@ -34,21 +34,21 @@ public class HospPanel extends JPanel {
         labels[0] = new JLabel("Numéro du malade :");
         input_pan.add(labels[0]);
         
-        input_pan.add(in_lit);
+       input_pan.add(in_lit);
         labels[1] = new JLabel("Numéro Lit :");
         input_pan.add(labels[1]);
         
-        input_pan.add(in_codeService);
+       input_pan.add(in_codeService);
         labels[2] = new JLabel("Code Service :");
         input_pan.add(labels[2]);
-        input_pan.add(in_numMalade);
+       input_pan.add(in_numMalade);
        
 
         this.add(input_pan);
+        this.add(add_pan);
 
     }
     
      
     
 }
-
