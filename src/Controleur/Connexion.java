@@ -192,8 +192,8 @@ public class Connexion {
                 champs = champs + "," + rset.getString(i + 1);
             }
 
-            // ajouter un "\n" à la ligne des champs
-            champs = champs + "\n";
+            /*// ajouter un "\n" à la ligne des champs
+            champs = champs + "\n";*/
 
             // ajouter les champs de la ligne dans l'ArrayList
             liste.add(champs);

@@ -37,23 +37,28 @@ public class ServiceDAO extends DAO<Service> {
         // Si le nombre de paramètres donné pour la recherche est mauvais, la requête est rejetée (REMPLACER PAR EXCEPTION, ou enlever)
         if (param.size() != nb_param) return null;
         
-        // On récupère l'arrayList des résultats de la requête
         try {
+            // On récupère l'arrayList des résultats de la requête
             ArrayList<String> str_result = conn.remplirChampsRequete("select * from service where " + getWhereStmt(param));
+            
+            // On crée le tableau d'objets à retourner
+            ArrayList<Service> result = new ArrayList<>();
+            
+            // Pour chaque strings, on récupère la strings de chaque attribut
             for (int i = 0; i < str_result.size(); i++) {
-                System.out.print(str_result.get(i));
+                String[] strings = str_result.get(i).split(",");
+                
+                // On crée un nouvel objet avec ces attributs
+                result.add(new Service(strings[0], strings[1], strings[2].charAt(0), Integer.parseInt(strings[3])));
             }
+            
+            return result;
         }
         catch (SQLException e) {
             System.out.println("SLQ EXCEPTION");
         }
         
-        // On crée le tableau d'objets à retourner
-        ArrayList<Service> result = new ArrayList<>();
-        
-        //for (int i = 0;)
-        
-        return result;
+        return null;
     }
 
     @Override
