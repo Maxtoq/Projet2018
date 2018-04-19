@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -22,8 +23,8 @@ public class ServicePanel extends JPanel implements ActionListener{
     private JTextField in_dir;
     private JTextField in_nom;
     private JButton in_search;
-   
-    
+    private JButton ajouter= new JButton("Ajouter Service");
+    private JTextField ajout;
      // On initialise tous les composants
       
     public ServicePanel(){
@@ -39,7 +40,7 @@ public class ServicePanel extends JPanel implements ActionListener{
         
         
         // On crée le tableau de string pour initialiser la comboBox
-      
+        ajouter = new JButton("Ajouter une ligne");
         in_nom = new JTextField(15);
         in_code = new JTextField();
         in_batiment = new JTextField();
@@ -47,11 +48,11 @@ public class ServicePanel extends JPanel implements ActionListener{
         in_dir = new JTextField();
         in_search = new JButton("Rechercher");
         in_search.addActionListener(this);
-       
+        ajout = new JTextField();
         Object data[][] = {
-            {"0101", "Toquebim", "1","Poncho"},
-            {"0102","Pec", "3","Nino"},
-            {"0103","Fronto","2", "Chico"}, 
+            {"0101", "Toquebim", "1","Poncho","supp"},
+            {"0102","Pec", "3","Nino","supp"},
+            {"0103","Fronto","2", "Chico","supp"}, 
         };
         // On crée un tableau de JLabel pour l'affichage 
         JLabel[] labels = new JLabel[5];
@@ -76,19 +77,21 @@ public class ServicePanel extends JPanel implements ActionListener{
         
         
         this.add(input_pan);
-
-        String title[] = {"Code","Nom","Batiment","Directeur"};
-        
-        this.tab= new JTable(data,title);
+         //modèle d'affichage spécifique destiné à pallier
+      //les bugs d'affichage !
+        String title[] = {"Code","Nom","Batiment","Directeur", "Suppression"};
+        ZModel zModel = new ZModel(data, title);
+        this.tab= new JTable(zModel);
         this.tab.setRowHeight(30);
         this.add(new JScrollPane(tab), BorderLayout.CENTER);
         this.tab.getColumn("Code").setCellRenderer(new ButtonRenderer());
         this.tab.getColumn("Nom").setCellRenderer(new ButtonRenderer());
         this.tab.getColumn("Batiment").setCellRenderer(new ButtonRenderer());
         this.tab.getColumn("Directeur").setCellRenderer(new ButtonRenderer());
+        //On définit un éditeur pour la colonne "supprimer"
+        this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox()));
         
-        
-         
+      /*   
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tab.getModel());
         tab.setRowSorter(sorter);
         ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
@@ -97,18 +100,30 @@ public class ServicePanel extends JPanel implements ActionListener{
         sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
         sorter.setSortKeys(sortKeys);
 
-    
+     */
+      ajouter.addActionListener(this);
+      
+      this.add(ajouter, BorderLayout.EAST);
+      this.add(ajout, BorderLayout.EAST);
+      
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
           if (ae.getSource().equals(in_search)) {
-              if (in_batiment.getAccessibleContext().toString()== "Pecresse")
-                    JOptionPane.showMessageDialog(null,"alert");
-              
-              
+                System.out.println("TEXT : in_bat " + in_batiment.getText());
+                    
+        
           }
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+          if (ae.getSource().equals(ajouter))
+          {
+               Object[] donnee = new Object[]
+            {"0102", "Rennais", "4", ajout.getText(), "supp"};
+               ((ZModel)tab.getModel()).addRow(donnee);
+          }
+              
+          
+       
     }
 }
     
