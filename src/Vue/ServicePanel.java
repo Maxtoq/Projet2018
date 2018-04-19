@@ -21,7 +21,7 @@ public class ServicePanel extends JPanel{
     private JTextField in_dir;
     private JTextField in_nom;
     private JButton in_search;
-    private JComboBox in_filt;
+   
     
      // On initialise tous les composants
       
@@ -38,15 +38,13 @@ public class ServicePanel extends JPanel{
         
         
         // On crée le tableau de string pour initialiser la comboBox
-        String[] filt = { "Nom Service" ,"Nom Directeur", "N°Batiment"};
+      
         in_nom = new JTextField(15);
         in_code = new JTextField();
         in_batiment = new JTextField();
         in_dir = new JTextField();
         in_search = new JButton("Rechercher");
-        in_filt = new JComboBox(filt);
-        in_filt.setSelectedIndex(0);
-
+       
         Object data[][] = {
             {"0101", "Toquebim", "1","Poncho"},
             {"0102","Pec", "3","Nino"},
@@ -71,9 +69,8 @@ public class ServicePanel extends JPanel{
         labels[3] = new JLabel("Nom de Batiment :");
         input_pan.add(labels[3]);
         input_pan.add(in_nom);
-        labels[4] = new JLabel("Filtrer par :");
-        input_pan.add(labels[4]);
-        input_pan.add(in_filt);
+        
+        
         
         this.add(input_pan);
 
@@ -88,40 +85,17 @@ public class ServicePanel extends JPanel{
         this.tab.getColumn("Directeur").setCellRenderer(new ButtonRenderer());
         
         
-        if (in_filt.getSelectedItem().toString() == "N°Batiment")
-        {
-            JOptionPane.showMessageDialog(null,"alert");
-            TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tab.getModel());
-            tab.setRowSorter(sorter);
-            
-            ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
-            sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
-            sorter.setSortKeys(sortKeys);
-        }
-        if (in_filt.getSelectedItem().toString() == "Nom Directeur")
-        {
-            JOptionPane.showMessageDialog(null,"alert");
-            TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tab.getModel());
-            tab.setRowSorter(sorter);
-            
-            ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
-            sortKeys.add(new RowSorter.SortKey(3, SortOrder.ASCENDING));
-            sorter.setSortKeys(sortKeys);
-        }
-        
-         if (in_filt.getSelectedItem().toString() == "Nom Service")
-        {
-            JOptionPane.showMessageDialog(null,"alert");
-            TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tab.getModel());
-            tab.setRowSorter(sorter);
-            
-            ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
-            sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
-            sorter.setSortKeys(sortKeys);
-        }
-       
-    }
+         
+        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tab.getModel());
+        tab.setRowSorter(sorter);
+        ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+        sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
+        sortKeys.add(new RowSorter.SortKey(3, SortOrder.ASCENDING));
+        sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
+        sorter.setSortKeys(sortKeys);
+
     
+    }
 }
     
 
