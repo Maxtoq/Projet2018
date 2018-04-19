@@ -38,7 +38,7 @@ public class ServicePanel extends JPanel{
         
         
         // On crée le tableau de string pour initialiser la comboBox
-        String[] filt = { "N°Batiment", "Nom Directeur", "Nom Service" };
+        String[] filt = { "Nom Service" ,"Nom Directeur", "N°Batiment"};
         in_nom = new JTextField(15);
         in_code = new JTextField();
         in_batiment = new JTextField();
@@ -98,6 +98,28 @@ public class ServicePanel extends JPanel{
             sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
             sorter.setSortKeys(sortKeys);
         }
+        if (in_filt.getSelectedItem().toString() == "Nom Directeur")
+        {
+            JOptionPane.showMessageDialog(null,"alert");
+            TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tab.getModel());
+            tab.setRowSorter(sorter);
+            
+            ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+            sortKeys.add(new RowSorter.SortKey(3, SortOrder.ASCENDING));
+            sorter.setSortKeys(sortKeys);
+        }
+        
+         if (in_filt.getSelectedItem().toString() == "Nom Service")
+        {
+            JOptionPane.showMessageDialog(null,"alert");
+            TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tab.getModel());
+            tab.setRowSorter(sorter);
+            
+            ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+            sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
+            sorter.setSortKeys(sortKeys);
+        }
+       
     }
     
 }
