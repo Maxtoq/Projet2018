@@ -38,7 +38,7 @@ public class ServicePanel extends JPanel{
         
         
         // On crée le tableau de string pour initialiser la comboBox
-        String[] filt = {  "Nom Directeur", "N°Batiment", "Nom Service" };
+        String[] filt = { "N°Batiment", "Nom Directeur", "Nom Service" };
         in_nom = new JTextField(15);
         in_code = new JTextField();
         in_batiment = new JTextField();
