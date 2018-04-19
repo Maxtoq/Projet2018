@@ -181,8 +181,7 @@ public class Connexion {
         int nbColonne = rsetMeta.getColumnCount();
 
         // creation d'une ArrayList de String
-        ArrayList<String> liste;
-        liste = new ArrayList<String>();
+        ArrayList<String> liste = new ArrayList<String>();
 
         // tant qu'il reste une ligne 
         while (rset.next()) {

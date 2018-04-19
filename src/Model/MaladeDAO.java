@@ -1,6 +1,7 @@
 package Model;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  *
@@ -9,7 +10,7 @@ import java.sql.Connection;
 public class MaladeDAO extends DAO<Malade> {
 
     public MaladeDAO(Connection conn) {
-        super(conn);
+        super(conn, 6);
     }
     
     @Override
@@ -28,6 +29,16 @@ public class MaladeDAO extends DAO<Malade> {
     public boolean update(Malade obj) {
         
         return true;
+    }
+
+    @Override
+    public boolean select(ArrayList<String> param) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getWhereStmt(ArrayList<String> param) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

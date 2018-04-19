@@ -4,6 +4,7 @@ package Controleur;
 import Model.*;
 import Vue.Fenetre;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,10 +23,13 @@ public class Main {
     private ServiceDAO serv_dao;
     
     public Main() {
+        // On crée la nouvelle fenêtre
         fen = new Fenetre(this);
         
+        // On initialise la connexion avec la database
         initConnexion();
         
+        // On crée les DAO, qui nous permettront d'échanger les infos entre notre Model et la DB
         ch_dao = new ChambreDAO(connect.getConn());
         doc_dao = new DocteurDAO(connect.getConn());
         emp_dao = new EmployeDAO(connect.getConn());
@@ -33,6 +37,13 @@ public class Main {
         inf_dao = new InfirmierDAO(connect.getConn());
         mal_dao = new MaladeDAO(connect.getConn());
         serv_dao = new ServiceDAO(connect.getConn());
+        
+        ArrayList<String> strs = new ArrayList<String>();
+        strs.add("REA");
+        strs.add("");
+        strs.add("A");
+        strs.add("");
+        serv_dao.select(strs);
     }
     
     public void initConnexion() {
