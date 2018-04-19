@@ -1,6 +1,7 @@
 package Model;
 
-import java.sql.Connection;
+import Controleur.Connexion;
+import java.util.ArrayList;
 
 /**
  *
@@ -8,10 +9,12 @@ import java.sql.Connection;
  */
 public abstract class DAO<T> {
     
-    protected Connection conn = null;
+    protected final Connexion conn;
+    protected final int nb_param;
     
-    public DAO(Connection _conn) {
+    public DAO(Connexion _conn, int _nb_param) {
         conn = _conn;
+        nb_param = _nb_param;
     }
     
     public abstract boolean create(T obj);
@@ -19,4 +22,8 @@ public abstract class DAO<T> {
     public abstract boolean delete(T obj);
     
     public abstract boolean update(T obj);
+    
+    public abstract boolean select(ArrayList<String> param);
+    
+    public abstract String getWhereStmt(ArrayList<String> param);
 }

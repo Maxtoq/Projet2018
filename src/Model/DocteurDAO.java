@@ -1,6 +1,7 @@
 package Model;
 
-import java.sql.Connection;
+import Controleur.Connexion;
+import java.util.ArrayList;
 
 /**
  *
@@ -8,8 +9,8 @@ import java.sql.Connection;
  */
 public class DocteurDAO extends DAO<Docteur> {
 
-    public DocteurDAO(Connection conn) {
-        super(conn);
+    public DocteurDAO(Connexion conn) {
+        super(conn, 6);
     }
     
     @Override
@@ -28,6 +29,16 @@ public class DocteurDAO extends DAO<Docteur> {
     public boolean update(Docteur obj) {
         
         return true;
+    }
+
+    @Override
+    public boolean select(ArrayList<String> param) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getWhereStmt(ArrayList<String> param) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
