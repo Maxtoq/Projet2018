@@ -30,13 +30,14 @@ public class Main {
         initConnexion();
         
         // On crée les DAO, qui nous permettront d'échanger les infos entre notre Model et la DB
-        ch_dao = new ChambreDAO(connect);
+        /*ch_dao = new ChambreDAO(connect);
         doc_dao = new DocteurDAO(connect);
         emp_dao = new EmployeDAO(connect);
         hosp_dao = new HospDAO(connect);
         inf_dao = new InfirmierDAO(connect);
-        mal_dao = new MaladeDAO(connect);
-        serv_dao = new ServiceDAO(connect);
+        mal_dao = new MaladeDAO(connect);*/
+        String[] serv_params = { "code = ", "nom = ", "batiment = ", "directeur = " };
+        serv_dao = new ServiceDAO(connect, serv_params);
         
         ArrayList<String> strs = new ArrayList<>();
         strs.add("");

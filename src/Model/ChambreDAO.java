@@ -10,8 +10,8 @@ import java.util.ArrayList;
  */
 public class ChambreDAO extends DAO<Chambre> {
 
-    public ChambreDAO(Connexion conn) {
-        super(conn, 4);
+    public ChambreDAO(Connexion conn, String[] where_params) {
+        super(conn, where_params);
     }
     
     @Override

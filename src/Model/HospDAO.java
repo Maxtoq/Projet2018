@@ -9,8 +9,8 @@ import java.util.ArrayList;
  */
 public class HospDAO extends DAO<Hosp> {
 
-    public HospDAO(Connexion conn) {
-        super(conn, 4);
+    public HospDAO(Connexion conn, String[] where_params) {
+        super(conn, where_params);
     }
     
     @Override

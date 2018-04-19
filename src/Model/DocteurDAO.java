@@ -9,8 +9,8 @@ import java.util.ArrayList;
  */
 public class DocteurDAO extends DAO<Docteur> {
 
-    public DocteurDAO(Connexion conn) {
-        super(conn, 6);
+    public DocteurDAO(Connexion conn, String[] where_params) {
+        super(conn, where_params);
     }
     
     @Override
