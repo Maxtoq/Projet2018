@@ -1,6 +1,6 @@
 package Model;
 
-import java.sql.Connection;
+import Controleur.Connexion;
 import java.util.ArrayList;
 
 /**
@@ -9,10 +9,10 @@ import java.util.ArrayList;
  */
 public abstract class DAO<T> {
     
-    protected final Connection conn;
+    protected final Connexion conn;
     protected final int nb_param;
     
-    public DAO(Connection _conn, int _nb_param) {
+    public DAO(Connexion _conn, int _nb_param) {
         conn = _conn;
         nb_param = _nb_param;
     }

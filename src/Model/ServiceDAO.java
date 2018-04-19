@@ -1,6 +1,7 @@
 package Model;
 
-import java.sql.Connection;
+import Controleur.Connexion;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +10,7 @@ import java.util.ArrayList;
  */
 public class ServiceDAO extends DAO<Service> {
 
-    public ServiceDAO(Connection conn) {
+    public ServiceDAO(Connexion conn) {
         super(conn, 4);
     }
     
@@ -36,7 +37,17 @@ public class ServiceDAO extends DAO<Service> {
         // Si le nombre de paramètres donné pour la recherche est mauvais, la requête est rejetée (REMPLACER PAR EXCEPTION, ou enlever)
         if (param.size() != nb_param) return false;
         
-        getWhereStmt(param);
+        
+        
+        try {
+            ArrayList<String> result = conn.remplirChampsRequete("select * from service where " + getWhereStmt(param));
+            for (int i = 0; i < result.size(); i++) {
+                System.out.println(result.get(i));
+            }
+        }
+        catch (SQLException e) {
+            System.out.println("SLQ EXCEPTION");
+        }
         
         return true;
     }

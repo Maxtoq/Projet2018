@@ -1,7 +1,7 @@
 
 package Model;
 
-import java.sql.Connection;
+import Controleur.Connexion;
 import java.util.ArrayList;
 
 /**
@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class ChambreDAO extends DAO<Chambre> {
 
-    public ChambreDAO(Connection conn) {
+    public ChambreDAO(Connexion conn) {
         super(conn, 4);
     }
     

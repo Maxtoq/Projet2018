@@ -1,6 +1,6 @@
 package Model;
 
-import java.sql.Connection;
+import Controleur.Connexion;
 import java.util.ArrayList;
 
 /**
@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class EmployeDAO extends DAO<Employe> {
 
-    public EmployeDAO(Connection conn) {
+    public EmployeDAO(Connexion conn) {
         super(conn, 5);
     }
     
