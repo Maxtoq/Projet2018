@@ -23,7 +23,7 @@ public abstract class DAO<T> {
     
     public abstract boolean update(T obj);
     
-    public abstract boolean select(ArrayList<String> param);
+    public abstract ArrayList<T> select(ArrayList<String> param);
     
     public abstract String getWhereStmt(ArrayList<String> param);
 }

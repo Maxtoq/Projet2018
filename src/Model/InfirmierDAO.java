@@ -32,7 +32,7 @@ public class InfirmierDAO extends DAO<Infirmier> {
     }
 
     @Override
-    public boolean select(ArrayList<String> param) {
+    public ArrayList<Infirmier> select(ArrayList<String> param) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

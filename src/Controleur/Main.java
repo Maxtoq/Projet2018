@@ -38,7 +38,7 @@ public class Main {
         mal_dao = new MaladeDAO(connect);
         serv_dao = new ServiceDAO(connect);
         
-        ArrayList<String> strs = new ArrayList<String>();
+        ArrayList<String> strs = new ArrayList<>();
         strs.add("");
         strs.add("");
         strs.add("A");

@@ -146,8 +146,7 @@ public class Connexion {
         int nbColonne = rsetMeta.getColumnCount();
 
         // creation d'une ArrayList de String
-        ArrayList<String> liste;
-        liste = new ArrayList<>();
+        ArrayList<String> liste = new ArrayList<>();
         String champs = "";
         // Ajouter tous les champs du resultat dans l'ArrayList
         for (int i = 0; i < nbColonne; i++) {
@@ -181,7 +180,7 @@ public class Connexion {
         int nbColonne = rsetMeta.getColumnCount();
 
         // creation d'une ArrayList de String
-        ArrayList<String> liste = new ArrayList<String>();
+        ArrayList<String> liste = new ArrayList<>();
 
         // tant qu'il reste une ligne 
         while (rset.next()) {

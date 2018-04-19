@@ -32,7 +32,7 @@ public class HospDAO extends DAO<Hosp> {
     }
 
     @Override
-    public boolean select(ArrayList<String> param) {
+    public ArrayList<Hosp> select(ArrayList<String> param) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
