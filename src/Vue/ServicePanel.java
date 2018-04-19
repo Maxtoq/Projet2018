@@ -82,12 +82,12 @@ public class ServicePanel extends JPanel implements ActionListener{
         String title[] = {"Code","Nom","Batiment","Directeur", "Suppression"};
         ZModel zModel = new ZModel(data, title);
         this.tab= new JTable(zModel);
-        this.tab.setRowHeight(30);
+        this.tab.setRowHeight(20);
         this.add(new JScrollPane(tab), BorderLayout.CENTER);
-        this.tab.getColumn("Code").setCellRenderer(new ButtonRenderer());
-        this.tab.getColumn("Nom").setCellRenderer(new ButtonRenderer());
-        this.tab.getColumn("Batiment").setCellRenderer(new ButtonRenderer());
-        this.tab.getColumn("Directeur").setCellRenderer(new ButtonRenderer());
+        //this.tab.getColumn("Code").setCellRenderer(new ButtonRenderer());
+        //this.tab.getColumn("Nom").setCellRenderer(new ButtonRenderer());
+        //this.tab.getColumn("Batiment").setCellRenderer(new ButtonRenderer());
+        //this.tab.getColumn("Directeur").setCellRenderer(new ButtonRenderer());
         //On définit un éditeur pour la colonne "supprimer"
         this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox()));
         
