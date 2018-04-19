@@ -2,6 +2,7 @@
 package Vue;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -12,7 +13,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author cleme
  */
-public class ServicePanel extends JPanel{
+public class ServicePanel extends JPanel implements ActionListener{
     //
     private JTable tab;
     private JButton change = new JButton("Changer la taille");
@@ -42,8 +43,10 @@ public class ServicePanel extends JPanel{
         in_nom = new JTextField(15);
         in_code = new JTextField();
         in_batiment = new JTextField();
+        in_batiment.addActionListener(this);
         in_dir = new JTextField();
         in_search = new JButton("Rechercher");
+        in_search.addActionListener(this);
        
         Object data[][] = {
             {"0101", "Toquebim", "1","Poncho"},
@@ -69,7 +72,7 @@ public class ServicePanel extends JPanel{
         labels[3] = new JLabel("Nom de Batiment :");
         input_pan.add(labels[3]);
         input_pan.add(in_nom);
-        
+        input_pan.add(in_search);
         
         
         this.add(input_pan);
@@ -95,6 +98,17 @@ public class ServicePanel extends JPanel{
         sorter.setSortKeys(sortKeys);
 
     
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+          if (ae.getSource().equals(in_search)) {
+              if (in_batiment.getAccessibleContext().toString()== "Pecresse")
+                    JOptionPane.showMessageDialog(null,"alert");
+              
+              
+          }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
     
