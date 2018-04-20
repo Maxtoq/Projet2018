@@ -58,6 +58,13 @@ public class Main {
         mal_dao.select(strmal);
     }
     
+    /**
+     * Getter pour le ServiceDAO
+     * 
+     * @return l'objet serv_dao, permettant de faire des requêtes à la db
+     */
+    public ServiceDAO getServDAO() { return serv_dao; }
+    
     public void initConnexion() {
         try {
             connect = new Connexion("hopital", "root", "");
