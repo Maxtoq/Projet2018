@@ -1,7 +1,6 @@
 package Model;
 
 import Controleur.Connexion;
-import java.util.ArrayList;
 
 /**
  *
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 public class EmployeDAO extends DAO<Employe> {
 
     public EmployeDAO(Connexion conn, String[] where_params) {
-        super(conn, where_params);
+        super(conn, where_params, "employe");
     }
     
     @Override
@@ -32,12 +31,7 @@ public class EmployeDAO extends DAO<Employe> {
     }
 
     @Override
-    public ArrayList<Employe> select(ArrayList<String> param) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getWhereStmt(ArrayList<String> param) {
+    public Employe getNewTObject(String[] strings) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
