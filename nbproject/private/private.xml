@@ -3,16 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Tony/Documents/GitHub/src/Model/Hospitalisation.java</file>
+            <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/PersonPanel.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/ButtonRenderer.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/SearchPanel.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/AddPanel.java</file>
-            <file>file:/C:/Users/Tony/Documents/GitHub/src/Model/Malade.java</file>
-            <file>file:/C:/Users/Tony/Documents/GitHub/src/Model/Service.java</file>
+            <file>file:/C:/Users/Tony/Documents/GitHub/src/Model/Chambre.java</file>
+            <file>file:/C:/Users/Tony/Documents/GitHub/src/Controleur/Main.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/Fenetre.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/HospPanel.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/ServicePanel.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Model/Docteur.java</file>
+            <file>file:/C:/Users/Tony/Documents/GitHub/src/Model/ServiceDAO.java</file>
         </group>
     </open-files>
 </project-private>

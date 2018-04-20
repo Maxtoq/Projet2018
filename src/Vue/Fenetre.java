@@ -57,6 +57,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         this.add(menu, BorderLayout.WEST);
         
         this.addWindowListener(this);
+
         this.setVisible(true);
     }
     
@@ -81,14 +82,18 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         tab_pan.addTab("Malades",malade_pan);
         
         this.add(tab_pan, BorderLayout.CENTER);
-        
-        this.setVisible(true);
+                this.setVisible(true);
+
+       
+
     }
     
     private void initServicePan(){
         service_pan = new ServicePanel();
         
         this.add(service_pan, BorderLayout.CENTER);
+                
+
         this.setVisible(true);
     }
     
@@ -97,24 +102,47 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
        hosp_pan = new HospPanel();
         
         this.add(hosp_pan, BorderLayout.CENTER);
+        
         this.setVisible(true);
+        
+        
     }
     
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(b_employes)) {
+            
+           
+ 
+          
+           
             initEmployePan();
+            
+            
+            
+            
+            
             
         }
         
         if (e.getSource().equals(b_services)) {
           /**  initEmployePan();**/
+          
            initServicePan();
+           
+           
+           
         }  //Nouveau if avec bouton b_hosp + fonction au dessus + nouvelle classe hospanel + cdc pour l'affichage de cette page
+       //
        
        if (e.getSource().equals(b_hosp))  {
-           initHospPan();
+          initHospPan();
+          
+           
+           
+           
+           
        }
        
     } 
