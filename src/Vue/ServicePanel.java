@@ -9,6 +9,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import Controleur.*;
+import Model.Service;
+import Model.ServiceDAO;
 
 /**
  *
@@ -25,12 +28,17 @@ public class ServicePanel extends JPanel implements ActionListener{
     private JButton in_search;
     private JButton ajouter= new JButton("Ajouter Service");
     private JTextField ajout;
+    private Main controler2;
+    private ServiceDAO serv_dao2;
+    private ZModel zModel;
      // On initialise tous les composants
       
-    public ServicePanel(){
+    public ServicePanel(Main _controler){
         
 
        
+        this.controler2=_controler;
+        this.serv_dao2 = this.controler2.getServDAO();
         
 
         String[] tri = {"Code","Nom","Batiment","Directeur"};
@@ -111,7 +119,27 @@ public class ServicePanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
           if (ae.getSource().equals(in_search)) {
-                System.out.println("TEXT : in_bat " + in_batiment.getText());
+                ArrayList<String> strs = new ArrayList<>();
+                strs.add(in_code.getText());
+                strs.add(in_nom.getText());
+                strs.add(in_batiment.getText());
+                strs.add(in_dir.getText());
+              ArrayList<Service> strs2 = new ArrayList<>();
+              
+              strs2 = serv_dao2.select(strs);
+             for(int i =0; i< strs2.size();i++)
+             {
+                 Service servR = strs2.get(i);
+                         
+                    String codeR = new String();
+                    codeR = servR.getCode();
+                    String nomR = new String();
+                    nomR = servR.getNom();
+                    char batR = servR.getBat();
+                    int dirR = servR.getDir();
+             zModel.setValueAt(codeR,i++,1);
+             zModel.setValueAt(nomR,i++,2);
+             zModel.setValueAt(batR,i++,3);
                     
         
           }
@@ -122,9 +150,10 @@ public class ServicePanel extends JPanel implements ActionListener{
                ((ZModel)tab.getModel()).addRow(donnee);
           }
               
-          
+          }
        
-    }
-}
     
+    }      
+    
+}
 
