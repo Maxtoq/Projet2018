@@ -72,16 +72,6 @@ public abstract class DAO<T> {
                 if (par) where += " and ";
                 // On ajoute "*nom du paramètre* = *valeur du paramètre*" à la requête 
                 where += where_params[i];
-                /*switch (i) {
-                    case 0: where += "code = ";
-                            break;
-                    case 1: where += "nom = ";
-                            break;
-                    case 2: where += "batiment = ";
-                            break;
-                    case 3: where += "directeur = ";
-                            break;
-                }*/
                 
                 // On ajoute la valeur du paramètre
                 where += "'" + param.get(i) + "'";
