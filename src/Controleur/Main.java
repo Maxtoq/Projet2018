@@ -34,8 +34,10 @@ public class Main {
         doc_dao = new DocteurDAO(connect);
         emp_dao = new EmployeDAO(connect);
         hosp_dao = new HospDAO(connect);
-        inf_dao = new InfirmierDAO(connect);
-        mal_dao = new MaladeDAO(connect);*/
+        String[] inf_params = { "numero = ", "nom = ", "prenom = ", "adresse = ", "tel = ", "mutuelle = " };
+        inf_dao = new InfirmierDAO(connect, inf_params);*/
+        String[] mal_params = { "numero = ", "nom = ", "prenom = ", "adresse = ", "tel = ", "mutuelle = " };
+        mal_dao = new MaladeDAO(connect, mal_params);
         String[] serv_params = { "code = ", "nom = ", "batiment = ", "directeur = " };
         serv_dao = new ServiceDAO(connect, serv_params);
         
@@ -45,7 +47,23 @@ public class Main {
         strs.add("A");
         strs.add("");
         serv_dao.select(strs);
+        
+        ArrayList<String> strmal = new ArrayList<>();
+        strmal.add("");
+        strmal.add("");
+        strmal.add("");
+        strmal.add("");
+        strmal.add("");
+        strmal.add("AG2R");
+        mal_dao.select(strmal);
     }
+    
+    /**
+     * Getter pour le ServiceDAO
+     * 
+     * @return l'objet serv_dao, permettant de faire des requêtes à la db
+     */
+    public ServiceDAO getServDAO() { return serv_dao; }
     
     public void initConnexion() {
         try {
