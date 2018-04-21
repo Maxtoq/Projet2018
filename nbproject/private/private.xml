@@ -5,12 +5,14 @@
         <group>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/PersonPanel.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/ButtonRenderer.java</file>
+            <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/Fenetre.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/SearchPanel.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/AddPanel.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Model/Chambre.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Controleur/Main.java</file>
-            <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/Fenetre.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/HospPanel.java</file>
+            <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/ZModel.java</file>
+            <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/ButtonEditor.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Vue/ServicePanel.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Model/Docteur.java</file>
             <file>file:/C:/Users/Tony/Documents/GitHub/src/Model/ServiceDAO.java</file>

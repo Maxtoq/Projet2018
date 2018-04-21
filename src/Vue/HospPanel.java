@@ -19,7 +19,7 @@ import javax.swing.table.TableRowSorter;
 public class HospPanel extends JPanel implements ActionListener {
     
     public AddPanel add_pan;
-        private JTextField in_nom;
+    private JTextField in_nom;
 
     private JTextField in_lit;
     private JTextField in_codeService;
@@ -27,7 +27,7 @@ public class HospPanel extends JPanel implements ActionListener {
     private JTable tab;
     private JButton ajouter;
     private JButton in_search;
-        private JTextField ajout;
+    private JTextField ajout;
 
 
    
