@@ -114,6 +114,42 @@ public class Main {
      * @return l'objet serv_dao, permettant de faire des requêtes à la db
      */
     public ServiceDAO getServDAO() { return serv_dao; }
+    /**
+     * Getter pour le ChambreDAO
+     * 
+     * @return l'objet ch_dao, permettant de faire des requêtes à la db
+     */
+    public ChambreDAO getChDAO() { return ch_dao; }
+    /**
+     * Getter pour le DocteurDAO
+     * 
+     * @return l'objet doc_dao, permettant de faire des requêtes à la db
+     */
+    public DocteurDAO getDocDAO() { return doc_dao; }
+    /**
+     * Getter pour le EmployeDAO
+     * 
+     * @return l'objet emp_dao, permettant de faire des requêtes à la db
+     */
+    public EmployeDAO getEmpDAO() { return emp_dao; }
+    /**
+     * Getter pour le HospDAO
+     * 
+     * @return l'objet hosp_dao, permettant de faire des requêtes à la db
+     */
+    public HospDAO getHospDAO() { return hosp_dao; }
+    /**
+     * Getter pour le InfirmierDAO
+     * 
+     * @return l'objet inf_dao, permettant de faire des requêtes à la db
+     */
+    public InfirmierDAO getInfDAO() { return inf_dao; }
+    /**
+     * Getter pour le MaladeDAO
+     * 
+     * @return l'objet mal_dao, permettant de faire des requêtes à la db
+     */
+    public MaladeDAO getMalDAO() { return mal_dao; }
     
     public void initConnexion() {
         try {
