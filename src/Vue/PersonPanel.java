@@ -14,7 +14,7 @@ public class PersonPanel extends JPanel {
     private int type; // Type d'employé : 1 = docteur, 2 = infirmier, 3 = malade
     
     public SearchPanel search_pan;
-    public AddPanel add_pan;
+    public JPanel pan;
     
     public PersonPanel(int _type) {
         type = _type;
@@ -25,11 +25,12 @@ public class PersonPanel extends JPanel {
         search_pan.setBorder(BorderFactory.createTitledBorder("Rechercher"));
         search_pan.setPreferredSize(new Dimension(850,500));
         
-        add_pan = new AddPanel();
-        add_pan.setBorder(BorderFactory.createTitledBorder("Ajouter un employé"));
+        pan = new JPanel();
+        //add_pan = new AddPanel();
+        pan.setBorder(BorderFactory.createTitledBorder("Ajouter un employé"));
         
         this.add(search_pan);
-        this.add(add_pan);
+        this.add(pan);
         
         this.setVisible(true);
     }

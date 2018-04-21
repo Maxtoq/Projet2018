@@ -19,6 +19,7 @@ import Model.ServiceDAO;
  */
 public class ServicePanel extends JPanel implements ActionListener{
     //
+    private AddPanel add_pan;
     private JTable tab;
     private JButton change = new JButton("Changer la taille");
     private JTextField in_code;
@@ -35,8 +36,9 @@ public class ServicePanel extends JPanel implements ActionListener{
       
     public ServicePanel(Main _controler){
         
-
-       
+        this.setLayout(new BorderLayout());
+        add_pan = new AddPanel("service");
+        this.add(add_pan,BorderLayout.SOUTH);
         this.controler2=_controler;
         this.serv_dao2 = this.controler2.getServDAO();
         
@@ -85,8 +87,9 @@ public class ServicePanel extends JPanel implements ActionListener{
         
         
         this.add(input_pan, BorderLayout.NORTH);
-        this.add(ajouter, BorderLayout.EAST);
-        this.add(ajout, BorderLayout.EAST);
+        
+        //this.add(ajouter, BorderLayout.EAST);
+        //this.add(ajout, BorderLayout.EAST);
          //modèle d'affichage spécifique destiné à pallier
       //les bugs d'affichage !
         String title[] = {"Code","Nom","Batiment","Directeur", "Suppression"};

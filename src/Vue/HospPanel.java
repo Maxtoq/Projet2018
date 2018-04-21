@@ -35,7 +35,8 @@ public class HospPanel extends JPanel implements ActionListener {
     
     public HospPanel()
     {
-                add_pan = new AddPanel();
+      
+                //add_pan = new AddPanel();
                 in_lit = new JTextField(15);
                 in_codeService = new JTextField();
                in_numMalade = new JTextField();
