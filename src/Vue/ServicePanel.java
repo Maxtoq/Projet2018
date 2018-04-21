@@ -104,6 +104,12 @@ public class ServicePanel extends JPanel implements ActionListener{
         //On définit un éditeur pour la colonne "supprimer"
         this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox()));
         
+        
+        if(add_pan.getObj() != null ){
+            System.out.println("cc");
+            System.out.println(add_pan.getObj());
+            ((ZModel)tab.getModel()).addRow(add_pan.getObj());
+        }
       /*   
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tab.getModel());
         tab.setRowSorter(sorter);
@@ -118,6 +124,10 @@ public class ServicePanel extends JPanel implements ActionListener{
       
       
       
+    }
+    
+    public void setValue(Object[] donnee){
+        ((ZModel)tab.getModel()).addRow(donnee);
     }
 
     @Override

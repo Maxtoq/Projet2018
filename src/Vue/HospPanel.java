@@ -18,7 +18,7 @@ import javax.swing.table.TableRowSorter;
  */
 public class HospPanel extends JPanel implements ActionListener {
     
-    public AddPanel add_pan;
+   
     private JTextField in_nom;
 
     private JTextField in_lit;
@@ -53,37 +53,37 @@ public class HospPanel extends JPanel implements ActionListener {
             {"0103","Tony","RAD", "102","supp"},};
 
 
-                JPanel input_pan = new JPanel(new GridLayout(0, 4, 10, 5));
+                JPanel input_pan2 = new JPanel(new GridLayout(0, 4, 10, 5));
 
                 JLabel[] labels = new JLabel[4];
         
         // On ajoute tous les composants
         labels[0] = new JLabel("Numéro du malade :");
-        input_pan.add(labels[0]);
+        input_pan2.add(labels[0]);
         
-       input_pan.add(in_lit);
+       input_pan2.add(in_lit);
         labels[1] = new JLabel("Numéro Lit :");
-        input_pan.add(labels[1]);
+        input_pan2.add(labels[1]);
         
-       input_pan.add(in_codeService);
+       input_pan2.add(in_codeService);
         labels[2] = new JLabel("Code Service :");
-        input_pan.add(labels[2]);
-       input_pan.add(in_numMalade);
+        input_pan2.add(labels[2]);
+       input_pan2.add(in_numMalade);
        
        labels[3] = new JLabel("Nom du patient :");
-       input_pan.add(labels[3]);
-        input_pan.add(in_nom);
+       input_pan2.add(labels[3]);
+        input_pan2.add(in_nom);
        
-       input_pan.add(in_search);
+       input_pan2.add(in_search);
        
 
-        this.add(input_pan);
+        this.add(input_pan2);
         
                //modèle d'affichage spécifique destiné à pallier
       //les bugs d'affichage !
         String title[] = {"Numero Malade","Nom Patient","Code Service","Numero Lit","Suppression"};
-        ZModel zModel = new ZModel(data, title);
-        this.tab= new JTable(zModel);
+        ZModel zModel2 = new ZModel(data, title);
+        this.tab= new JTable(zModel2);
         this.tab.setRowHeight(20);
         this.add(new JScrollPane(tab), BorderLayout.CENTER);
         this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox()));

@@ -34,6 +34,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         controler = _controler;
         service_pan = new ServicePanel(controler);
         menu = new JToolBar(JToolBar.VERTICAL);
+        hosp_pan = new HospPanel();
         
         
         
@@ -75,8 +76,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     
     private void initEmployePan() {
         
-        this.remove(panel);
-        panel.removeAll();        
+            
         doct_pan = new PersonPanel(1);
         infir_pan = new PersonPanel(2);
         malade_pan = new PersonPanel(3);
@@ -96,11 +96,9 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     private void initServicePan(){
          
       
-        this.remove(panel); 
-            
-        panel.removeAll();
+        
         panel.add(service_pan);
-        this.add(panel,BorderLayout.EAST);
+        this.add(panel,BorderLayout.CENTER);
                 
 
         this.setVisible(true);
@@ -108,9 +106,8 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     }
     
    private void initHospPan(){
-       this.remove(panel);
-       panel.removeAll();
-       hosp_pan = new HospPanel();
+    
+       
        panel.add(hosp_pan, BorderLayout.CENTER);
         this.add(panel);
         this.setVisible(true);
@@ -124,7 +121,8 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         if (e.getSource().equals(b_employes)) {
             
            
- 
+            this.remove(panel);
+            panel.removeAll();
           
            
             initEmployePan();
@@ -138,8 +136,9 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         
         if (e.getSource().equals(b_services)) {
           /**  initEmployePan();**/
-          
-           initServicePan();
+            this.remove(panel);
+            panel.removeAll();
+            initServicePan();
            
            
            
@@ -147,7 +146,9 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
        //
        
        if (e.getSource().equals(b_hosp))  {
-          initHospPan();
+          this.remove(panel);
+           panel.removeAll();
+           initHospPan();
           
            
            

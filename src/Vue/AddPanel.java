@@ -26,6 +26,7 @@ public class AddPanel extends JPanel implements ActionListener {
     private JButton ajouter;
     private JPanel input_pan = new JPanel();
     private JComboBox combo = new JComboBox();
+    private Object[] donnee;
     
             
     
@@ -37,6 +38,8 @@ public class AddPanel extends JPanel implements ActionListener {
        in_JT5 = new JTextField();
        ajouter = new JButton("Ajouter " + S);
        ajouter.addActionListener(this);
+       
+       
        
        combo.setPreferredSize(new Dimension(100, 20));
        
@@ -85,18 +88,26 @@ public class AddPanel extends JPanel implements ActionListener {
             input_pan.add(labels[3]);
             input_pan.add(in_JT4);
             input_pan.add(ajouter);
+            
          }
          this.add(input_pan);
    }
    
+   public Object[] getObj(){
+       return donnee;
+   }
    
     public void actionPerformed(ActionEvent ae) {
        if(ae.getSource().equals(ajouter))
        {
+         Object[] donnee = new Object[]
+            {in_JT3.getText(), in_JT2.getText(), in_JT3.getText(), in_JT4.getText(), "supp"};
+        //((ZModel)tab.getModel()).addRow(this.getObj());
          System.out.println("TEXT in cases" + in_JT1.getText()+ in_JT2.getText()+
                  in_JT3.getText()+ in_JT4.getText()+ in_JT5.getText()+ combo.getAccessibleContext().toString());
        }
     }
-    
-    
+
+   
+  
 }
