@@ -34,7 +34,8 @@ public class InfirmierDAO extends DAO<Infirmier> {
 
     @Override
     public Infirmier getNewTObject(String[] strings) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String adr = strings[7] + strings[8];
+        return new Infirmier(Integer.parseInt(strings[0]), strings[5], strings[6], strings[9], adr, strings[1], strings[2], Float.parseFloat(strings[3]));
     }
     
     @Override
@@ -44,7 +45,7 @@ public class InfirmierDAO extends DAO<Infirmier> {
         
         try {
             // On récupère l'arrayList des résultats de la requête
-            ArrayList<String> str_result = conn.remplirChampsRequete("select * from " + table + " where " + getWhereStmt(param));
+            ArrayList<String> str_result = conn.remplirChampsRequete("select * from " + table + getWhereStmt(param));
             
             // On crée le tableau d'objets à retourner
             ArrayList<Infirmier> result = new ArrayList<>();
@@ -52,7 +53,6 @@ public class InfirmierDAO extends DAO<Infirmier> {
             // Pour chaque strings, on récupère la strings de chaque attribut
             for (int i = 0; i < str_result.size(); i++) {
                 String[] strings = str_result.get(i).split(",");
-                System.out.println(str_result.get(i));
                 
                 // On crée un nouvel objet avec ces attributs
                 result.add(getNewTObject(strings));
@@ -70,7 +70,7 @@ public class InfirmierDAO extends DAO<Infirmier> {
     @Override
     public String getWhereStmt(ArrayList<String> param) {
         // On crée la string à insérer dans le "WHERE" de la requête
-        String where = "";
+        String where = " inner join employe on infirmier.numero = employe.numero where ";
         boolean par = false;
         
         // On remplit where en fonction des paramètres

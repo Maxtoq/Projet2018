@@ -14,9 +14,9 @@ public class Infirmier extends Employe {
     
     private String serv;
     private String rot;
-    private int sal;
+    private float sal;
     
-    public Infirmier(int _num, String _nom, String _prenom, String _tel, String _adresse, String _serv, String _rot, int _sal) {
+    public Infirmier(int _num, String _nom, String _prenom, String _tel, String _adresse, String _serv, String _rot, float _sal) {
         super(_num, _nom, _prenom, _tel, _adresse);
         serv = _serv;
         rot = _rot;
@@ -25,9 +25,9 @@ public class Infirmier extends Employe {
     
     public void setServ(String _serv) { serv = _serv; }
     public void setRot(String _rot) { rot = _rot; }
-    public void setSal(int _sal) { sal = _sal; }
+    public void setSal(float _sal) { sal = _sal; }
     
     public String getServ() { return serv; }
     public String getRot() { return rot; }
-    public int getSal() { return sal; }
+    public float getSal() { return sal; }
 }

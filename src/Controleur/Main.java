@@ -33,15 +33,17 @@ public class Main {
         /*ch_dao = new ChambreDAO(connect);
         doc_dao = new DocteurDAO(connect);
         emp_dao = new EmployeDAO(connect);
-        hosp_dao = new HospDAO(connect);
-        String[] inf_params = { "numero = ", "nom = ", "prenom = ", "adresse = ", "tel = ", "mutuelle = " };
-        inf_dao = new InfirmierDAO(connect, inf_params);*/
+        hosp_dao = new HospDAO(connect);*/
+        String[] inf_params = { "employe.numero = ", "employe.nom = ", "employe.prenom = ", 
+                                "employe.adresse = ", "employe.tel = ", "infirmier.code_service = ", 
+                                "infirmier.rotation = ", "infirmier.salaire = " };
+        inf_dao = new InfirmierDAO(connect, inf_params);
         String[] mal_params = { "numero = ", "nom = ", "prenom = ", "adresse = ", "tel = ", "mutuelle = " };
         mal_dao = new MaladeDAO(connect, mal_params);
         String[] serv_params = { "code = ", "nom = ", "batiment = ", "directeur = " };
         serv_dao = new ServiceDAO(connect, serv_params);
         
-        ArrayList<String> strs = new ArrayList<>();
+        /*ArrayList<String> strs = new ArrayList<>();
         strs.add("");
         strs.add("");
         strs.add("A");
@@ -55,7 +57,18 @@ public class Main {
         strmal.add("");
         strmal.add("");
         strmal.add("AG2R");
-        mal_dao.select(strmal);
+        mal_dao.select(strmal);*/
+        
+        ArrayList<String> strinf = new ArrayList<>();
+        strinf.add("");
+        strinf.add("");
+        strinf.add("");
+        strinf.add("");
+        strinf.add("");
+        strinf.add("CAR");
+        strinf.add("");
+        strinf.add("");
+        inf_dao.select(strinf);
     }
     
     /**
