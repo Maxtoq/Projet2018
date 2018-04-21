@@ -29,6 +29,12 @@ public class ChambreDAO extends DAO<Chambre> {
 
     @Override
     public boolean delete(Chambre obj) {
+        try {
+            conn.getStmt().executeUpdate("delete from " + table + " where no_chambre = '" + obj.getNum() + "' and code_service = '" + obj.getServ() + "'");
+        }
+        catch (SQLException e) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

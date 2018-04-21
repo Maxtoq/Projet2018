@@ -31,6 +31,13 @@ public class DocteurDAO extends DAO<Docteur> {
 
     @Override
     public boolean delete(Docteur obj) {
+        try {
+            conn.getStmt().executeUpdate("delete from " + table + " where numero = '" + obj.getNum() + "'");
+            conn.getStmt().executeUpdate("delete from employe where numero = '" + obj.getNum() + "'");
+        }
+        catch (SQLException e) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

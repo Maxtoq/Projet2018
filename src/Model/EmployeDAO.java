@@ -27,6 +27,12 @@ public class EmployeDAO extends DAO<Employe> {
 
     @Override
     public boolean delete(Employe obj) {
+        try {
+            conn.getStmt().executeUpdate("delete from " + table + " where numero = '" + obj.getNum() + "'");
+        }
+        catch (SQLException e) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

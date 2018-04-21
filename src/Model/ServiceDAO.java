@@ -26,6 +26,12 @@ public class ServiceDAO extends DAO<Service> {
 
     @Override
     public boolean delete(Service obj) {
+        try {
+            conn.getStmt().executeUpdate("delete from " + table + " where code = '" + obj.getCode() + "'");
+        }
+        catch (SQLException e) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

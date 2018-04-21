@@ -27,6 +27,12 @@ public class HospDAO extends DAO<Hosp> {
 
     @Override
     public boolean delete(Hosp obj) {
+        try {
+            conn.getStmt().executeUpdate("delete from " + table + " where no_malade = '" + obj.getNMalade()+ "'");
+        }
+        catch (SQLException e) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

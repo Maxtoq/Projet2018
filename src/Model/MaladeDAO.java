@@ -28,6 +28,12 @@ public class MaladeDAO extends DAO<Malade> {
 
     @Override
     public boolean delete(Malade obj) {
+        try {
+            conn.getStmt().executeUpdate("delete from " + table + " where numero = '" + obj.getNum() + "'");
+        }
+        catch (SQLException e) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

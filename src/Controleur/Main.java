@@ -89,7 +89,7 @@ public class Main {
         stremp.add("");
         emp_dao.select(stremp);*/
         
-        doc_dao.create(new Docteur(1,"Michel", "Michel", "01.42.53.64.21", "24 avenue de la Casanours, 75021 Paris", "Cardiologue"));
+        /*doc_dao.delete(new Docteur(1,"Michel", "Michel", "01.42.53.64.21", "24 avenue de la Casanours, 75021 Paris", "Cardiologue"));
         ArrayList<String> strdoc = new ArrayList<>();
         strdoc.add("");
         strdoc.add("");
@@ -99,7 +99,7 @@ public class Main {
         strdoc.add("Cardiologue");
         doc_dao.select(strdoc);
         
-        /*ch_dao.create(new Chambre(99,"REA",20,5));
+        ch_dao.delete(new Chambre(99,"REA",20,5));
         ArrayList<String> strch = new ArrayList<>();
         strch.add("REA");
         strch.add("");
