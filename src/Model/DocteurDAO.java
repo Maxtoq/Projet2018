@@ -1,7 +1,10 @@
 package Model;
 
 import Controleur.Connexion;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,6 +18,13 @@ public class DocteurDAO extends DAO<Docteur> {
     
     @Override
     public boolean create(Docteur obj) {
+        try {
+            conn.getStmt().executeUpdate("insert into " + table + " values ('" + obj.getNum() + "', '" + obj.getSpec() + "')");
+            conn.getStmt().executeUpdate("insert into employe values ('" + obj.getNum() + "', '" + obj.getNom() + "', '" 
+                                            + obj.getPrenom() + "', '" + obj.getAdresse() + "', '" + obj.getTel() + "')");
+        } catch (SQLException ex) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

@@ -16,6 +16,14 @@ public class InfirmierDAO extends DAO<Infirmier> {
     
     @Override
     public boolean create(Infirmier obj) {
+        try {
+            conn.getStmt().executeUpdate("insert into " + table + " values ('" + obj.getNum() + "', '" + obj.getServ() + "', '" 
+                                            + obj.getRot() + "', '" + obj.getSal() + "')");
+            conn.getStmt().executeUpdate("insert into employe values ('" + obj.getNum() + "', '" + obj.getNom() + "', '" 
+                                            + obj.getPrenom() + "', '" + obj.getAdresse() + "', '" + obj.getTel() + "')");
+        } catch (SQLException ex) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

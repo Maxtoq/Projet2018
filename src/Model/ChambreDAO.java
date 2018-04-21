@@ -17,7 +17,8 @@ public class ChambreDAO extends DAO<Chambre> {
     @Override
     public boolean create(Chambre obj) {
         try {
-            conn.getStmt().executeUpdate("insert into chambre values ('" + obj.getServ() + "REA', '100', '20', '5')");
+            conn.getStmt().executeUpdate("insert into " + table + " values ('" + obj.getServ() + "', '" + obj.getNum() + "', '" 
+                                            + obj.getSurveillant() + "', '" + obj.getNbLits() + "')");
         }
         catch (SQLException e) {
             System.out.println("SQL EXCEPTION");

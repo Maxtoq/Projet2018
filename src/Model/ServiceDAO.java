@@ -1,6 +1,7 @@
 package Model;
 
 import Controleur.Connexion;
+import java.sql.SQLException;
 /**
  *
  * @author maxim
@@ -13,6 +14,12 @@ public class ServiceDAO extends DAO<Service> {
     
     @Override
     public boolean create(Service obj) {
+        try {
+            conn.getStmt().executeUpdate("insert into "+ table + " values ('" + obj.getCode() + "', '" + obj.getNom() + "', '" 
+                                            + obj.getBat() + "', '" + obj.getDir() + "')");
+        } catch (SQLException ex) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

@@ -4,13 +4,7 @@ package Model;
  *
  * @author maxim
  */
-public class Employe {
-    
-    protected int num;
-    protected String nom;
-    protected String prenom;
-    protected String tel;
-    protected String adresse;
+public class Employe extends Person {
     
     public Employe(int _num, String _nom, String _prenom, String _tel, String _adresse) {
         num = _num;
@@ -19,10 +13,4 @@ public class Employe {
         tel = _tel;
         adresse = _adresse;
     }
-    
-    public void setNum(int _num) { num = _num; }
-    public void setNom(String _nom) { nom = _nom; }
-    public void setPrenom(String _prenom) { prenom = _prenom; }
-    public void setTel(String _tel) { tel = _tel; }
-    public void setAdresse(String _adresse) { adresse = _adresse; }
 }

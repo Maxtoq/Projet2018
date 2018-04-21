@@ -1,6 +1,7 @@
 package Model;
 
 import Controleur.Connexion;
+import java.sql.SQLException;
 
 /**
  *
@@ -14,6 +15,12 @@ public class EmployeDAO extends DAO<Employe> {
     
     @Override
     public boolean create(Employe obj) {
+        try {
+            conn.getStmt().executeUpdate("insert into " + table + " values ('" + obj.getNum() + "', '" + obj.getNom() + "', '" 
+                                            + obj.getPrenom() + "', '" + obj.getAdresse() + "', '" + obj.getTel() + "')");
+        } catch (SQLException ex) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

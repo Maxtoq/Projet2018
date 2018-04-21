@@ -1,6 +1,7 @@
 package Model;
 
 import Controleur.Connexion;
+import java.sql.SQLException;
 
 /**
  *
@@ -14,6 +15,12 @@ public class HospDAO extends DAO<Hosp> {
     
     @Override
     public boolean create(Hosp obj) {
+        try {
+            conn.getStmt().executeUpdate("insert into " + table + " values ('" + obj.getNMalade() + "', '" + obj.getServ() + "', '" 
+                                            + obj.getNChambre() + "', '" + obj.getLit() + "')");
+        } catch (SQLException ex) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }
