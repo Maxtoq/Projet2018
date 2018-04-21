@@ -89,6 +89,11 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     }
     
     private void initServicePan(){
+         
+         this.getContentPane().removeAll();
+         this.repaint();
+         Fenetre fen = new Fenetre(controler);
+        
         service_pan = new ServicePanel(controler);
         
         this.add(service_pan, BorderLayout.CENTER);

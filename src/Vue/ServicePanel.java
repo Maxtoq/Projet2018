@@ -140,6 +140,7 @@ public class ServicePanel extends JPanel implements ActionListener{
              zModel.setValueAt(codeR,i++,1);
              zModel.setValueAt(nomR,i++,2);
              zModel.setValueAt(batR,i++,3);
+             zModel.setValueAt(dirR,i++,4);
                     
         
           }
