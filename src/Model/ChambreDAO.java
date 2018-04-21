@@ -2,6 +2,7 @@
 package Model;
 
 import Controleur.Connexion;
+import java.sql.SQLException;
 
 /**
  *
@@ -15,6 +16,12 @@ public class ChambreDAO extends DAO<Chambre> {
     
     @Override
     public boolean create(Chambre obj) {
+        try {
+            conn.getStmt().executeUpdate("insert into chambre values ('" + obj.getServ() + "REA', '100', '20', '5')");
+        }
+        catch (SQLException e) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

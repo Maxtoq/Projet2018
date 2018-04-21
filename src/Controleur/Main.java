@@ -97,7 +97,7 @@ public class Main {
         strdoc.add("");
         strdoc.add("Cardiologue");
         doc_dao.select(strdoc);*/
-        
+        ch_dao.create(new Chambre(100,"REA",20,5));
         ArrayList<String> strch = new ArrayList<>();
         strch.add("REA");
         strch.add("");
