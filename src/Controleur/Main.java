@@ -1,4 +1,3 @@
-
 package Controleur;
 
 import Model.*;
@@ -30,10 +29,15 @@ public class Main {
         initConnexion();
         
         // On crée les DAO, qui nous permettront d'échanger les infos entre notre Model et la DB
-        /*ch_dao = new ChambreDAO(connect);
-        doc_dao = new DocteurDAO(connect);
-        emp_dao = new EmployeDAO(connect);
-        hosp_dao = new HospDAO(connect);*/
+        String[] ch_params = { "code_service = ", "no_chambre = ", "surveillant = ", "nb_lits = " };
+        ch_dao = new ChambreDAO(connect, ch_params);
+        String[] doc_params = { "employe.numero = ", "employe.nom = ", "employe.prenom = ", "employe.adresse = ",
+                                "employe.tel = ", "docteur.specialite = " };
+        doc_dao = new DocteurDAO(connect, doc_params);
+        String[] emp_params = { "numero = ", "nom = ", "prenom = ", "adresse = ", "tel = " };
+        emp_dao = new EmployeDAO(connect, emp_params);
+        String[] hosp_params = { "no_malade = ", "code_service = ", "no_chambre = ", "lit = " };
+        hosp_dao = new HospDAO(connect, hosp_params);
         String[] inf_params = { "employe.numero = ", "employe.nom = ", "employe.prenom = ", 
                                 "employe.adresse = ", "employe.tel = ", "infirmier.code_service = ", 
                                 "infirmier.rotation = ", "infirmier.salaire = " };
@@ -57,7 +61,7 @@ public class Main {
         strmal.add("");
         strmal.add("");
         strmal.add("AG2R");
-        mal_dao.select(strmal);*/
+        mal_dao.select(strmal);
         
         ArrayList<String> strinf = new ArrayList<>();
         strinf.add("");
@@ -69,6 +73,37 @@ public class Main {
         strinf.add("");
         strinf.add("");
         inf_dao.select(strinf);
+        
+        ArrayList<String> strhosp = new ArrayList<>();
+        strhosp.add("");
+        strhosp.add("REA");
+        strhosp.add("");
+        strhosp.add("");
+        hosp_dao.select(strhosp);
+        
+        ArrayList<String> stremp = new ArrayList<>();
+        stremp.add("");
+        stremp.add("");
+        stremp.add("Andy");
+        stremp.add("");
+        stremp.add("");
+        emp_dao.select(stremp);
+        
+        ArrayList<String> strdoc = new ArrayList<>();
+        strdoc.add("");
+        strdoc.add("");
+        strdoc.add("");
+        strdoc.add("");
+        strdoc.add("");
+        strdoc.add("Cardiologue");
+        doc_dao.select(strdoc);*/
+        
+        ArrayList<String> strch = new ArrayList<>();
+        strch.add("REA");
+        strch.add("");
+        strch.add("");
+        strch.add("");
+        ch_dao.select(strch);
     }
     
     /**

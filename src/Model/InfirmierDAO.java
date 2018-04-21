@@ -39,35 +39,6 @@ public class InfirmierDAO extends DAO<Infirmier> {
     }
     
     @Override
-    public ArrayList<Infirmier> select(ArrayList<String> param) {
-        // Si le nombre de paramètres donné pour la recherche est mauvais, la requête est rejetée (REMPLACER PAR EXCEPTION, ou enlever)
-        if (param.size() != where_params.length) return null;
-        
-        try {
-            // On récupère l'arrayList des résultats de la requête
-            ArrayList<String> str_result = conn.remplirChampsRequete("select * from " + table + getWhereStmt(param));
-            
-            // On crée le tableau d'objets à retourner
-            ArrayList<Infirmier> result = new ArrayList<>();
-            
-            // Pour chaque strings, on récupère la strings de chaque attribut
-            for (int i = 0; i < str_result.size(); i++) {
-                String[] strings = str_result.get(i).split(",");
-                
-                // On crée un nouvel objet avec ces attributs
-                result.add(getNewTObject(strings));
-            }
-            
-            return result;
-        }
-        catch (SQLException e) {
-            System.out.println("SQL EXCEPTION");
-        }
-        
-        return null;
-    }
-    
-    @Override
     public String getWhereStmt(ArrayList<String> param) {
         // On crée la string à insérer dans le "WHERE" de la requête
         String where = " inner join employe on infirmier.numero = employe.numero where ";

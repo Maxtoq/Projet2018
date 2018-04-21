@@ -32,7 +32,7 @@ public class HospDAO extends DAO<Hosp> {
 
     @Override
     public Hosp getNewTObject(String[] strings) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new Hosp(Integer.parseInt(strings[0]), strings[1], Integer.parseInt(strings[2]), Integer.parseInt(strings[3]));
     }
 
 }

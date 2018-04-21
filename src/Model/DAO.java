@@ -35,7 +35,7 @@ public abstract class DAO<T> {
         
         try {
             // On récupère l'arrayList des résultats de la requête
-            ArrayList<String> str_result = conn.remplirChampsRequete("select * from " + table + " where " + getWhereStmt(param));
+            ArrayList<String> str_result = conn.remplirChampsRequete("select * from " + table + getWhereStmt(param));
             
             // On crée le tableau d'objets à retourner
             ArrayList<T> result = new ArrayList<>();
@@ -60,7 +60,7 @@ public abstract class DAO<T> {
     
     public String getWhereStmt(ArrayList<String> param) {
         // On crée la string à insérer dans le "WHERE" de la requête
-        String where = "";
+        String where = " where ";
         boolean par = false;
         
         // On remplit where en fonction des paramètres

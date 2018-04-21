@@ -33,7 +33,6 @@ public class ChambreDAO extends DAO<Chambre> {
 
     @Override
     public Chambre getNewTObject(String[] strings) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new Chambre(Integer.parseInt(strings[1]), strings[0], Integer.parseInt(strings[2]), Integer.parseInt(strings[3]));
     }
-    
 }

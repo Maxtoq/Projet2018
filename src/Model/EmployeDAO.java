@@ -32,7 +32,8 @@ public class EmployeDAO extends DAO<Employe> {
 
     @Override
     public Employe getNewTObject(String[] strings) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String adr = strings[3] + strings[4];
+        return new Employe(Integer.parseInt(strings[0]), strings[1], strings[2], strings[5], adr);
     }
 
 }
