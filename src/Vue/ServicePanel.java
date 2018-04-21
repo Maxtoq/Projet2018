@@ -84,7 +84,9 @@ public class ServicePanel extends JPanel implements ActionListener{
         input_pan.add(in_search);
         
         
-        this.add(input_pan);
+        this.add(input_pan, BorderLayout.NORTH);
+        this.add(ajouter, BorderLayout.EAST);
+        this.add(ajout, BorderLayout.EAST);
          //modèle d'affichage spécifique destiné à pallier
       //les bugs d'affichage !
         String title[] = {"Code","Nom","Batiment","Directeur", "Suppression"};
@@ -111,8 +113,7 @@ public class ServicePanel extends JPanel implements ActionListener{
      */
       ajouter.addActionListener(this);
       
-      this.add(ajouter, BorderLayout.EAST);
-      this.add(ajout, BorderLayout.EAST);
+      
       
     }
 

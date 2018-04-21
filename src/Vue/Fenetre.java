@@ -24,14 +24,18 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     private PersonPanel infir_pan;
     private PersonPanel malade_pan;
     private HospPanel hosp_pan;
+    private JTabbedPane tab_pan;
+    private JPanel panel;
     
     public Fenetre(Main _controler) {
         super("Gestion centre hospitalier");
-        this.setSize(1000, 700);
-        
+        this.setSize(1500, 1000);
+        panel = new JPanel();
         controler = _controler;
-        
+        service_pan = new ServicePanel(controler);
         menu = new JToolBar(JToolBar.VERTICAL);
+        
+        
         
         b_employes = new JButton("-   Employés");
         initButton(b_employes);
@@ -57,7 +61,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         this.add(menu, BorderLayout.WEST);
         
         this.addWindowListener(this);
-
+        
         this.setVisible(true);
     }
     
@@ -70,19 +74,20 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     }
     
     private void initEmployePan() {
-        JTabbedPane tab_pan = new JTabbedPane();
-                
+        
+        this.remove(panel);
+        panel.removeAll();        
         doct_pan = new PersonPanel(1);
         infir_pan = new PersonPanel(2);
         malade_pan = new PersonPanel(3);
-        
-        
+        JTabbedPane tab_pan = new JTabbedPane();
         tab_pan.addTab("Docteurs", doct_pan);
         tab_pan.addTab("Infirmiers(ères)", infir_pan);
         tab_pan.addTab("Malades",malade_pan);
         
-        this.add(tab_pan, BorderLayout.CENTER);
-                this.setVisible(true);
+        panel.add(tab_pan);
+        this.add(panel,BorderLayout.EAST);
+        this.setVisible(true);
 
        
 
@@ -90,24 +95,24 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     
     private void initServicePan(){
          
-         this.getContentPane().removeAll();
-         this.repaint();
-         Fenetre fen = new Fenetre(controler);
-        
-        service_pan = new ServicePanel(controler);
-        
-        this.add(service_pan, BorderLayout.CENTER);
+      
+        this.remove(panel); 
+            
+        panel.removeAll();
+        panel.add(service_pan);
+        this.add(panel,BorderLayout.EAST);
                 
 
         this.setVisible(true);
+        
     }
     
    private void initHospPan(){
-
+       this.remove(panel);
+       panel.removeAll();
        hosp_pan = new HospPanel();
-        
-        this.add(hosp_pan, BorderLayout.CENTER);
-        
+       panel.add(hosp_pan, BorderLayout.CENTER);
+        this.add(panel);
         this.setVisible(true);
         
         
