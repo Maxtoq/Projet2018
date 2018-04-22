@@ -44,6 +44,16 @@ public class DocteurDAO extends DAO<Docteur> {
 
     @Override
     public boolean update(Docteur obj) {
+        try {
+            conn.getStmt().executeUpdate("update docteur set specialite = '" + obj.getSpec() + "' where numero = '" 
+                                            + obj.getNum() + "'");
+            conn.getStmt().executeUpdate("update employe set nom = '" + obj.getNom() + "', prenom = '" + obj.getPrenom() 
+                                            + "', adresse = '" + obj.getAdresse() + "', tel = '" + obj.getTel() + "' where numero = '" 
+                                            + obj.getNum() + "'");
+        }
+        catch (SQLException e) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }
