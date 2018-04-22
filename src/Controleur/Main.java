@@ -21,10 +21,7 @@ public class Main {
     private MaladeDAO mal_dao;
     private ServiceDAO serv_dao;
     
-    public Main() {
-        // On crée la nouvelle fenêtre
-        fen = new Fenetre(this);
-        
+    public Main() { 
         // On initialise la connexion avec la database
         initConnexion();
         
@@ -46,6 +43,10 @@ public class Main {
         mal_dao = new MaladeDAO(connect, mal_params);
         String[] serv_params = { "code = ", "nom = ", "batiment = ", "directeur = " };
         serv_dao = new ServiceDAO(connect, serv_params);
+        
+        // On crée la nouvelle fenêtre
+        fen = new Fenetre(this);
+        
         
         /*ArrayList<String> strs = new ArrayList<>();
         strs.add("");
