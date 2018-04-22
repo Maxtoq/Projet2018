@@ -50,7 +50,7 @@ public class HospPanel extends JPanel implements ActionListener {
     {
       
         this.setLayout(new BorderLayout());
-        add_pan = new AddPanel("service");
+        add_pan = new AddPanel("hospitalisation");
         this.add(add_pan,BorderLayout.SOUTH);
         this.controler2=_controler;
         this.hosp_dao2 = this.controler2.getHospDAO();
@@ -71,9 +71,9 @@ public class HospPanel extends JPanel implements ActionListener {
             {"0103","Tony","RAD", "102","supp"},};
 
 
-                JPanel input_pan2 = new JPanel(new GridLayout(0, 4, 10, 5));
+            JPanel input_pan2 = new JPanel(new GridLayout(0, 4, 10, 5));
 
-                JLabel[] labels = new JLabel[4];
+            JLabel[] labels = new JLabel[4];
         
         // On ajoute tous les composants
         labels[0] = new JLabel("Numéro du malade :");
@@ -95,7 +95,7 @@ public class HospPanel extends JPanel implements ActionListener {
        input_pan2.add(in_search);
        
 
-        this.add(input_pan2);
+        this.add(input_pan2,BorderLayout.NORTH);
         
                //modèle d'affichage spécifique destiné à pallier
       //les bugs d'affichage !

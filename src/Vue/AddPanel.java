@@ -17,15 +17,16 @@ import javax.swing.JTextField;
  */
 public class AddPanel extends JPanel implements ActionListener {
 
-   
     private JTextField in_JT1;
     private JTextField in_JT2;
     private JTextField in_JT3;
     private JTextField in_JT4;
     private JTextField in_JT5;
+    private JTextField in_JT6;
     private JButton ajouter;
     private JPanel input_pan = new JPanel();
     private JComboBox combo = new JComboBox();
+    private JComboBox combo2 = new JComboBox();
     private Object[] donnee;
     
             
@@ -36,6 +37,7 @@ public class AddPanel extends JPanel implements ActionListener {
        in_JT3 = new JTextField();
        in_JT4 = new JTextField();
        in_JT5 = new JTextField();
+       in_JT6 = new JTextField();
        ajouter = new JButton("Ajouter " + S);
        ajouter.addActionListener(this);
        
@@ -43,9 +45,48 @@ public class AddPanel extends JPanel implements ActionListener {
        
        combo.setPreferredSize(new Dimension(100, 20));
        
+        
+          if(S == "hospitalisation")
+         {
+             JLabel[] labels = new JLabel[4];
+             input_pan = new JPanel( new GridLayout(0, 4, 10, 5));
+            labels[0] = new JLabel("N°Malade :");
+            input_pan.add(labels[0]);
+            input_pan.add(in_JT1);
+            labels[1] = new JLabel("Numero lit :");
+            input_pan.add(labels[1]);
+            input_pan.add(in_JT2);
+            labels[2] = new JLabel("Code Service :");
+            input_pan.add(labels[2]);
+            input_pan.add(in_JT3);
+            labels[3] = new JLabel("Nom Patient :");
+            input_pan.add(labels[3]);
+            input_pan.add(in_JT4);
+            input_pan.add(ajouter);
+            
+         }
+          if(S == "service")
+         {
+             JLabel[] labels = new JLabel[4];
+             input_pan = new JPanel( new GridLayout(0, 4, 10, 5));
+            labels[0] = new JLabel("N°Batiments :");
+            input_pan.add(labels[0]);
+            input_pan.add(in_JT1);
+            labels[1] = new JLabel("Code Batiment :");
+            input_pan.add(labels[1]);
+            input_pan.add(in_JT2);
+            labels[2] = new JLabel("Nom Batiment :");
+            input_pan.add(labels[2]);
+            input_pan.add(in_JT3);
+            labels[3] = new JLabel("Num Directeur :");
+            input_pan.add(labels[3]);
+            input_pan.add(in_JT4);
+            input_pan.add(ajouter);
+            
+         }
          if(S == "docteurs"){
-            JLabel[] labels = new JLabel[6];
-            input_pan = new JPanel( new GridLayout(0, 6, 10, 5));
+            JLabel[] labels = new JLabel[8];
+            input_pan = new JPanel( new GridLayout(0, 8, 10, 5));
             labels[0] = new JLabel("N° :");
             input_pan.add(labels[0]);
             input_pan.add(in_JT1);
@@ -68,27 +109,81 @@ public class AddPanel extends JPanel implements ActionListener {
             combo.addItem("Pneumologue");
             combo.addItem("Radiologue");
             combo.addItem("Traumatologue");
+            input_pan.add(labels[5]);
             input_pan.add(combo);
             input_pan.add(ajouter);
            }
-         if(S == "service")
+         
+         
+         if(S == "infirmier")
          {
-             JLabel[] labels = new JLabel[4];
-             input_pan = new JPanel( new GridLayout(0, 4, 10, 5));
-            labels[0] = new JLabel("N°Batiments :");
+             JLabel[] labels = new JLabel[8];
+             input_pan = new JPanel( new GridLayout(0, 8, 10, 5));
+            labels[0] = new JLabel("N° :");
             input_pan.add(labels[0]);
             input_pan.add(in_JT1);
-            labels[1] = new JLabel("Code Batiment :");
+            labels[1] = new JLabel("Nom :");
             input_pan.add(labels[1]);
             input_pan.add(in_JT2);
-            labels[2] = new JLabel("Nom Batiment :");
+            labels[2] = new JLabel("Prenom :");
             input_pan.add(labels[2]);
             input_pan.add(in_JT3);
-            labels[3] = new JLabel("Num Directeur :");
+            labels[3] = new JLabel("Telephone :");
             input_pan.add(labels[3]);
             input_pan.add(in_JT4);
+            labels[4] = new JLabel("Adresse :");
+            input_pan.add(labels[4]);
+            input_pan.add(in_JT5);
+            labels[5]= new JLabel ("Rotation :");
+            combo.addItem("Jour");
+            combo.addItem("Nuit");
+            input_pan.add(labels[5]);
+            input_pan.add(combo);
+            labels[6] = new JLabel("Salaire :");
+            input_pan.add(labels[6]);
+            input_pan.add(in_JT6);
+            labels[7]= new JLabel ("Service :");
+            combo2.addItem("CAR");
+            combo2.addItem("CHG");
+            combo2.addItem("REA");
+            input_pan.add(labels[7]);
+            input_pan.add(combo2);
             input_pan.add(ajouter);
             
+         }
+        
+         
+         if(S == "malade")
+         {
+              JLabel[] labels = new JLabel[6];
+             input_pan = new JPanel( new GridLayout(0, 6, 10, 5));
+            labels[0] = new JLabel("N°Malade :");
+            input_pan.add(labels[0]);
+            input_pan.add(in_JT1);
+            labels[1] = new JLabel("Nom :");
+            input_pan.add(labels[1]);
+            input_pan.add(in_JT2);
+            labels[2] = new JLabel("Prénom :");
+            input_pan.add(labels[2]);
+            input_pan.add(in_JT3);
+            labels[3] = new JLabel("Telephone:");
+            input_pan.add(labels[3]);
+            input_pan.add(in_JT4);
+            labels[5]= new JLabel ("Mutuelle :");
+            combo.addItem("AG2R");
+            combo.addItem("CCVRP");
+            combo.addItem("CNAMTS");
+            combo.addItem("MAAF");
+            combo.addItem("MAS");
+            combo.addItem("MGEN");
+            combo.addItem("MGSP");
+            combo.addItem("MMA");
+            combo.addItem("MNAM");
+            combo.addItem("MNFTC");
+            combo.addItem("MNH");
+            input_pan.add(labels[5]);
+            input_pan.add(combo);
+            input_pan.add(ajouter);
          }
          this.add(input_pan);
    }
@@ -100,12 +195,13 @@ public class AddPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
        if(ae.getSource().equals(ajouter))
        {
-         Object[] donnee = new Object[]
-            {in_JT3.getText(), in_JT2.getText(), in_JT3.getText(), in_JT4.getText(), "supp"};
-        //((ZModel)tab.getModel()).addRow(this.getObj());
-         System.out.println("TEXT in cases" + in_JT1.getText()+ in_JT2.getText()+
-                 in_JT3.getText()+ in_JT4.getText()+ in_JT5.getText()+ combo.getAccessibleContext().toString());
-       }
+           
+            Object[] donnee = new Object[]
+               {in_JT3.getText(), in_JT2.getText(), in_JT3.getText(), in_JT4.getText(), "supp"};
+           //((ZModel)tab.getModel()).addRow(this.getObj());
+            System.out.println("TEXT in cases" + in_JT1.getText()+ in_JT2.getText()+
+                    in_JT3.getText()+ in_JT4.getText()+ in_JT5.getText()+ combo.getAccessibleContext().toString());
+          }
     }
 
    
