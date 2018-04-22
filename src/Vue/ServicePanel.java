@@ -33,18 +33,22 @@ public class ServicePanel extends JPanel implements ActionListener{
     // Variables pour la connexion SQL
     private ServiceDAO serv_dao2;
     private String[] data;
-    private Object T;
+    
     private ArrayList select;
     private ZModel zModel;
      // On initialise tous les composants
       
     public ServicePanel(Main _controler){
         
+        
+      
         this.setLayout(new BorderLayout());
         add_pan = new AddPanel("service");
         this.add(add_pan,BorderLayout.SOUTH);
         this.controler2=_controler;
         this.serv_dao2 = this.controler2.getServDAO();
+        System.out.println("La valeur de l'objet est"+serv_dao2);
+        
        
 
         String[] tri = {"Code","Nom","Batiment","Directeur"};
@@ -52,10 +56,8 @@ public class ServicePanel extends JPanel implements ActionListener{
         boxtri.setSelectedIndex(3);
 
         Object[][] data2 = {  
-            {"REA","Reanimation et Traumatologie","A","19","supp"},
-        {"CHG","Chirurgie generale","A","34","supp"},
-        {"CAR","Cardiologie","B","80","supp"} 
-        
+            {"REA","Reanimation et Traumatologie","A","19","supp"}
+             
     };
         // ESsaie de recuperer lobjets associe 
        // String data[] = {"REA","Reanimation et Traumatologie","A","19"};
@@ -166,18 +168,31 @@ public class ServicePanel extends JPanel implements ActionListener{
                          
                     String codeR = new String();
                     codeR = servR.getCode();
+                    System.out.println("codeR "+codeR);
                     String nomR = new String();
                     nomR = servR.getNom();
+                    System.out.println("nomR "+nomR);
                     char batR = servR.getBat();
+                    System.out.println("batR "+batR);
+                    String batR2 = new String();
+                    batR2 = String.valueOf(batR);
                     int dirR = servR.getDir();
-             zModel.setValueAt(codeR,i++,1);
-             zModel.setValueAt(nomR,i++,2);
-             zModel.setValueAt(batR,i++,3);
-             zModel.setValueAt(dirR,i++,4);
+                    String diR2 = new String();
+                    diR2 = String.valueOf(dirR);
+                    System.out.println("dirR "+dirR);
+                    Object[] data = new Object[5];
+                    data[0] = codeR; 
+                    data[1]= nomR;
+                    data[2] = batR2;
+                    data[3]= diR2;
+                ((ZModel)tab.getModel()).addRow(data);
+                 //Object[][] data2 ={codeR, nomR , batR,dirR,"supp"};   
+                
+
                     
         
           }
-          if (ae.getSource().equals(ajouter))
+             if (ae.getSource().equals(ajouter))
           {
                Object[] donnee = new Object[]
             {"0102", "Rennais", "4", ajout.getText(), "supp"};
