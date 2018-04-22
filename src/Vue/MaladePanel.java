@@ -1,8 +1,5 @@
 package Vue;
 
-import Controleur.Main;
-import Model.HospDAO;
-import Model.MaladeDAO;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +8,10 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import Controleur.*;
+import Model.MaladeDAO;
+import Model.Service;
+import Model.ServiceDAO;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -104,7 +105,7 @@ public class MaladePanel extends JPanel implements ActionListener {
         this.tab= new JTable(zModel2);
         this.tab.setRowHeight(20);
         this.add(new JScrollPane(tab), BorderLayout.CENTER);
-        this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox()));
+        this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox(),controler2));
         
            if(add_pan.getObj() != null ){
             System.out.println("cc");
@@ -119,6 +120,12 @@ public class MaladePanel extends JPanel implements ActionListener {
     }
     
     }
+    
+                 public void setValue(Object[] donnee){
+        ((ZModel)tab.getModel()).addRow(donnee);
+                 }
+    
+    
     
     
 

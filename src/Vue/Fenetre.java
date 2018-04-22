@@ -3,6 +3,7 @@ package Vue;
 
 import Controleur.Main;
 import Model.HospDAO;
+import Model.MaladeDAO;
 import Model.ServiceDAO;
 import java.awt.*;
 import java.awt.event.*;
@@ -25,11 +26,13 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     private PersonPanel doct_pan;
     private PersonPanel infir_pan;
     private PersonPanel malade_pan;
+    private MaladePanel malade_Panel; 
     private HospPanel hosp_pan;
     private JTabbedPane tab_pan;
     private JPanel panel;
     private ServiceDAO servDAO;
-    private HospDAO hospDAO;
+    private HospDAO hospDAO;    
+    private MaladeDAO malDAO;
     
     public Fenetre(Main _controler) {
         super("Gestion centre hospitalier");
@@ -38,11 +41,14 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         controler = _controler;
         service_pan = new ServicePanel(controler);
         menu = new JToolBar(JToolBar.VERTICAL);
+       // malade_Panel = new MaladePanel(controler);//
         hosp_pan = new HospPanel(controler);
         
         servDAO = controler.getServDAO();
         
         hospDAO = controler.getHospDAO();
+        
+        malDAO = controler.getMalDAO();
         
         
         b_employes = new JButton("-   Employés");
@@ -57,6 +63,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         b_services.addActionListener(this);
         b_employes.addActionListener(this);
         b_hosp.addActionListener(this);
+        b_malades.addActionListener(this);
         
         menu.add(b_employes);
         menu.add(b_malades);
@@ -100,21 +107,22 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
 
     }
     
-    private void initServicePan(){
-         
-      
+    private void initMaladePan(){
         
-        panel.add(service_pan);
+        panel.add(malade_Panel);
         this.add(panel,BorderLayout.CENTER);
-                
-
         this.setVisible(true);
-        
+
+
     }
     
-   private void initHospPan(){
+    private void initServicePan(){  
+        panel.add(service_pan);
+        this.add(panel,BorderLayout.CENTER);       
+        this.setVisible(true);      
+    }
     
-       
+   private void initHospPan(){   
        panel.add(hosp_pan, BorderLayout.CENTER);
         this.add(panel);
         this.setVisible(true);
@@ -141,6 +149,14 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
             
         }
         
+ if (e.getSource().equals(b_malades)) {
+          /**  initEmployePan();**/
+            this.remove(panel);
+            panel.removeAll();
+            initMaladePan();
+ 
+        }
+        
         if (e.getSource().equals(b_services)) {
           /**  initEmployePan();**/
             this.remove(panel);
@@ -156,11 +172,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
           this.remove(panel);
            panel.removeAll();
            initHospPan();
-          
-           
-           
-           
-           
+   
        }
        
     } 
