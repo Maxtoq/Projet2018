@@ -224,7 +224,9 @@ public class AddPanel extends JPanel implements ActionListener {
            if(S2 == "malade"){
                 String str = in_JT1.getText();
                 int i = Integer.parseInt(str);
-                mal = new Malade(i, in_JT2.getText(),in_JT3.getText(),in_JT4.getText(),in_JT5.getText(),combo.getActionCommand());
+                String str2 = combo.getSelectedItem().toString();
+                 System.out.println("La valeur de l'objet est " + i +" "+ in_JT2.getText()+ " " +in_JT3.getText()+ " " +  str2 );
+                mal = new Malade(i, in_JT2.getText(),in_JT3.getText(),in_JT4.getText(),in_JT5.getText(), str2);
                 mal_dao.create(mal);
            }
        }
