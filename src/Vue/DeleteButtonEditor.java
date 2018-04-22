@@ -5,6 +5,9 @@
  */
 package Vue;
 
+import Controleur.Main;
+import Model.Service;
+import Model.ServiceDAO;
 import static com.sun.javafx.fxml.expression.Expression.not;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -22,8 +25,11 @@ import javax.swing.JTable;
 public class DeleteButtonEditor extends DefaultCellEditor {
      protected JButton button; 
      private DeleteButtonListener bListener = new DeleteButtonListener();
+     private Service obj;
+     private ServiceDAO serv_dao3;
+     private Main controler;
     
-   public DeleteButtonEditor(JCheckBox checkBox) {
+   public DeleteButtonEditor(JCheckBox checkBox, Main _controler) {
       //Par défaut, ce type d'objet travaille avec un JCheckBox
       super(checkBox);
       
@@ -32,7 +38,8 @@ public class DeleteButtonEditor extends DefaultCellEditor {
       button.setOpaque(true);
        //On lui attribue un listener
        button.addActionListener((ActionListener) bListener);
-       
+       this.controler = _controler;
+       this.serv_dao3 = _controler.getServDAO();
       //boolen pour emepcher suppression stupid       
       //boolen pour emepcher suppression stupid
       
@@ -73,9 +80,21 @@ public class DeleteButtonEditor extends DefaultCellEditor {
             //On affecte un nouveau libellé à une celulle de la ligne
             System.out.println("bool : "+ (bool));
             if(bool = true)
-            {((ZModel)table.getModel()).removeRow(this.row);}
+            {
+                 String str = (String)table.getModel().getValueAt(row , 0);
+                String str2 = (String)table.getModel().getValueAt(row , 1);
+                String str3 = (String)table.getModel().getValueAt(row, 3);
+                int i = Integer.parseInt(str3);
+                String str4 = (String)table.getModel().getValueAt(row , 2);
+                char c = str4.charAt(0);
+                obj = new Service(str,str2,c,i);
+                 System.out.println("La valeur de l'objet est " + obj.getCode() +" "+ obj.getNom()+ " " +obj.getBat()+ " " + obj.getDir() );
+                serv_dao3.delete(obj);
+                  
+                ((ZModel)table.getModel()).removeRow(this.row);
              
-         }
+             }
       }
    }         
+ }
 }
