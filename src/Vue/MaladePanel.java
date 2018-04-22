@@ -10,6 +10,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import Controleur.*;
 import Model.MaladeDAO;
+import Model.Malade;
 import Model.Service;
 import Model.ServiceDAO;
 
@@ -43,6 +44,7 @@ public class MaladePanel extends JPanel implements ActionListener {
     private ArrayList select;
     private ZModel zModel;
     private Main controler2;
+    
     
     
     public MaladePanel(Main _controler){
@@ -148,8 +150,63 @@ public class MaladePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      if (ae.getSource().equals(in_search)) {
+                ArrayList<String> strs = new ArrayList<>();
+                if (in_num.getText() != null )
+                strs.add(in_num.getText());
+                else  strs.add("");
+                if (in_nom.getText() != null)
+                strs.add(in_nom.getText());
+                else  strs.add("");
+                if(in_prenom.getText() != null)
+                strs.add(in_prenom.getText());
+                else  strs.add("");
+                if (in_adresse.getText() != null)
+                strs.add(in_adresse.getText());
+                else  strs.add("");
+                if (in_tel.getText() != "--")
+                strs.add(in_tel.getText());
+                else strs.add("");
+                String str2 = combo.getSelectedItem().toString();
+                if (str2 != null)
+                    strs.add(str2);
+                else strs.add("");
+                
+              ArrayList<Malade> strs2 = new ArrayList<>();
+              strs2 = malade_dao2.select(strs);
+              System.out.println("size strs2 "+ strs2.size());
+              for(int i =0; i< strs2.size();i++)
+             {
+                    Malade mal = strs2.get(i);
+                         
+                    int codeR = mal.getNum();
+                    String codeR2 = new String();
+                    codeR2 = String.valueOf(codeR);
+                    System.out.println("codeR "+codeR);
+                    String nomR = new String();
+                    nomR = mal.getNom();
+                    System.out.println("nomR "+nomR);
+                    String prenomR = mal.getPrenom();
+                    System.out.println("prenomR "+prenomR);
+                    String adresseR = new String();
+                    adresseR = mal.getAdresse();
+                    String telR = new String();
+                    telR = mal.getTel();
+                    String mutuelleR = new String();
+                    mutuelleR= mal.getMut();
+                    System.out.println("dirR "+mutuelleR);
+                    Object[] data = new Object[7];
+                    data[0] = codeR2; 
+                    data[1]= nomR;
+                    data[2] = prenomR;
+                    data[3]= adresseR;
+                    data[4]= telR;
+                    data[5] = mutuelleR;
+                ((ZModel)tab.getModel()).addRow(data);
+                 //Object[][] data2 ={codeR, nomR , batR,dirR,"supp"};   
+             }
+        }
+    
+    
     }
-    
-    
 }
