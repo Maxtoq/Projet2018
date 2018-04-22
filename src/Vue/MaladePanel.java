@@ -1,5 +1,8 @@
 package Vue;
 
+import Controleur.Main;
+import Model.HospDAO;
+import Model.MaladeDAO;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,10 +35,22 @@ public class MaladePanel extends JPanel implements ActionListener {
     private JButton in_search;
     private JTextField ajout;
     
-    /*
-    public MaladePanel(){
+    
+    private MaladeDAO malade_dao2;
+    private String[] data;
+    private Object T;
+    private ArrayList select;
+    private ZModel zModel;
+    private Main controler2;
+    
+    
+    public MaladePanel(Main _controler){
         
-       add_pan = new AddPanel();
+        add_pan = new AddPanel("malade",controler2);
+        this.add(add_pan,BorderLayout.SOUTH);
+        this.malade_dao2 = this.controler2.getMalDAO();
+
+
        in_nom = new JTextField(15);
        in_prenom = new JTextField();
        in_mutuelle = new JTextField();
@@ -81,10 +96,31 @@ public class MaladePanel extends JPanel implements ActionListener {
        input_pan.add(in_search);
        
 
-        this.add(input_pan);
+        this.add(input_pan,BorderLayout.NORTH);
+    
+    
+       String title[] = {"Numero Malade","Nom Patient","Prenom Patient","Telephone","Adresse", "Mutuelle"};
+        ZModel zModel2 = new ZModel(data, title);
+        this.tab= new JTable(zModel2);
+        this.tab.setRowHeight(20);
+        this.add(new JScrollPane(tab), BorderLayout.CENTER);
+        this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox()));
+        
+           if(add_pan.getObj() != null ){
+            System.out.println("cc");
+            System.out.println(add_pan.getObj());
+            ((ZModel)tab.getModel()).addRow(add_pan.getObj());
+            
+            ajouter.addActionListener(this);
+      
+      this.add(ajouter, BorderLayout.EAST);
+      this.add(ajout, BorderLayout.EAST);
+
     }
     
-    */
+    }
+    
+    
 
     @Override
     public void actionPerformed(ActionEvent ae) {
