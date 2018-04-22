@@ -106,7 +106,7 @@ public class HospPanel extends JPanel implements ActionListener {
         this.tab= new JTable(zModel2);
         this.tab.setRowHeight(20);
         this.add(new JScrollPane(tab), BorderLayout.CENTER);
-        this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox(), controler2));
+        this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox(), controler2, "hospitalisation"));
         
            if(add_pan.getObj() != null ){
             System.out.println("cc");

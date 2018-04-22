@@ -123,7 +123,7 @@ public class ServicePanel extends JPanel implements ActionListener{
         //this.tab.getColumn("Batiment").setCellRenderer(new ButtonRenderer());
         //this.tab.getColumn("Directeur").setCellRenderer(new ButtonRenderer());
         //On définit un éditeur pour la colonne "supprimer"
-        this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox(),controler2));
+        this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox(),controler2, "service"));
         
         
         if(add_pan.getObj() != null ){

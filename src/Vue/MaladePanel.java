@@ -35,8 +35,8 @@ public class MaladePanel extends JPanel implements ActionListener {
     private JTable tab;
     private JButton in_search;
     private JTextField ajout;
-    
-    
+    private JComboBox combo = new JComboBox();
+    private JTextField in_num;
     private MaladeDAO malade_dao2;
     private String[] data;
     private Object T;
@@ -47,6 +47,8 @@ public class MaladePanel extends JPanel implements ActionListener {
     
     public MaladePanel(Main _controler){
         
+        this.setLayout(new BorderLayout());
+        this.controler2 = _controler;
         add_pan = new AddPanel("malade",controler2);
         this.add(add_pan,BorderLayout.SOUTH);
         this.malade_dao2 = this.controler2.getMalDAO();
@@ -60,62 +62,77 @@ public class MaladePanel extends JPanel implements ActionListener {
        ajouter = new JButton("Ajouter un malade");
        in_search = new JButton("Rechercher");
        in_search.addActionListener(this);
-       in_nom = new JTextField(15);
+       in_num = new JTextField(15);
        ajout = new JTextField();
     
-      Object data[][] = {
-            {"0101", "Maxime", "URG","302","supp"},
-            {"0102","Clement", "CAR","202","supp"},
-            {"0103","Tony","RAD", "102","supp"},};
+      Object[][] data = {{"1","Querrey","Sam","43 rue Vauvenargues 78000 Versailles","01 52 53 23 82","MNAM","supp"}
+      
+          };
     
     
-    JPanel input_pan = new JPanel(new GridLayout(0, 4, 10, 5));
+    JPanel input_pan = new JPanel(new GridLayout(0, 6, 10, 5));
 
-                JLabel[] labels = new JLabel[5];
+         JLabel[] labels = new JLabel[6];
         
         // On ajoute tous les composants
-        labels[0] = new JLabel("Nom du Malade :");
+        labels[0] = new JLabel("Numéro Malade :");
         input_pan.add(labels[0]);
+       input_pan.add(in_num);
+       
+        labels[1] = new JLabel("Nom du Malade :");
+        input_pan.add(labels[1]);
        input_pan.add(in_nom);
     
-        labels[1] = new JLabel("Prenom du Malade :");
-        input_pan.add(labels[1]);
+        labels[2] = new JLabel("Prenom du Malade :");
+        input_pan.add(labels[2]);
        input_pan.add(in_prenom);
     
-        labels[2] = new JLabel("Telephone :");
-        input_pan.add(labels[2]);
+        labels[3] = new JLabel("Telephone :");
+        input_pan.add(labels[3]);
        input_pan.add(in_tel);
        
-       labels[3] = new JLabel("Mutuelle :");
-       input_pan.add(labels[3]);
-        input_pan.add(in_mutuelle);
-    
+        
        labels[4] = new JLabel("Adresse :");
        input_pan.add(labels[4]);
         input_pan.add(in_adresse);
        
+        labels[5]= new JLabel ("Mutuelle :");
+            combo.addItem("--");
+            combo.addItem("AG2R");
+            combo.addItem("CCVRP");
+            combo.addItem("CNAMTS");
+            combo.addItem("MAAF");
+            combo.addItem("MAS");
+            combo.addItem("MGEN");
+            combo.addItem("MGSP");
+            combo.addItem("MMA");
+            combo.addItem("MNAM");
+            combo.addItem("MNFTC");
+            combo.addItem("MNH");
+            input_pan.add(labels[5]);
+            input_pan.add(combo);
+            
        input_pan.add(in_search);
        
 
         this.add(input_pan,BorderLayout.NORTH);
     
     
-       String title[] = {"Numero Malade","Nom Patient","Prenom Patient","Telephone","Adresse", "Mutuelle"};
+       String title[] = {"Numero Malade","Nom Patient","Prenom Patient","Adresse","Telephone", "Mutuelle", "Suppression"};
         ZModel zModel2 = new ZModel(data, title);
         this.tab= new JTable(zModel2);
         this.tab.setRowHeight(20);
         this.add(new JScrollPane(tab), BorderLayout.CENTER);
-        this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox(),controler2));
+        this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox(),controler2,"malade"));
         
            if(add_pan.getObj() != null ){
             System.out.println("cc");
             System.out.println(add_pan.getObj());
             ((ZModel)tab.getModel()).addRow(add_pan.getObj());
             
-            ajouter.addActionListener(this);
+         
       
-      this.add(ajouter, BorderLayout.EAST);
-      this.add(ajout, BorderLayout.EAST);
+   
 
     }
     

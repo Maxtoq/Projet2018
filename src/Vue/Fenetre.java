@@ -43,7 +43,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         menu = new JToolBar(JToolBar.VERTICAL);
        // malade_Panel = new MaladePanel(controler);//
         hosp_pan = new HospPanel(controler);
-        
+        malade_Panel = new MaladePanel(controler);
         servDAO = controler.getServDAO();
         
         hospDAO = controler.getHospDAO();
