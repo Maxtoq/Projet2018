@@ -2,6 +2,7 @@
 package Vue;
 
 import Controleur.Main;
+import Model.ServiceDAO;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -26,6 +27,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     private HospPanel hosp_pan;
     private JTabbedPane tab_pan;
     private JPanel panel;
+    private ServiceDAO servDAO;
     
     public Fenetre(Main _controler) {
         super("Gestion centre hospitalier");
@@ -36,6 +38,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         menu = new JToolBar(JToolBar.VERTICAL);
         hosp_pan = new HospPanel();
         
+        servDAO = controler.getServDAO();
         
         
         b_employes = new JButton("-   Employés");

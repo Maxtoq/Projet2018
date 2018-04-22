@@ -30,7 +30,11 @@ public class ServicePanel extends JPanel implements ActionListener{
     private JButton ajouter= new JButton("Ajouter Service");
     private JTextField ajout;
     private Main controler2;
+    // Variables pour la connexion SQL
     private ServiceDAO serv_dao2;
+    private String[] data;
+    private Object T;
+    private ArrayList select;
     private ZModel zModel;
      // On initialise tous les composants
       
@@ -41,14 +45,21 @@ public class ServicePanel extends JPanel implements ActionListener{
         this.add(add_pan,BorderLayout.SOUTH);
         this.controler2=_controler;
         this.serv_dao2 = this.controler2.getServDAO();
-        
+       
 
         String[] tri = {"Code","Nom","Batiment","Directeur"};
         JComboBox boxtri = new JComboBox(tri);
         boxtri.setSelectedIndex(3);
 
+        Object[][] data2 = {  
+            {"REA","Reanimation et Traumatologie","A","19","supp"},
+        {"CHG","Chirurgie generale","A","34","supp"},
+        {"CAR","Cardiologie","B","80","supp"} 
         
-        
+    };
+        // ESsaie de recuperer lobjets associe 
+       // String data[] = {"REA","Reanimation et Traumatologie","A","19"};
+        //this.serv_dao2.getNewTObject(data);
         // On crée le tableau de string pour initialiser la comboBox
         ajouter = new JButton("Ajouter une ligne");
         in_nom = new JTextField(15);
@@ -59,11 +70,19 @@ public class ServicePanel extends JPanel implements ActionListener{
         in_search = new JButton("Rechercher");
         in_search.addActionListener(this);
         ajout = new JTextField();
-        Object data[][] = {
-            {"0101", "Toquebim", "1","Poncho","supp"},
-            {"0102","Pec", "3","Nino","supp"},
-            {"0103","Fronto","2", "Chico","supp"}, 
-        };
+        
+        
+        ArrayList<Service> select = new ArrayList();
+        
+        
+        ArrayList<String> strs = new ArrayList<>();
+        strs.add("REA");
+        strs.add("Reanimation et Traumatologie");
+        strs.add("A");
+        strs.add("19");
+        //select = serv_dao2.select(strs);
+        
+        //////// };
         // On crée un tableau de JLabel pour l'affichage 
         JLabel[] labels = new JLabel[5];
         
@@ -93,7 +112,7 @@ public class ServicePanel extends JPanel implements ActionListener{
          //modèle d'affichage spécifique destiné à pallier
       //les bugs d'affichage !
         String title[] = {"Code","Nom","Batiment","Directeur", "Suppression"};
-        ZModel zModel = new ZModel(data, title);
+        ZModel zModel = new ZModel(data2, title);
         this.tab= new JTable(zModel);
         this.tab.setRowHeight(20);
         this.add(new JScrollPane(tab), BorderLayout.CENTER);
