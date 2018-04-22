@@ -1,5 +1,10 @@
 package Vue;
 
+import Controleur.Main;
+import Model.Hosp;
+import Model.HospDAO;
+import Model.Service;
+import Model.ServiceDAO;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +25,7 @@ public class HospPanel extends JPanel implements ActionListener {
     
    
     private JTextField in_nom;
+    private AddPanel add_pan;
 
     private JTextField in_lit;
     private JTextField in_codeService;
@@ -28,15 +34,27 @@ public class HospPanel extends JPanel implements ActionListener {
     private JButton ajouter;
     private JButton in_search;
     private JTextField ajout;
+    
+    private HospDAO hosp_dao2;
+    private String[] data;
+    private Object T;
+    private ArrayList select;
+    private ZModel zModel;
+    private Main controler2;
 
 
    
     // On initialise tous les objets
     
-    public HospPanel()
+    public HospPanel(Main _controler)
     {
       
-                //add_pan = new AddPanel();
+        this.setLayout(new BorderLayout());
+        add_pan = new AddPanel("service");
+        this.add(add_pan,BorderLayout.SOUTH);
+        this.controler2=_controler;
+        this.hosp_dao2 = this.controler2.getHospDAO();
+        
                 in_lit = new JTextField(15);
                 in_codeService = new JTextField();
                in_numMalade = new JTextField();
@@ -87,17 +105,65 @@ public class HospPanel extends JPanel implements ActionListener {
         this.tab.setRowHeight(20);
         this.add(new JScrollPane(tab), BorderLayout.CENTER);
         this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox()));
+        
+           if(add_pan.getObj() != null ){
+            System.out.println("cc");
+            System.out.println(add_pan.getObj());
+            ((ZModel)tab.getModel()).addRow(add_pan.getObj());
+            
             ajouter.addActionListener(this);
       
       this.add(ajouter, BorderLayout.EAST);
       this.add(ajout, BorderLayout.EAST);
 
     }
+           
+    }
+           
+             public void setValue(Object[] donnee){
+        ((ZModel)tab.getModel()).addRow(donnee);
+    }
 
     @Override
-    public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+     public void actionPerformed(ActionEvent ae) {
+          if (ae.getSource().equals(in_search)) {
+                ArrayList<String> strs = new ArrayList<>();
+                strs.add(in_numMalade.getText());
+                strs.add(in_nom.getText());
+                strs.add(in_lit.getText());
+                strs.add(in_codeService.getText());
+                
+              ArrayList<Hosp> strs2 = new ArrayList<>();
+              
+              strs2 = hosp_dao2.select(strs);
+             for(int i =0; i< strs2.size();i++)
+             {
+                 Hosp servR = strs2.get(i);
+                         
+                    String codeR = new String();
+                    codeR = servR.getServ();
+                   // int nomR = new int();
+                   // nomR = servR.getNMalade();
+                    int n_Lit = servR.getLit();
+                    int dirR = servR.getNChambre();
+             zModel.setValueAt(codeR,i++,1);
+            // zModel.setValueAt(nomR,i++,2);
+             zModel.setValueAt(n_Lit,i++,3);
+             zModel.setValueAt(dirR,i++,4);
+                    
+        
+          }
+          if (ae.getSource().equals(ajouter))
+          {
+               Object[] donnee = new Object[]
+            {"0102", "Rennais", "4", ajout.getText(), "supp"};
+               ((ZModel)tab.getModel()).addRow(donnee);
+          }
+              
+          }
+       
+    
+    }      
     
      
     
