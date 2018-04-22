@@ -50,9 +50,11 @@ public class HospPanel extends JPanel implements ActionListener {
     {
       
         this.setLayout(new BorderLayout());
+        
+        
+        this.controler2=_controler;
         add_pan = new AddPanel("hospitalisation",controler2);
         this.add(add_pan,BorderLayout.SOUTH);
-        this.controler2=_controler;
         this.hosp_dao2 = this.controler2.getHospDAO();
         
                 in_lit = new JTextField(15);

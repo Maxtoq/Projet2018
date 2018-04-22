@@ -47,7 +47,7 @@ public class AddPanel extends JPanel implements ActionListener {
        ajouter = new JButton("Ajouter " + S);
        ajouter.addActionListener(this);
        this.controler = controler2;
-       this.serv_dao3 = this.controler.getServDAO();
+       this.serv_dao3 = controler2.getServDAO();
        S2 = S;
        
        combo.setPreferredSize(new Dimension(100, 20));
@@ -76,13 +76,13 @@ public class AddPanel extends JPanel implements ActionListener {
          {
              JLabel[] labels = new JLabel[4];
              input_pan = new JPanel( new GridLayout(0, 4, 10, 5));
-            labels[0] = new JLabel("N°Batiments :");
-            input_pan.add(labels[0]);
-            input_pan.add(in_JT1);
-            labels[1] = new JLabel("Code Batiment :");
+            labels[1] = new JLabel("Nom :");
             input_pan.add(labels[1]);
+            input_pan.add(in_JT1);
+            labels[0] = new JLabel("Code Batiment :");
+            input_pan.add(labels[0]);
             input_pan.add(in_JT2);
-            labels[2] = new JLabel("Nom Batiment :");
+            labels[2] = new JLabel("Batiment :");
             input_pan.add(labels[2]);
             input_pan.add(in_JT3);
             labels[3] = new JLabel("Num Directeur :");
@@ -202,11 +202,12 @@ public class AddPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
        if(ae.getSource().equals(ajouter))
        { if(S2 == "service"){
-            String str = in_JT1.getText();
+            String str = in_JT4.getText();
             int i = Integer.parseInt(str);
-            String str2 = in_JT4.getText();
+            String str2 = in_JT3.getText();
             char c = str2.charAt(0);
-            obj = new Service(in_JT2.getText(),in_JT3.getText(),c,i);
+            obj = new Service(in_JT2.getText(),in_JT1.getText(),c,i);
+              System.out.println("La valeur de l'objet est " + obj.getCode() +" "+ obj.getNom()+ " " +obj.getBat()+ " " + obj.getDir() );
             serv_dao3.create(obj);
        }
            
