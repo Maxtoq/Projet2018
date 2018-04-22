@@ -106,7 +106,13 @@ public class Main {
         strch.add("");
         strch.add("");
         strch.add("");
-        ch_dao.select(strch);*/
+        ch_dao.select(strch);
+        
+        Chambre ch = new Chambre(100, "REA", 10, 6);
+        ch_dao.update(ch);*/
+        
+        Docteur doc = new Docteur(1, "Michel", "MichMich", "01 42 53 64 21", "32 avenue du poulet du dimanche", "Pneumologue");
+        doc_dao.update(doc);
     }
     
     /**
