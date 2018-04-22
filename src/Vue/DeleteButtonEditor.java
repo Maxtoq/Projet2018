@@ -111,7 +111,7 @@ public class DeleteButtonEditor extends DefaultCellEditor {
                    mal = new Malade(i,str2,str3,str5,str4,str6);
                    mal_dao.delete(mal);
                                     
-                  
+                  ((ZModel)table.getModel()).removeRow(this.row);
                }
              }
       }
