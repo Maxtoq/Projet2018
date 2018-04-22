@@ -1,6 +1,9 @@
 
 package Vue;
 
+import Controleur.Main;
+import Model.Service;
+import Model.ServiceDAO;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -16,7 +19,7 @@ import javax.swing.JTextField;
  * @author maxim
  */
 public class AddPanel extends JPanel implements ActionListener {
-
+    private ServiceDAO serv_dao3;
     private JTextField in_JT1;
     private JTextField in_JT2;
     private JTextField in_JT3;
@@ -28,10 +31,13 @@ public class AddPanel extends JPanel implements ActionListener {
     private JComboBox combo = new JComboBox();
     private JComboBox combo2 = new JComboBox();
     private Object[] donnee;
+    private String S2;
+    private Main controler;
+    private Service obj;
     
             
     
-   public AddPanel(String S){
+   public AddPanel(String S,Main controler2){
        in_JT1 = new JTextField();
        in_JT2 = new JTextField();
        in_JT3 = new JTextField();
@@ -40,8 +46,9 @@ public class AddPanel extends JPanel implements ActionListener {
        in_JT6 = new JTextField();
        ajouter = new JButton("Ajouter " + S);
        ajouter.addActionListener(this);
-       
-       
+       this.controler = controler2;
+       this.serv_dao3 = this.controler.getServDAO();
+       S2 = S;
        
        combo.setPreferredSize(new Dimension(100, 20));
        
@@ -194,14 +201,16 @@ public class AddPanel extends JPanel implements ActionListener {
    
     public void actionPerformed(ActionEvent ae) {
        if(ae.getSource().equals(ajouter))
-       {
+       { if(S2 == "service"){
+            String str = in_JT1.getText();
+            int i = Integer.parseInt(str);
+            String str2 = in_JT4.getText();
+            char c = str2.charAt(0);
+            obj = new Service(in_JT2.getText(),in_JT3.getText(),c,i);
+            serv_dao3.create(obj);
+       }
            
-            Object[] donnee = new Object[]
-               {in_JT3.getText(), in_JT2.getText(), in_JT3.getText(), in_JT4.getText(), "supp"};
-           //((ZModel)tab.getModel()).addRow(this.getObj());
-            System.out.println("TEXT in cases" + in_JT1.getText()+ in_JT2.getText()+
-                    in_JT3.getText()+ in_JT4.getText()+ in_JT5.getText()+ combo.getAccessibleContext().toString());
-          }
+       }
     }
 
    

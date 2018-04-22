@@ -20,13 +20,13 @@ public class PersonPanel extends JPanel {
         type = _type;
         
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-          if (type == 1)
-             add_pan = new AddPanel("docteurs");
-        else if (type == 2)
-            add_pan = new AddPanel("infirmier");
-        else if ( type == 3 )
-            add_pan = new AddPanel("malade");
-        this.add(add_pan,BorderLayout.SOUTH);
+          //if (type == 1)
+             //add_pan = new AddPanel("docteurs",controler2);
+        //else if (type == 2)
+        //  add_pan = new AddPanel("infirmier");
+       // else if ( type == 3 )
+         //   add_pan = new AddPanel("malade");
+        //this.add(add_pan,BorderLayout.SOUTH);
         search_pan = new SearchPanel(type);
         search_pan.setBorder(BorderFactory.createTitledBorder("Rechercher"));
         search_pan.setPreferredSize(new Dimension(850,500));

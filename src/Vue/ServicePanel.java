@@ -43,12 +43,12 @@ public class ServicePanel extends JPanel implements ActionListener{
         
       
         this.setLayout(new BorderLayout());
-        add_pan = new AddPanel("service");
-        this.add(add_pan,BorderLayout.SOUTH);
+      
         this.controler2=_controler;
         this.serv_dao2 = this.controler2.getServDAO();
         System.out.println("La valeur de l'objet est"+serv_dao2);
-        
+        add_pan = new AddPanel("service",controler2 );
+        this.add(add_pan,BorderLayout.SOUTH);
        
 
         String[] tri = {"Code","Nom","Batiment","Directeur"};
