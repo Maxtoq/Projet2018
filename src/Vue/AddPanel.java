@@ -2,6 +2,8 @@
 package Vue;
 
 import Controleur.Main;
+import Model.Malade;
+import Model.MaladeDAO;
 import Model.Service;
 import Model.ServiceDAO;
 import java.awt.Dimension;
@@ -34,6 +36,8 @@ public class AddPanel extends JPanel implements ActionListener {
     private String S2;
     private Main controler;
     private Service obj;
+    private Malade mal;
+    private MaladeDAO mal_dao;
     
             
     
@@ -48,6 +52,7 @@ public class AddPanel extends JPanel implements ActionListener {
        ajouter.addActionListener(this);
        this.controler = controler2;
        this.serv_dao3 = controler2.getServDAO();
+       this.mal_dao = controler2.getMalDAO();
        S2 = S;
        
        combo.setPreferredSize(new Dimension(100, 20));
@@ -173,9 +178,14 @@ public class AddPanel extends JPanel implements ActionListener {
             labels[2] = new JLabel("Prénom :");
             input_pan.add(labels[2]);
             input_pan.add(in_JT3);
-            labels[3] = new JLabel("Telephone:");
+            labels[3] = new JLabel("Adresse :");
             input_pan.add(labels[3]);
+            input_pan.add(in_JT5);
+            labels[4] = new JLabel("Telephone:");
+            input_pan.add(labels[4]);
             input_pan.add(in_JT4);
+            
+            
             labels[5]= new JLabel ("Mutuelle :");
             combo.addItem("AG2R");
             combo.addItem("CCVRP");
@@ -210,7 +220,13 @@ public class AddPanel extends JPanel implements ActionListener {
               System.out.println("La valeur de l'objet est " + obj.getCode() +" "+ obj.getNom()+ " " +obj.getBat()+ " " + obj.getDir() );
             serv_dao3.create(obj);
        }
-           
+       
+           if(S2 == "malade"){
+                String str = in_JT1.getText();
+                int i = Integer.parseInt(str);
+                mal = new Malade(i, in_JT2.getText(),in_JT3.getText(),in_JT4.getText(),in_JT5.getText(),combo.getActionCommand());
+                mal_dao.create(mal);
+           }
        }
     }
 
