@@ -93,15 +93,17 @@ public class DeleteButtonEditor extends DefaultCellEditor {
         public void actionPerformed(ActionEvent event) {
             bool = !bool;        
             if(table.getRowCount() > 0){
-            //On affiche un message mais vous pourriez faire ce que vous voulez
-            System.out.println("bool : "+ (bool));
+            //message davertissement 
              bool = !bool;
              jop1 = new JOptionPane();
              jop1.showMessageDialog(null, "Vous allez supprimer une ligne !", "Information", JOptionPane.INFORMATION_MESSAGE);       
-            //On affecte un nouveau libellé à une celulle de la ligne
-            System.out.println("bool : "+ (bool));
+            
+          
             if(bool = true)
             {
+                // Selon le type on recupere les param on cree un object du meme  
+                //type avec  du meme type avec ses valeurs et on le supprime 
+                // de la bdd 
                 if (type == "service"){
                    String str = (String)table.getModel().getValueAt(row , 0);
                    String str2 = (String)table.getModel().getValueAt(row , 1);
@@ -115,6 +117,9 @@ public class DeleteButtonEditor extends DefaultCellEditor {
 
                    ((ZModel)table.getModel()).removeRow(this.row);
                 }  
+               // Selon le type on recupere les param on cree un object du meme  
+                //type avec  du meme type avec ses valeurs et on le supprime 
+                // de la bdd 
                if (type == "malade"){
                    String str = (String)table.getModel().getValueAt(row , 0);
                    int i = Integer.parseInt(str);
@@ -128,6 +133,9 @@ public class DeleteButtonEditor extends DefaultCellEditor {
                                     
                   ((ZModel)table.getModel()).removeRow(this.row);
                }
+                // Selon le type on recupere les param on cree un object du meme  
+                //type avec  du meme type avec ses valeurs et on le supprime
+                // de la bdd 
                if (type == "hospitalisation"){
                    String str = (String)table.getModel().getValueAt(row , 0);
                    int i = Integer.parseInt(str);
@@ -141,7 +149,10 @@ public class DeleteButtonEditor extends DefaultCellEditor {
                                     
                   ((ZModel)table.getModel()).removeRow(this.row);
                }
-               if (type == "infirmier"){
+               // Selon le type on recupere les param on cree un object du meme  
+                //type avec  du meme type avec ses valeurs et on le supprime 
+               // de la bdd 
+                if (type == "infirmier"){
                    String str = (String)table.getModel().getValueAt(row , 0);
                    int i = Integer.parseInt(str);
                    String str2 = (String)table.getModel().getValueAt(row , 1);
@@ -158,6 +169,9 @@ public class DeleteButtonEditor extends DefaultCellEditor {
                                     
                   ((ZModel)table.getModel()).removeRow(this.row);
                }
+               // Selon le type on recupere les param on cree un object du meme  
+                //type avec  du meme type avec ses valeurs et on le supprime 
+                // de la bdd 
                if (type == "docteur"){
                    String str = (String)table.getModel().getValueAt(row , 0);
                    int i = Integer.parseInt(str);

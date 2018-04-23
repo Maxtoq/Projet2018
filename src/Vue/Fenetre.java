@@ -15,7 +15,7 @@ import javax.swing.*;
  * @author maxim
  */
 public class Fenetre extends JFrame implements ActionListener, WindowListener {
-    
+    // On declare tous les composants
     private Main controler;
     private ServicePanel service_pan;
     private JToolBar menu;
@@ -30,6 +30,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     private HospPanel hosp_pan;
     private JTabbedPane tab_pan;
     private JPanel panel;
+    // Variables pour la connexion SQL
     private ServiceDAO servDAO;
     private HospDAO hospDAO;    
     private MaladeDAO malDAO;
@@ -38,18 +39,21 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         super("Gestion centre hospitalier");
         this.setSize(1500, 1000);
         panel = new JPanel();
+        // Recupere le controler pour creer le add pan correspondant ainsi que
+        //recup les variables de connexions SQL
         controler = _controler;
-        service_pan = new ServicePanel(controler);
-        menu = new JToolBar(JToolBar.VERTICAL);
-       // malade_Panel = new MaladePanel(controler);//
-        hosp_pan = new HospPanel(controler);
-        malade_Panel = new MaladePanel(controler);
+        
         servDAO = controler.getServDAO();
         
         hospDAO = controler.getHospDAO();
         
         malDAO = controler.getMalDAO();
-        
+        // initialise les pannel neccesaire et les comosants
+        service_pan = new ServicePanel(controler);
+        menu = new JToolBar(JToolBar.VERTICAL);
+       
+        hosp_pan = new HospPanel(controler);
+        malade_Panel = new MaladePanel(controler);
         
         b_employes = new JButton("-   Employés");
         initButton(b_employes);
@@ -60,11 +64,13 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         b_hosp = new JButton("-   Hospitalisations");
         initButton(b_hosp);
         
+        // Ajoute des actiosn listenner
         b_services.addActionListener(this);
         b_employes.addActionListener(this);
         b_hosp.addActionListener(this);
         b_malades.addActionListener(this);
         
+        // Add le tout et le rend visible
         menu.add(b_employes);
         menu.add(b_malades);
         menu.add(b_services);
@@ -89,7 +95,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     }
     
     private void initEmployePan() {
-        
+        //lance la procedure de creation de la fenetres des employes
             
         doct_pan = new PersonPanel(1, controler);
         infir_pan = new PersonPanel(2, controler);
@@ -97,7 +103,8 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         tab_pan.addTab("Docteurs", doct_pan);
         tab_pan.addTab("Infirmiers(ères)", infir_pan);
         
-        
+        // ON l'ajout ensuite au tampon 
+        // on ajout ensuite le tampon a la page
         panel.add(tab_pan);
         this.add(panel);
         this.setVisible(true);
@@ -107,7 +114,8 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     }
     
     private void initMaladePan(){
-        
+        // ON ajoute au tampon  le pan dejha cree avant
+        // on ajout ensuite le tampon a la page
         panel.add(malade_Panel);
         this.add(panel,BorderLayout.CENTER);
         this.setVisible(true);
@@ -116,12 +124,16 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     }
     
     private void initServicePan(){  
+       // ON ajoute au tampon  le pan dejha cree avant
+        // on ajout ensuite le tampon a la page
         panel.add(service_pan);
         this.add(panel,BorderLayout.CENTER);       
         this.setVisible(true);      
     }
     
    private void initHospPan(){   
+       // ON ajoute au tampon  le pan dejha cree avant
+        // on ajout ensuite le tampon a la page
        panel.add(hosp_pan, BorderLayout.CENTER);
         this.add(panel);
         this.setVisible(true);
@@ -132,9 +144,10 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+      // selon le bouton presse on lance la creation d'une page ou d'une autre 
         if (e.getSource().equals(b_employes)) {
             
-           
+           /// Le remoove sert a eviter les pb daffichage 
             this.remove(panel);
             panel.removeAll();
           
@@ -149,7 +162,7 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         }
         
  if (e.getSource().equals(b_malades)) {
-          /**  initEmployePan();**/
+          /// Le remoove sert a eviter les pb daffichage 
             this.remove(panel);
             panel.removeAll();
             initMaladePan();
@@ -157,18 +170,18 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         }
         
         if (e.getSource().equals(b_services)) {
-          /**  initEmployePan();**/
+           /// Le remoove sert a eviter les pb daffichage 
             this.remove(panel);
             panel.removeAll();
             initServicePan();
            
            
            
-        }  //Nouveau if avec bouton b_hosp + fonction au dessus + nouvelle classe hospanel + cdc pour l'affichage de cette page
-       //
+        }  
        
        if (e.getSource().equals(b_hosp))  {
-          this.remove(panel);
+           /// Le remoove sert a eviter les pb daffichage 
+           this.remove(panel);
            panel.removeAll();
            initHospPan();
    

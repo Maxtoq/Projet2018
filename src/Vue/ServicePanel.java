@@ -14,7 +14,8 @@ import Model.Service;
 import Model.ServiceDAO;
 
 /**
- *
+ * Fenetre qui apparait lorsque l'on clique sur service 
+ * 
  * @author cleme
  */
 public class ServicePanel extends JPanel implements ActionListener{

@@ -58,9 +58,7 @@ public class ButtonEditor extends DefaultCellEditor {
      public JButton getButton(){return this.button;}
       
      public void actionPerformed(ActionEvent event) {
-      //On affiche un message mais vous pourriez faire ce que vous voulez
-      System.out.println("coucou du bouton : "+
-         ((JButton)event.getSource()).getText() );
+      
       //On affecte un nouveau libellé à une celulle de la ligne
       ((AbstractTableModel)table.getModel()).setValueAt("New Value " + (++nbre), this.row, (this.column -1));  
       //Permet de dire à notre tableau qu'une valeur a changé
