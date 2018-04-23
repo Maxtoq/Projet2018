@@ -25,7 +25,7 @@ import Model.ServiceDAO;
  * @author Tony
  */
 public class MaladePanel extends JPanel implements ActionListener {
-    
+    // On declare tous les composants
     public AddPanel add_pan;
     private JTextField in_nom;
     private JTextField in_prenom;
@@ -38,6 +38,7 @@ public class MaladePanel extends JPanel implements ActionListener {
     private JTextField ajout;
     private JComboBox combo = new JComboBox();
     private JTextField in_num;
+     // Variables pour la connexion SQL
     private MaladeDAO malade_dao2;
     private String[] data;
     private Object T;
@@ -50,31 +51,34 @@ public class MaladePanel extends JPanel implements ActionListener {
     public MaladePanel(Main _controler){
         
         this.setLayout(new BorderLayout());
+        // Recupere le controler pour creer le add pan correspondant
+        //ainsi que recup malade_Dao
         this.controler2 = _controler;
         add_pan = new AddPanel("malade",controler2);
         this.add(add_pan,BorderLayout.SOUTH);
         this.malade_dao2 = this.controler2.getMalDAO();
 
-
-       in_nom = new JTextField(15);
-       in_prenom = new JTextField();
-       in_mutuelle = new JTextField();
-       in_adresse = new JTextField();
-       in_tel = new JTextField();
-       ajouter = new JButton("Ajouter un malade");
-       in_search = new JButton("Rechercher");
-       in_search.addActionListener(this);
-       in_num = new JTextField(15);
-       ajout = new JTextField();
+          // On initialise tous les composants
+        in_nom = new JTextField(15);
+        in_prenom = new JTextField();
+        in_mutuelle = new JTextField();
+        in_adresse = new JTextField();
+        in_tel = new JTextField();
+        ajouter = new JButton("Ajouter un malade");
+        in_search = new JButton("Rechercher");
+        in_search.addActionListener(this);
+        in_num = new JTextField(15);
+        ajout = new JTextField();
     
-      Object[][] data = {{"1","Querrey","Sam","01 52 53 23 82", "43 rue Vauvenargues 78000 Versailles","MNAM","supp"}
+        //Premiere ligne a afficher pour gte.class
+        Object[][] data = {{"1","Querrey","Sam","01 52 53 23 82", "43 rue Vauvenargues 78000 Versailles","MNAM","supp"}
       
           };
     
     
-    JPanel input_pan = new JPanel(new GridLayout(0, 6, 10, 5));
-
-         JLabel[] labels = new JLabel[6];
+        JPanel input_pan = new JPanel(new GridLayout(0, 6, 10, 5));
+         // On crée un tableau de JLabel pour l'affichage 
+        JLabel[] labels = new JLabel[6];
         
         // On ajoute tous les composants
         labels[0] = new JLabel("Numéro Malade :");
@@ -116,30 +120,28 @@ public class MaladePanel extends JPanel implements ActionListener {
             
        input_pan.add(in_search);
        
-
+         //on ajoute la pan 
         this.add(input_pan,BorderLayout.NORTH);
     
-    
+        //modèle d'affichage spécifique destiné à pallier
+       //les bugs d'affichage !
        String title[] = {"Numero Malade","Nom Patient","Prenom Patient","Telephone","Adresse", "Mutuelle", "Suppression"};
-        ZModel zModel2 = new ZModel(data, title);
+       // zmodel pour pouvoir modifier les donnes du jtable 
+       ZModel zModel2 = new ZModel(data, title);
         this.tab= new JTable(zModel2);
         this.tab.setRowHeight(20);
         this.add(new JScrollPane(tab), BorderLayout.CENTER);
+       //On définit un éditeur pour la colonne "supprimer"
         this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox(),controler2,"malade"));
         
-           if(add_pan.getObj() != null ){
-            System.out.println("cc");
-            System.out.println(add_pan.getObj());
-            ((ZModel)tab.getModel()).addRow(add_pan.getObj());
-            
          
       
    
 
-    }
+    
     
     }
-    
+    // set la valeur d'une ligne du tab a partir d'un object[]
                  public void setValue(Object[] donnee){
         ((ZModel)tab.getModel()).addRow(donnee);
                  }
@@ -150,7 +152,12 @@ public class MaladePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-      if (ae.getSource().equals(in_search)) {
+     // Si on clic sur search lance la procedure de requete search 
+        if (ae.getSource().equals(in_search)) {
+                 // On recupere un array list de string des param de la recherche
+            // pour recuperer un array list
+            //de Malade correspondant aux malades qui ont les meme param que 
+            //ceux dans l'array list de string
                 ArrayList<String> strs = new ArrayList<>();
                 if (in_num.getText() != null )
                 strs.add(in_num.getText());
@@ -177,6 +184,8 @@ public class MaladePanel extends JPanel implements ActionListener {
               //System.out.println("size strs2 "+ strs2.size());
               for(int i =0; i< strs2.size();i++)
              {
+                 //Pour chaque malade dans l'array list on le recupere 
+                 // on add ses valeurs dans un iobjet et on se sert de add.Row 
                     Malade mal = strs2.get(i);
                          
                     int codeR = mal.getNum();

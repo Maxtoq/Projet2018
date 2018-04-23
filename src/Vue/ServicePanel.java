@@ -18,7 +18,7 @@ import Model.ServiceDAO;
  * @author cleme
  */
 public class ServicePanel extends JPanel implements ActionListener{
-    //
+   // On declare tous les composants
     private AddPanel add_pan;
     private JTable tab;
     private JButton change = new JButton("Changer la taille");
@@ -36,33 +36,26 @@ public class ServicePanel extends JPanel implements ActionListener{
     
     private ArrayList select;
     private ZModel zModel;
-     // On initialise tous les composants
+     
       
     public ServicePanel(Main _controler){
         
         
       
         this.setLayout(new BorderLayout());
-      
+       // Recupere le controler pour creer le add pan correspondant ainsi que recup servDao
         this.controler2=_controler;
         this.serv_dao2 = this.controler2.getServDAO();
         System.out.println("La valeur de l'objet est"+serv_dao2);
         add_pan = new AddPanel("service",controler2 );
         this.add(add_pan,BorderLayout.SOUTH);
        
-
-        String[] tri = {"Code","Nom","Batiment","Directeur"};
-        JComboBox boxtri = new JComboBox(tri);
-        boxtri.setSelectedIndex(3);
-
+        //Premiere ligne a afficher pour gte.class
         Object[][] data2 = {  
             {"REA","Reanimation et Traumatologie","A","19","supp"}
              
     };
-        // ESsaie de recuperer lobjets associe 
-       // String data[] = {"REA","Reanimation et Traumatologie","A","19"};
-        //this.serv_dao2.getNewTObject(data);
-        // On crée le tableau de string pour initialiser la comboBox
+        //initialisation des composant
         ajouter = new JButton("Ajouter une ligne");
         in_nom = new JTextField(15);
         in_code = new JTextField();
@@ -73,18 +66,6 @@ public class ServicePanel extends JPanel implements ActionListener{
         in_search.addActionListener(this);
         ajout = new JTextField();
         
-        
-        ArrayList<Service> select = new ArrayList();
-        
-        
-        ArrayList<String> strs = new ArrayList<>();
-        strs.add("REA");
-        strs.add("Reanimation et Traumatologie");
-        strs.add("A");
-        strs.add("19");
-        //select = serv_dao2.select(strs);
-        
-        //////// };
         // On crée un tableau de JLabel pour l'affichage 
         JLabel[] labels = new JLabel[5];
         
@@ -106,54 +87,41 @@ public class ServicePanel extends JPanel implements ActionListener{
         input_pan.add(in_nom);
         input_pan.add(in_search);
         
-        
+        //on ajoute la pan 
         this.add(input_pan, BorderLayout.NORTH);
         
-        //this.add(ajouter, BorderLayout.EAST);
-        //this.add(ajout, BorderLayout.EAST);
-         //modèle d'affichage spécifique destiné à pallier
-      //les bugs d'affichage !
+       
+        //modèle d'affichage spécifique destiné à pallier
+       //les bugs d'affichage !
         String title[] = {"Code","Nom","Batiment","Directeur", "Suppression"};
+        // zmodel pour pouvoir modifier les donnes du jtable
         ZModel zModel = new ZModel(data2, title);
         this.tab= new JTable(zModel);
         this.tab.setRowHeight(20);
         this.add(new JScrollPane(tab), BorderLayout.CENTER);
-        //this.tab.getColumn("Code").setCellRenderer(new ButtonRenderer());
-        //this.tab.getColumn("Nom").setCellRenderer(new ButtonRenderer());
-        //this.tab.getColumn("Batiment").setCellRenderer(new ButtonRenderer());
-        //this.tab.getColumn("Directeur").setCellRenderer(new ButtonRenderer());
+        
         //On définit un éditeur pour la colonne "supprimer"
         this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox(),controler2, "service"));
         
-        
-        if(add_pan.getObj() != null ){
-            System.out.println("cc");
-            System.out.println(add_pan.getObj());
-            ((ZModel)tab.getModel()).addRow(add_pan.getObj());
-        }
-      /*   
-        TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(tab.getModel());
-        tab.setRowSorter(sorter);
-        ArrayList<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
-        sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
-        sortKeys.add(new RowSorter.SortKey(3, SortOrder.ASCENDING));
-        sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING));
-        sorter.setSortKeys(sortKeys);
-
-     */
-      ajouter.addActionListener(this);
-      
+     
       
       
     }
     
+    // set la valeur d'une ligne du tab a partir d'un object[]
     public void setValue(Object[] donnee){
         ((ZModel)tab.getModel()).addRow(donnee);
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-          if (ae.getSource().equals(in_search)) {
+        // Si on clic sur search lance la procedure de requete search  
+        if (ae.getSource().equals(in_search)) {
+            // On recupere un array list de string des param de la recherche
+            // pour recuperer un array list
+            //de service correspondant aux services qui ont les meme param quer 
+            //ceux dans l'array list de string
+            
                 ArrayList<String> strs = new ArrayList<>();
                 strs.add(in_code.getText());
                 strs.add(in_nom.getText());
@@ -164,6 +132,8 @@ public class ServicePanel extends JPanel implements ActionListener{
               strs2 = serv_dao2.select(strs);
              for(int i =0; i< strs2.size();i++)
              {
+                 //Pour chaque service dans l'array list on le recupere 
+                 // on add ses valeurs dans un iobjet et on se sert de add.Row 
                  Service servR = strs2.get(i);
                          
                     String codeR = new String();
@@ -186,18 +156,13 @@ public class ServicePanel extends JPanel implements ActionListener{
                     data[2] = batR2;
                     data[3]= diR2;
                 ((ZModel)tab.getModel()).addRow(data);
-                 //Object[][] data2 ={codeR, nomR , batR,dirR,"supp"};   
+                   
                 
 
                     
         
           }
-             if (ae.getSource().equals(ajouter))
-          {
-               Object[] donnee = new Object[]
-            {"0102", "Rennais", "4", ajout.getText(), "supp"};
-               ((ZModel)tab.getModel()).addRow(donnee);
-          }
+            
               
           }
        

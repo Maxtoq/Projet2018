@@ -19,7 +19,7 @@ import javax.swing.*;
  * @author maxim
  */
 public class PersonPanel extends JPanel implements ActionListener{
-    
+    // On declare tous les composants
     private int type; // Type d'employé : 1 = docteur, 2 = infirmier, 3 = malade
     private JTextField in_N;
     private JComboBox in_code;
@@ -37,13 +37,15 @@ public class PersonPanel extends JPanel implements ActionListener{
      private AddPanel add_pan;
      private JTable tab;
      private Main controler2;
+      // Variables pour la connexion SQL
      private DocteurDAO doc_dao;
      private InfirmierDAO inf_dao;
    
     public PersonPanel(int _type, Main controler) {
         type = _type;
+        // Recupere le controler pour creer le add pan correspondant ainsi que recup servDao
         this.controler2=controler;
-        //this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+       
         this.setLayout(new BorderLayout()); 
         in_search = new JButton("Rechercher");
         in_search.addActionListener(this);
@@ -68,7 +70,7 @@ public class PersonPanel extends JPanel implements ActionListener{
         this.add(pan);
         **/
        
-       
+       // Initialise les composants       
        in_N = new JTextField();
        in_code = new JComboBox ();
        in_N = new JTextField(); 
@@ -84,12 +86,14 @@ public class PersonPanel extends JPanel implements ActionListener{
        
        
        
-       
+       // test le type pour differencier les deux pages
        
        if (type ==1)
        {
+           // cree le add panel correspondant et on l'add
            add_pan = new AddPanel("docteur",controler2 );
             this.add(add_pan,BorderLayout.SOUTH);
+            // premiere ligne d'affichage neccessaire pour getclasse de z model
              Object[][] data2 = {  
             {"19","Safin","Marat","61 rue Fermee, 78430 Louveciennes","01 06 70 38 90","Traumatologue",""}};
                // On crée un tableau de JLabel pour l'affichage 
@@ -126,20 +130,25 @@ public class PersonPanel extends JPanel implements ActionListener{
                     this.add(input_pan, BorderLayout.NORTH);
                     
                 
-                    
+                // Titre pour notre Jtable Puis creation de son ZModel pour 
+                //modifier ses valeurs et ensuite du JTable en question    
                String title[] = {"Numero","Nom","Prenom ","Adresse","Telephone","Spécialité", "Suppression"};
                 ZModel zModel = new ZModel(data2, title);
                 this.tab= new JTable(zModel);
                 this.tab.setRowHeight(20);
                 this.add(new JScrollPane(tab), BorderLayout.CENTER);
+                // Cologne de suppresion creation
                 this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox(),controler2, "docteur"));
        }
         if (type ==2 )
        {
+           // cree le add panel correspondant et on l'add
            add_pan = new AddPanel("infirmier",controler2 );
             this.add(add_pan,BorderLayout.SOUTH);
+            // premiere ligne d'affichage neccessaire pour getclasse de z model
             Object[][] data2 = {  
             {"12","Davenport","Lindsay","56 rue des Muletiers, 78660 Ablis","01 04 70 01 65","REA", "JOUR","1256.78",""}};
+             // On crée un tableau de JLabel pour l'affichage 
             JLabel[] labels = new JLabel[8];
         
              // On crée un panel pour les input de la recherche
@@ -179,13 +188,15 @@ public class PersonPanel extends JPanel implements ActionListener{
                     input_pan.add(in_search);
                     this.add(input_pan, BorderLayout.NORTH);
                     
-                
+                // Titre pour notre Jtable Puis creation de son ZModel pour 
+                //modifier ses valeurs et ensuite du JTable en question
                     
                String title[] = {"Numero","Nom","Prenom","Adresse","Telephone ","Code Service", "Rotation"," Salaire ","Suppression"};
                 ZModel zModel = new ZModel(data2, title);
                 this.tab= new JTable(zModel);
                 this.tab.setRowHeight(20);
                 this.add(new JScrollPane(tab), BorderLayout.CENTER);
+                // Cologne de suppresion creation
                 this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox(),controler2, "infirmier"));
        }
    }
@@ -195,8 +206,15 @@ public class PersonPanel extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-       if (ae.getSource().equals(in_search)){
-           if (type ==1){
+       // Si on clic sur search lance la procedure de requete search 
+        if (ae.getSource().equals(in_search)){
+           // selon le type on effectue une recherche d'infirmier ou de docteur
+            if (type ==1){
+               // On recupere un array list de string des param de la recherche
+            // pour recuperer un array list
+            //de docteur correspondant aux docteurs qui ont les meme param quer 
+            //ceux dans l'array list de string
+            
                ArrayList<String> strs = new ArrayList<>();
                 strs.add(in_N.getText());
                 strs.add(in_nom.getText());
@@ -211,6 +229,8 @@ public class PersonPanel extends JPanel implements ActionListener{
               strs3 = doc_dao.select(strs);
               for(int i =0; i< strs3.size();i++)
              {
+                  //Pour chaque docteurs dans l'array list on le recupere 
+                 // on add ses valeurs dans un iobjet et on se sert de add.Row 
                  Docteur docR = strs3.get(i);
                    int numR = docR.getNum();
                    String numR2 = new String();
@@ -232,6 +252,10 @@ public class PersonPanel extends JPanel implements ActionListener{
              }
            }
            if (type ==2){
+               // On recupere un array list de string des param de la recherche
+            // pour recuperer un array list
+            //de infirmier correspondant aux infirmier qui ont les meme param quer 
+            //ceux dans l'array list de string
                ArrayList<String> strs = new ArrayList<>();
                 strs.add(in_N.getText());
                 strs.add(in_nom.getText());
@@ -251,6 +275,8 @@ public class PersonPanel extends JPanel implements ActionListener{
                 strs3 = inf_dao.select(strs);
                 for(int i =0; i< strs3.size();i++)
              {
+                 //Pour chaque docteurs dans l'array list on le recupere 
+                 // on add ses valeurs dans un iobjet et on se sert de add.Row 
                  Infirmier InfR = strs3.get(i);
                    int numR = InfR.getNum();
                    String numR2 = new String();
