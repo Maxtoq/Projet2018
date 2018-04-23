@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -52,6 +53,8 @@ public class AddPanel extends JPanel implements ActionListener {
     private DocteurDAO doc_dao;
     private Infirmier inf;
     private InfirmierDAO inf_dao;
+    //Pour les alertes
+     private JOptionPane jop1;
     
             
     
@@ -258,50 +261,85 @@ public class AddPanel extends JPanel implements ActionListener {
            // On cree cet objet dans la bdd
            if(S2 == "service"){
             String str = in_JT4.getText();
-            int i = Integer.parseInt(str);
+            
             String str2 = in_JT3.getText();
-            char c = str2.charAt(0);
-            obj = new Service(in_JT1.getText(),in_JT2.getText(),c,i);
-            serv_dao3.create(obj);
+             // check si chaque case est remplie avant l'ajout
+                if ((str.length() != 0 )&&(in_JT2.getText().length()!= 0)&&(in_JT3.getText().length() != 0)&&(in_JT4.getText().length()!= 0)){
+                  int i = Integer.parseInt(str);
+                  char c = str2.charAt(0);
+                  obj = new Service(in_JT1.getText(),in_JT2.getText(),c,i);
+                  serv_dao3.create(obj);
+                }
+                // else message erreur
+                else jop1 = new JOptionPane();
+                     jop1.showMessageDialog(null, "Vous ne pouvez ajouter, il manque au moins un champ"
+                     + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                }
        }
        //Selon le type on recupere les valeurs 
            // et l'on cree un objet de ce type avec ces params
            // On cree cet objet dans la bdd
            if(S2 == "malade"){
-               
                 String str = in_JT1.getText();
-                int i = Integer.parseInt(str);
                 String str2 = combo.getSelectedItem().toString();
-                mal = new Malade(i, in_JT2.getText(),in_JT3.getText(),in_JT4.getText(),in_JT5.getText(), str2);
-                mal_dao.create(mal);
+                // check si chaque case est remplie avant l'ajout
+                if ((str.length() != 0 )&&(in_JT2.getText().length()!= 0)&&(in_JT3.getText().length() != 0)&&(in_JT4.getText().length()!= 0)&&(in_JT5.getText().length() != 0) && (str2.length() !=0)){
+                     int i = Integer.parseInt(str);
+                     mal = new Malade(i, in_JT2.getText(),in_JT3.getText(),in_JT4.getText(),in_JT5.getText(), str2);
+                     mal_dao.create(mal);
+                }
+                // else message erreur
+                else jop1 = new JOptionPane();
+                     jop1.showMessageDialog(null, "Vous ne pouvez ajouter, il manque au moins un champ"
+                     + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
            }
            //Selon le type on recupere les valeurs 
            // et l'on cree un objet de ce type avec ces params
            // On cree cet objet dans la bdd
            if(S2 == "hospitalisation"){
                 String str = in_JT1.getText();
-                int i = Integer.parseInt(str);
                 String str2 = in_JT2.getText();
                 String str3 = in_JT3.getText();
-                int i2 = Integer.parseInt(str3);
                 String str4 = in_JT4.getText();
-                int i3 = Integer.parseInt(str4);
-                hosp = new Hosp (i,str2 ,i2,i3);
-                hosp_dao.create(hosp);
+                
+                // check si chaque case est remplie avant l'ajout
+                if ((str.length() != 0 )&&(in_JT2.getText().length()!= 0)&&(in_JT3.getText().length() != 0)&&(in_JT4.getText().length()!= 0)){
+                
+                    int i = Integer.parseInt(str);
+                    int i2 = Integer.parseInt(str3);
+                    int i3 = Integer.parseInt(str4);
+                    hosp = new Hosp (i,str2 ,i2,i3);
+                    hosp_dao.create(hosp);
+                }
+                // else message erreur
+                else jop1 = new JOptionPane();
+                     jop1.showMessageDialog(null, "Vous ne pouvez ajouter , il manque au moins un champ"
+                     + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
+           
            }
            //Selon le type on recupere les valeurs 
            // et l'on cree un objet de ce type avec ces params
            // On cree cet objet dans la bdd
            if(S2 == "docteur"){
                String str = in_JT1.getText();
-               int i = Integer.parseInt(str);
                String str2 = in_JT2.getText();
                String str3 = in_JT3.getText();
                String str4 = in_JT4.getText();//tel
                String str5 = in_JT5.getText();//adresse
                String str6 = combo.getSelectedItem().toString();
-               doc = new Docteur(i, str2,str3,str4,str5,str6);
-               doc_dao.create(doc);
+              // check si chaque case est remplie avant l'ajout
+               if ((str.length() != 0 )&&(in_JT2.getText().length()!= 0)&&
+                       (in_JT3.getText().length() != 0)&&(in_JT4.getText().length()!= 0)
+                       &&(in_JT5.getText().length() != 0) && (in_JT6.getText().length() != 0)&&(str6.length()!=0)){
+                  
+                    int i = Integer.parseInt(str);
+                   doc = new Docteur(i, str2,str3,str4,str5,str6);
+                   doc_dao.create(doc); 
+               }
+                // else message erreur
+                else jop1 = new JOptionPane();
+                     jop1.showMessageDialog(null, "Vous ne pouvez ajouter, il manque au moins un champ"
+                     + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
                 
                
            }
@@ -310,7 +348,6 @@ public class AddPanel extends JPanel implements ActionListener {
            // On cree cet objet dans la bdd
             if(S2 == "infirmier"){
                String str = in_JT1.getText();
-               int i = Integer.parseInt(str);
                String str2 = in_JT2.getText();
                String str3 = in_JT3.getText();
                String str4 = in_JT4.getText();//tel
@@ -318,9 +355,19 @@ public class AddPanel extends JPanel implements ActionListener {
                String str6 = combo2.getSelectedItem().toString();
                String str7 = combo.getSelectedItem().toString();
                String str8 = in_JT6.getText();
-               float f = Float.parseFloat(str8);
-               inf = new Infirmier (i, str2,str3,str4,str5,str6,str7,f);
-               inf_dao.create(inf);
+              // check si chaque case est remplie avant l'ajout
+               if ((str.length() != 0 )&&(in_JT2.getText().length()!= 0)&&
+                       (in_JT3.getText().length() != 0)&&(in_JT4.getText().length()!= 0)
+                       &&(in_JT5.getText().length() != 0) && (str7.length() != 0)&&(str6.length()!=0)&&(str8.length()!=0)){
+                   int i = Integer.parseInt(str);
+                   float f = Float.parseFloat(str8);
+                   inf = new Infirmier (i, str2,str3,str4,str5,str6,str7,f);
+                   inf_dao.create(inf);
+                    }
+               // else message erreur
+                else jop1 = new JOptionPane();
+                     jop1.showMessageDialog(null, "Vous ne pouvez ajouter, il manque au moins un champ"
+                     + " !", "Information", JOptionPane.INFORMATION_MESSAGE);
                 
                
            }
@@ -329,4 +376,4 @@ public class AddPanel extends JPanel implements ActionListener {
 
    
   
-}
+
