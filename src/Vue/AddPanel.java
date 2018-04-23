@@ -2,6 +2,8 @@
 package Vue;
 
 import Controleur.Main;
+import Model.Hosp;
+import Model.HospDAO;
 import Model.Malade;
 import Model.MaladeDAO;
 import Model.Service;
@@ -38,6 +40,8 @@ public class AddPanel extends JPanel implements ActionListener {
     private Service obj;
     private Malade mal;
     private MaladeDAO mal_dao;
+    private Hosp hosp;
+    private HospDAO hosp_dao;
     
             
     
@@ -53,6 +57,7 @@ public class AddPanel extends JPanel implements ActionListener {
        this.controler = controler2;
        this.serv_dao3 = controler2.getServDAO();
        this.mal_dao = controler2.getMalDAO();
+       this.hosp_dao = controler2.getHospDAO();
        S2 = S;
        
        combo.setPreferredSize(new Dimension(100, 20));
@@ -65,13 +70,13 @@ public class AddPanel extends JPanel implements ActionListener {
             labels[0] = new JLabel("N°Malade :");
             input_pan.add(labels[0]);
             input_pan.add(in_JT1);
-            labels[1] = new JLabel("Numero lit :");
+            labels[1] = new JLabel("Service :");
             input_pan.add(labels[1]);
             input_pan.add(in_JT2);
-            labels[2] = new JLabel("Code Service :");
+            labels[2] = new JLabel("N° Chambre :");
             input_pan.add(labels[2]);
             input_pan.add(in_JT3);
-            labels[3] = new JLabel("Nom Patient :");
+            labels[3] = new JLabel("N° lit :");
             input_pan.add(labels[3]);
             input_pan.add(in_JT4);
             input_pan.add(ajouter);
@@ -228,6 +233,19 @@ public class AddPanel extends JPanel implements ActionListener {
                  System.out.println("La valeur de l'objet est " + i +" "+ in_JT2.getText()+ " " +in_JT3.getText()+ " " +  str2 );
                 mal = new Malade(i, in_JT2.getText(),in_JT3.getText(),in_JT4.getText(),in_JT5.getText(), str2);
                 mal_dao.create(mal);
+           }
+           if(S2 == "hospitalisation"){
+                String str = in_JT1.getText();
+                int i = Integer.parseInt(str);
+                String str2 = in_JT2.getText();
+                
+                String str3 = in_JT3.getText();
+                int i2 = Integer.parseInt(str3);
+                String str4 = in_JT4.getText();
+                int i3 = Integer.parseInt(str4);
+                 System.out.println("La valeur de l'objet est " + i +" "+ str2 + " " +i2+ " " +  i3 );
+                hosp = new Hosp (i,str2 ,i2,i3);
+                hosp_dao.create(hosp);
            }
        }
     }

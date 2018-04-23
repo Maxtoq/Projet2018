@@ -68,9 +68,8 @@ public class HospPanel extends JPanel implements ActionListener {
 
               
                Object data[][] = {
-            {"0101", "Maxime", "URG","302","supp"},
-            {"0102","Clement", "CAR","202","supp"},
-            {"0103","Tony","RAD", "102","supp"},};
+            {"1", "REA", "101","1","supp"},
+            };
 
 
             JPanel input_pan2 = new JPanel(new GridLayout(0, 4, 10, 5));
@@ -101,7 +100,7 @@ public class HospPanel extends JPanel implements ActionListener {
         
                //modèle d'affichage spécifique destiné à pallier
       //les bugs d'affichage !
-        String title[] = {"Numero Malade","Nom Patient","Code Service","Numero Lit","Suppression"};
+        String title[] = {"Numero Malade","Service ","Numero Chambre ","Numero Lit","Suppression"};
         ZModel zModel2 = new ZModel(data, title);
         this.tab= new JTable(zModel2);
         this.tab.setRowHeight(20);

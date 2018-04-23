@@ -67,7 +67,7 @@ public class MaladePanel extends JPanel implements ActionListener {
        in_num = new JTextField(15);
        ajout = new JTextField();
     
-      Object[][] data = {{"1","Querrey","Sam","43 rue Vauvenargues 78000 Versailles","01 52 53 23 82","MNAM","supp"}
+      Object[][] data = {{"1","Querrey","Sam","01 52 53 23 82", "43 rue Vauvenargues 78000 Versailles","MNAM","supp"}
       
           };
     
@@ -120,7 +120,7 @@ public class MaladePanel extends JPanel implements ActionListener {
         this.add(input_pan,BorderLayout.NORTH);
     
     
-       String title[] = {"Numero Malade","Nom Patient","Prenom Patient","Adresse","Telephone", "Mutuelle", "Suppression"};
+       String title[] = {"Numero Malade","Nom Patient","Prenom Patient","Telephone","Adresse", "Mutuelle", "Suppression"};
         ZModel zModel2 = new ZModel(data, title);
         this.tab= new JTable(zModel2);
         this.tab.setRowHeight(20);
@@ -164,17 +164,17 @@ public class MaladePanel extends JPanel implements ActionListener {
                 if (in_adresse.getText() != null)
                 strs.add(in_adresse.getText());
                 else  strs.add("");
-                if (in_tel.getText() != "--")
+                if (in_tel.getText() != null)
                 strs.add(in_tel.getText());
                 else strs.add("");
                 String str2 = combo.getSelectedItem().toString();
-                if (str2 != null)
+                if (str2 != "--")
                     strs.add(str2);
                 else strs.add("");
                 
               ArrayList<Malade> strs2 = new ArrayList<>();
               strs2 = malade_dao2.select(strs);
-              System.out.println("size strs2 "+ strs2.size());
+              //System.out.println("size strs2 "+ strs2.size());
               for(int i =0; i< strs2.size();i++)
              {
                     Malade mal = strs2.get(i);
