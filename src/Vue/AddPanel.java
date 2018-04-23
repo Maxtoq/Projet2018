@@ -6,6 +6,8 @@ import Model.Docteur;
 import Model.DocteurDAO;
 import Model.Hosp;
 import Model.HospDAO;
+import Model.Infirmier;
+import Model.InfirmierDAO;
 import Model.Malade;
 import Model.MaladeDAO;
 import Model.Service;
@@ -46,6 +48,8 @@ public class AddPanel extends JPanel implements ActionListener {
     private HospDAO hosp_dao;
     private Docteur doc;
     private DocteurDAO doc_dao;
+    private Infirmier inf;
+    private InfirmierDAO inf_dao;
     
             
     
@@ -63,6 +67,7 @@ public class AddPanel extends JPanel implements ActionListener {
        this.mal_dao = controler2.getMalDAO();
        this.hosp_dao = controler2.getHospDAO();
        this.doc_dao = controler2.getDocDAO();
+       this.inf_dao = controler2.getInfDAO();
        S2 = S;
        
        combo.setPreferredSize(new Dimension(100, 20));
@@ -140,26 +145,38 @@ public class AddPanel extends JPanel implements ActionListener {
          
          if(S == "infirmier")
          {
-             JLabel[] labels = new JLabel[4];
-             input_pan = new JPanel( new GridLayout(0, 4, 10, 5));
+             JLabel[] labels = new JLabel[8];
+             input_pan = new JPanel( new GridLayout(0, 8, 10, 5));
             labels[0] = new JLabel("N° :");
             input_pan.add(labels[0]);
             input_pan.add(in_JT1);
-           labels[1]= new JLabel ("Code Service :");
+             labels[1] = new JLabel("Nom :");
+            input_pan.add(labels[1]);
+            input_pan.add(in_JT2);
+            labels[2] = new JLabel("Prénom :");
+            input_pan.add(labels[2]);
+            input_pan.add(in_JT3);
+            labels[3] = new JLabel("Adresse :");
+            input_pan.add(labels[3]);
+            input_pan.add(in_JT5);
+            labels[4] = new JLabel("Telephone:");
+            input_pan.add(labels[4]);
+            input_pan.add(in_JT4);
+           labels[5]= new JLabel ("Code Service :");
             combo2.addItem("--");
             combo2.addItem("CAR");
             combo2.addItem("CHG");
             combo2.addItem("REA");
-            input_pan.add(labels[1]);
+            input_pan.add(labels[5]);
             input_pan.add(combo2);
-            labels[2]= new JLabel ("Rotation :");
+            labels[6]= new JLabel ("Rotation :");
             combo.addItem("--");
             combo.addItem("Jour");
             combo.addItem("Nuit");
-            input_pan.add(labels[2]);
+            input_pan.add(labels[6]);
             input_pan.add(combo);
-            labels[3] = new JLabel("Salaire :");
-            input_pan.add(labels[3]);
+            labels[7] = new JLabel("Salaire :");
+            input_pan.add(labels[7]);
             input_pan.add(in_JT6);
             input_pan.add(ajouter);
             
@@ -255,6 +272,22 @@ public class AddPanel extends JPanel implements ActionListener {
                String str6 = combo.getSelectedItem().toString();
                doc = new Docteur(i, str2,str3,str4,str5,str6);
                doc_dao.create(doc);
+                
+               
+           }
+            if(S2 == "infirmier"){
+               String str = in_JT1.getText();
+               int i = Integer.parseInt(str);
+               String str2 = in_JT2.getText();
+               String str3 = in_JT3.getText();
+               String str4 = in_JT4.getText();//tel
+               String str5 = in_JT5.getText();//adresse
+               String str6 = combo2.getSelectedItem().toString();
+               String str7 = combo.getSelectedItem().toString();
+               String str8 = in_JT6.getText();
+               float f = Float.parseFloat(str8);
+               inf = new Infirmier (i, str2,str3,str4,str5,str6,str7,f);
+               inf_dao.create(inf);
                 
                
            }
