@@ -23,6 +23,10 @@ public class PersonPanel extends JPanel implements ActionListener{
     private JComboBox in_code;
     private JTextField in_sal;
     private JComboBox in_spec;
+    private JTextField in_nom;
+    private JTextField in_prenom;
+    private JTextField in_adresse;
+    private JTextField in_tel;
     private JComboBox in_rot;
     private JButton in_search;
     private ZModel zModel;
@@ -65,25 +69,46 @@ public class PersonPanel extends JPanel implements ActionListener{
        in_code = new JComboBox ();
        in_N = new JTextField(); 
        in_sal= new JTextField();
+       in_tel = new JTextField();
+       in_nom = new JTextField();
+       in_prenom = new JTextField();
        in_rot = new JComboBox ();
        in_spec = new JComboBox ();
+       in_adresse = new JTextField();
+       
+       
+       
+       
+       
+       
        
        if (type ==1)
        {
            add_pan = new AddPanel("docteur",controler2 );
             this.add(add_pan,BorderLayout.SOUTH);
              Object[][] data2 = {  
-            {"19","Traumatologue","supp"}};
+            {"19","Safin","Marat","61 rue Fermee, 78430 Louveciennes","01 06 70 38 90","Traumatologue",""}};
                // On crée un tableau de JLabel pour l'affichage 
-                JLabel[] labels = new JLabel[2];
+                JLabel[] labels = new JLabel[6];
         
              // On crée un panel pour les input de la recherche
-                 JPanel input_pan = new JPanel(new GridLayout(0, 2, 10, 5));
-                 labels[0] = new JLabel("N°Docteur :");
-                 input_pan.add(labels[0]);
-                 input_pan.add(in_N);
-                 
-                 labels[1]= new JLabel ("Specialité :");
+                 JPanel input_pan = new JPanel(new GridLayout(0, 6, 10, 5));
+                    labels[0] = new JLabel("N°Docteur :");
+                    input_pan.add(labels[0]);
+                    input_pan.add(in_N);
+                    labels[1] = new JLabel("Nom :");
+                    input_pan.add(labels[1]);
+                    input_pan.add(in_nom);
+                    labels[2] = new JLabel("Prénom :");
+                    input_pan.add(labels[2]);
+                    input_pan.add(in_prenom);
+                    labels[3] = new JLabel("Téléphone :");
+                    input_pan.add(labels[3]);
+                    input_pan.add(in_tel);
+                    labels[4] = new JLabel("Adresse :");
+                    input_pan.add(labels[4]);
+                    input_pan.add(in_adresse);
+                    labels[5]= new JLabel ("Specialité :");
                     in_spec.addItem("--");
                     in_spec.addItem("Anesthesiste");
                     in_spec.addItem("Cardiologue");
@@ -91,14 +116,14 @@ public class PersonPanel extends JPanel implements ActionListener{
                     in_spec.addItem("Pneumologue");
                     in_spec.addItem("Radiologue");
                     in_spec.addItem("Traumatologue");
-                    input_pan.add(labels[1]);
+                    input_pan.add(labels[5]);
                     input_pan.add(in_spec);
                     input_pan.add(in_search);
                     this.add(input_pan, BorderLayout.NORTH);
                     
                 
                     
-               String title[] = {"Numero","Spécialité", "Suppression"};
+               String title[] = {"Numero","Nom","Prenom ","Adresse","Telephone","Spécialité", "Suppression"};
                 ZModel zModel = new ZModel(data2, title);
                 this.tab= new JTable(zModel);
                 this.tab.setRowHeight(20);
@@ -157,26 +182,35 @@ public class PersonPanel extends JPanel implements ActionListener{
            if (type ==1){
                ArrayList<String> strs = new ArrayList<>();
                 strs.add(in_N.getText());
+                strs.add(in_nom.getText());
+                strs.add(in_prenom.getText());
+                strs.add(in_tel.getText());
+                strs.add(in_adresse.getText()); 
                 String str2 = in_spec.getSelectedItem().toString();
                 if (str2 != "--")
                     strs.add(str2);
                 else strs.add("");
               ArrayList<Docteur> strs3 = new ArrayList<>();
-              System.out.printf("Numero : " + in_N.getText());
-              System.out.printf("Spec : " + str2);
               strs3 = doc_dao.select(strs);
-              System.out.printf("Str3 : " + strs3.size());
               for(int i =0; i< strs3.size();i++)
              {
                  Docteur docR = strs3.get(i);
                    int numR = docR.getNum();
                    String numR2 = new String();
                    numR2=String.valueOf(numR);
+                   String nomR = docR.getNom();
+                   String prenomR = docR.getPrenom();
+                   String adresseR = docR.getAdresse();
+                   String telR = docR.getTel();
                    String specR = new String();
                    specR = docR.getSpec();
-                   Object[] data = new Object[2];
+                   Object[] data = new Object[7];
                     data[0] = numR2; 
-                    data[1]= specR;
+                    data[1]= nomR;
+                    data[2]= prenomR;
+                    data[3]= adresseR;
+                    data[4]= telR;
+                    data[5]= specR;
                  ((ZModel)tab.getModel()).addRow(data);    
              }
            }
