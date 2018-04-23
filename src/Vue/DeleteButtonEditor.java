@@ -6,9 +6,12 @@
 package Vue;
 
 import Controleur.Main;
+import Model.DocteurDAO;
 import Model.Hosp;
 import Model.HospDAO;
+import Model.InfirmierDAO;
 import Model.Malade;
+import Model.Docteur;
 import Model.MaladeDAO;
 import Model.Service;
 import Model.ServiceDAO;
@@ -21,6 +24,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import Model.Infirmier;
 
 /**
  *
@@ -36,7 +40,10 @@ public class DeleteButtonEditor extends DefaultCellEditor {
      private String type;
      private Malade mal;
      private Hosp hosp;
+     private Infirmier Inf;
     private HospDAO hosp_dao;
+    private InfirmierDAO inf_dao;
+    private DocteurDAO doc_dao;
     
    public DeleteButtonEditor(JCheckBox checkBox, Main _controler, String S) {
       //Par défaut, ce type d'objet travaille avec un JCheckBox
@@ -51,6 +58,8 @@ public class DeleteButtonEditor extends DefaultCellEditor {
        this.serv_dao3 = _controler.getServDAO();
        this.mal_dao =_controler.getMalDAO();
        this.hosp_dao = _controler.getHospDAO();
+       this.doc_dao = _controler.getDocDAO();
+       this.inf_dao = _controler.getInfDAO();
       //boolen pour emepcher suppression stupid       
       //boolen pour emepcher suppression stupid
       
@@ -128,6 +137,23 @@ public class DeleteButtonEditor extends DefaultCellEditor {
                    int i4 = Integer.parseInt(str4);
                    hosp = new Hosp(i,str2,i3,i4);
                    hosp_dao.delete(hosp);
+                                    
+                  ((ZModel)table.getModel()).removeRow(this.row);
+               }
+               if (type == "infirmier"){
+                   String str = (String)table.getModel().getValueAt(row , 0);
+                   int i = Integer.parseInt(str);
+                   String str2 = (String)table.getModel().getValueAt(row , 1);
+                   String str3 = (String)table.getModel().getValueAt(row , 2);
+                   String str4 = (String)table.getModel().getValueAt(row, 3);
+                   String str5 = (String)table.getModel().getValueAt(row, 4);
+                   String str6 = (String)table.getModel().getValueAt(row, 5);
+                   String str7 = (String)table.getModel().getValueAt(row, 6);
+                   String str8 = (String)table.getModel().getValueAt(row, 7);
+      
+                   float i8 = Float.parseFloat(str8);
+                   Inf = new Infirmier(i,str2,str3,str4,str5,str6,str7,i8);
+                   inf_dao.delete(Inf);
                                     
                   ((ZModel)table.getModel()).removeRow(this.row);
                }

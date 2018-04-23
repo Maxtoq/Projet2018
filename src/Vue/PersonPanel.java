@@ -139,7 +139,7 @@ public class PersonPanel extends JPanel implements ActionListener{
            add_pan = new AddPanel("infirmier",controler2 );
             this.add(add_pan,BorderLayout.SOUTH);
             Object[][] data2 = {  
-            {"12","Davenport","Lindsay","56 rue des Muletiers, 78660 Ablis","01 04 70 01 65","REA", "JOUR","1256.78","supp"}};
+            {"12","Davenport","Lindsay","56 rue des Muletiers, 78660 Ablis","01 04 70 01 65","REA", "JOUR","1256.78",""}};
             JLabel[] labels = new JLabel[8];
         
              // On crée un panel pour les input de la recherche
