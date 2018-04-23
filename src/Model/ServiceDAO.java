@@ -38,6 +38,13 @@ public class ServiceDAO extends DAO<Service> {
 
     @Override
     public boolean update(Service obj) {
+        try {
+            conn.getStmt().executeUpdate("update " + table + " set nom = '" + obj.getNom() + "', batiment = '" + obj.getBat() 
+                                            + "', directeur = '" + obj.getDir() + "' where code = '" + obj.getCode() + "'");
+        }
+        catch (SQLException e) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

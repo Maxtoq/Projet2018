@@ -39,6 +39,13 @@ public class HospDAO extends DAO<Hosp> {
 
     @Override
     public boolean update(Hosp obj) {
+        try {
+            conn.getStmt().executeUpdate("update " + table + " set code_service = '" + obj.getServ() + "', no_chambre = '" + obj.getNChambre() 
+                                            + "', lit = " + obj.getLit() + "' where no_malade = '" + obj.getNMalade()+ "'");
+        }
+        catch (SQLException e) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

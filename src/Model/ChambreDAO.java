@@ -42,7 +42,7 @@ public class ChambreDAO extends DAO<Chambre> {
     @Override
     public boolean update(Chambre obj) {
         try {
-            conn.getStmt().executeUpdate("update chambre set surveillant = '" + obj.getSurveillant() + "', nb_lits = '" + obj.getNbLits() + "' where code_service = '" 
+            conn.getStmt().executeUpdate("update " + table + " set surveillant = '" + obj.getSurveillant() + "', nb_lits = '" + obj.getNbLits() + "' where code_service = '" 
                                             + obj.getServ() + "' and no_chambre = '" + obj.getNum() + "'");
         }
         catch (SQLException e) {

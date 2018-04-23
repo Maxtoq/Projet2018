@@ -43,6 +43,16 @@ public class InfirmierDAO extends DAO<Infirmier> {
 
     @Override
     public boolean update(Infirmier obj) {
+        try {
+            conn.getStmt().executeUpdate("update " + table + " set code_service = '" + obj.getServ() + "', rotation = '" + obj.getRot() 
+                                            + "', salaire = '" + obj.getSal() + "' where numero = '" + obj.getNum() + "'");
+            conn.getStmt().executeUpdate("update employe set nom = '" + obj.getNom() + "', prenom = '" + obj.getPrenom() 
+                                            + "', adresse = '" + obj.getAdresse() + "', tel = '" + obj.getTel() + "' where numero = '" 
+                                            + obj.getNum() + "'");
+        }
+        catch (SQLException e) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }

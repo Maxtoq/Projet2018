@@ -39,6 +39,14 @@ public class EmployeDAO extends DAO<Employe> {
 
     @Override
     public boolean update(Employe obj) {
+        try {
+            conn.getStmt().executeUpdate("update " + table + " set nom = '" + obj.getNom() + "', prenom = '" + obj.getPrenom() 
+                                            + "', adresse = '" + obj.getAdresse() + "', tel = '" + obj.getTel() + "' where numero = '" 
+                                            + obj.getNum() + "'");
+        }
+        catch (SQLException e) {
+            System.out.println("SQL EXCEPTION");
+        }
         
         return true;
     }
