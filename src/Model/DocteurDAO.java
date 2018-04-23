@@ -67,12 +67,12 @@ public class DocteurDAO extends DAO<Docteur> {
     @Override
     public String getWhereStmt(ArrayList<String> param) {
         // On regarde s'il n'y a pas de paramètre pour la recherche, auquel cas on select tous les champs (pas de where)
-        boolean empty_param = false;
+        boolean empty_param = true;
         for (int i = 0; i < param.size(); i++) {
-            if (!param.get(i).equals("")) empty_param = true;
+            if ((!param.get(i).equals("")) && (empty_param)) empty_param = true;
             else empty_param = false;
         }
-        if (!empty_param) return " inner join employe on docteur.numero = employe.numero";
+        if (empty_param) return " inner join employe on docteur.numero = employe.numero";
         
         // On crée la string à insérer dans le "WHERE" de la requête
         String where = " inner join employe on docteur.numero = employe.numero where ";
