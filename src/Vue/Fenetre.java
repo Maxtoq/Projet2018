@@ -91,16 +91,15 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     private void initEmployePan() {
         
             
-        doct_pan = new PersonPanel(1);
-        infir_pan = new PersonPanel(2);
-        malade_pan = new PersonPanel(3);
+        doct_pan = new PersonPanel(1, controler);
+        infir_pan = new PersonPanel(2, controler);
         JTabbedPane tab_pan = new JTabbedPane();
         tab_pan.addTab("Docteurs", doct_pan);
         tab_pan.addTab("Infirmiers(ères)", infir_pan);
-        tab_pan.addTab("Malades",malade_pan);
+        
         
         panel.add(tab_pan);
-        this.add(panel,BorderLayout.EAST);
+        this.add(panel);
         this.setVisible(true);
 
        
