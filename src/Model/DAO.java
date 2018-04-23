@@ -29,7 +29,7 @@ public abstract class DAO<T> {
     
     public abstract T getNewTObject(String[] strings);
     
-    public ArrayList<T> select(ArrayList<String> param) {
+    public ArrayList<T> select(ArrayList<String> param) {        
         // Si le nombre de paramètres donné pour la recherche est mauvais, la requête est rejetée (REMPLACER PAR EXCEPTION, ou enlever)
         if (param.size() != where_params.length) return null;
         
@@ -43,7 +43,6 @@ public abstract class DAO<T> {
             // Pour chaque strings, on récupère la strings de chaque attribut
             for (int i = 0; i < str_result.size(); i++) {
                 String[] strings = str_result.get(i).split(",");
-                System.out.println(str_result.get(i));
                 
                 // On crée un nouvel objet avec ces attributs
                 result.add(getNewTObject(strings));
@@ -59,6 +58,14 @@ public abstract class DAO<T> {
     }
     
     public String getWhereStmt(ArrayList<String> param) {
+        // On regarde s'il n'y a pas de paramètre pour la recherche, auquel cas on select tous les champs (pas de where)
+        boolean empty_param = false;
+        for (int i = 0; i < param.size(); i++) {
+            if (!param.get(i).equals("")) empty_param = true;
+            else empty_param = false;
+        }
+        if (!empty_param) return "";
+        
         // On crée la string à insérer dans le "WHERE" de la requête
         String where = " where ";
         boolean par = false;

@@ -129,7 +129,7 @@ public class ServicePanel extends JPanel implements ActionListener{
                 strs.add(in_batiment.getText());
                 strs.add(in_dir.getText());
               ArrayList<Service> strs2 = new ArrayList<>();
-              
+              System.out.println(strs);
               strs2 = serv_dao2.select(strs);
              for(int i =0; i< strs2.size();i++)
              {
