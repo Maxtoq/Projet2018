@@ -24,7 +24,7 @@ import javax.swing.table.TableRowSorter;
 public class HospPanel extends JPanel implements ActionListener {
     
    
-    private JTextField in_nom;
+    private JTextField in_chambre;
     private AddPanel add_pan;
 
     private JTextField in_lit;
@@ -63,7 +63,7 @@ public class HospPanel extends JPanel implements ActionListener {
                ajouter = new JButton("Ajouter un malade");
               in_search = new JButton("Rechercher");
               in_search.addActionListener(this);
-              in_nom = new JTextField(15);
+              in_chambre = new JTextField(15);
                       ajout = new JTextField();
 
               
@@ -80,18 +80,18 @@ public class HospPanel extends JPanel implements ActionListener {
         labels[0] = new JLabel("Numéro du malade :");
         input_pan2.add(labels[0]);
         
-       input_pan2.add(in_lit);
-        labels[1] = new JLabel("Numéro Lit :");
+       input_pan2.add(in_numMalade);
+        labels[1] = new JLabel("Code Service :");
         input_pan2.add(labels[1]);
         
        input_pan2.add(in_codeService);
-        labels[2] = new JLabel("Code Service :");
+        labels[2] = new JLabel("N° Chambre :");
         input_pan2.add(labels[2]);
-       input_pan2.add(in_numMalade);
+       input_pan2.add(in_chambre);
        
-       labels[3] = new JLabel("Nom du patient :");
+       labels[3] = new JLabel("N° lit :");
        input_pan2.add(labels[3]);
-        input_pan2.add(in_nom);
+        input_pan2.add(in_lit);
        
        input_pan2.add(in_search);
        
@@ -130,30 +130,38 @@ public class HospPanel extends JPanel implements ActionListener {
           if (ae.getSource().equals(in_search)) {
                 ArrayList<String> strs = new ArrayList<>();
                 strs.add(in_numMalade.getText());
-                strs.add(in_nom.getText());
-                strs.add(in_lit.getText());
                 strs.add(in_codeService.getText());
+                strs.add(in_chambre.getText());
+                strs.add(in_lit.getText());
                 
               ArrayList<Hosp> strs2 = new ArrayList<>();
               
               strs2 = hosp_dao2.select(strs);
              for(int i =0; i< strs2.size();i++)
              {
-                 Hosp servR = strs2.get(i);
+                 Hosp hospR = strs2.get(i);
                          
-                    String codeR = new String();
-                    codeR = servR.getServ();
-                   // int nomR = new int();
+                    int n_malR =hospR.getNMalade();
+                    String n_malR2 = new String();
+                    n_malR2 = String.valueOf(n_malR);
+                    // int nomR = new int();
                    // nomR = servR.getNMalade();
-                    int n_Lit = servR.getLit();
-                    int dirR = servR.getNChambre();
-             zModel.setValueAt(codeR,i++,1);
-            // zModel.setValueAt(nomR,i++,2);
-             zModel.setValueAt(n_Lit,i++,3);
-             zModel.setValueAt(dirR,i++,4);
-                    
-        
-          }
+                   String servR = hospR.getServ();
+                   int n_chambreR = hospR.getNChambre();
+                   String n_chambreR2 = new String();
+                   n_chambreR2 = String.valueOf(n_chambreR);
+                   int n_Lit = hospR.getLit();
+                   String n_Lit2 = new String();
+                   n_Lit2 = String.valueOf(n_Lit);
+                   
+                    Object[] data = new Object[5];
+                        data[0] = n_malR2; 
+                        data[1]= servR;
+                        data[2] = n_chambreR2;
+                        data[3]= n_Lit2;
+                    ((ZModel)tab.getModel()).addRow(data);
+
+              }
           if (ae.getSource().equals(ajouter))
           {
                Object[] donnee = new Object[]
