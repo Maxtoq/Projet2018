@@ -6,6 +6,8 @@
 package Vue;
 
 import Controleur.Main;
+import Model.Hosp;
+import Model.HospDAO;
 import Model.Malade;
 import Model.MaladeDAO;
 import Model.Service;
@@ -33,6 +35,8 @@ public class DeleteButtonEditor extends DefaultCellEditor {
      private Main controler;
      private String type;
      private Malade mal;
+     private Hosp hosp;
+    private HospDAO hosp_dao;
     
    public DeleteButtonEditor(JCheckBox checkBox, Main _controler, String S) {
       //Par défaut, ce type d'objet travaille avec un JCheckBox
@@ -46,6 +50,7 @@ public class DeleteButtonEditor extends DefaultCellEditor {
        this.controler = _controler;
        this.serv_dao3 = _controler.getServDAO();
        this.mal_dao =_controler.getMalDAO();
+       this.hosp_dao = _controler.getHospDAO();
       //boolen pour emepcher suppression stupid       
       //boolen pour emepcher suppression stupid
       
@@ -110,6 +115,19 @@ public class DeleteButtonEditor extends DefaultCellEditor {
                    String str6 = (String)table.getModel().getValueAt(row, 5);
                    mal = new Malade(i,str2,str3,str5,str4,str6);
                    mal_dao.delete(mal);
+                                    
+                  ((ZModel)table.getModel()).removeRow(this.row);
+               }
+               if (type == "hospitalisation"){
+                   String str = (String)table.getModel().getValueAt(row , 0);
+                   int i = Integer.parseInt(str);
+                   String str2 = (String)table.getModel().getValueAt(row , 1);
+                   String str3 = (String)table.getModel().getValueAt(row , 2);
+                   int i3 = Integer.parseInt(str3);
+                   String str4 = (String)table.getModel().getValueAt(row, 3);
+                   int i4 = Integer.parseInt(str4);
+                   hosp = new Hosp(i,str2,i3,i4);
+                   hosp_dao.delete(hosp);
                                     
                   ((ZModel)table.getModel()).removeRow(this.row);
                }
