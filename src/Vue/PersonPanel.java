@@ -149,10 +149,10 @@ public class PersonPanel extends JPanel implements ActionListener{
             Object[][] data2 = {  
            {"","","","","","", "","",""}};
              // On crée un tableau de JLabel pour l'affichage 
-            JLabel[] labels = new JLabel[9];
+            JLabel[] labels = new JLabel[8];
         
              // On crée un panel pour les input de la recherche
-                 JPanel input_pan = new JPanel(new GridLayout(0, 9, 10, 5));
+                 JPanel input_pan = new JPanel(new GridLayout(0, 8, 10, 5));
                  labels[0] = new JLabel("N°Infirmier :");
                  input_pan.add(labels[0]);
                  input_pan.add(in_N);
@@ -280,20 +280,21 @@ public class PersonPanel extends JPanel implements ActionListener{
                 String str2 = in_code.getSelectedItem().toString();
                  if (str2 != "--")
                     strs.add(str2);
-                else strs.add("");
+                else strs.add(" ");
                 String str4 = in_rot.getSelectedItem().toString();
                 if (str4 != "--")
                     strs.add(str4);
-                else strs.add("");
+                else strs.add(" ");
                 strs.add(in_sal.getText());
                 ArrayList<Infirmier> strs3 = new ArrayList<>();
                 strs3 = inf_dao.select(strs);
                 for(int i =0; i< strs3.size();i++)
              {
-                 //Pour chaque docteurs dans l'array list on le recupere 
+                 //Pour chaque infirmier dans l'array list on le recupere 
                  // on add ses valeurs dans un iobjet et on se sert de add.Row 
                  Infirmier InfR = strs3.get(i);
                    int numR = InfR.getNum();
+                   
                    String numR2 = new String();
                    numR2=String.valueOf(numR);
                    String nomR = InfR.getNom();
@@ -306,8 +307,8 @@ public class PersonPanel extends JPanel implements ActionListener{
                    rotR = InfR.getRot();
                    float salR = InfR.getSal();
                    String salR2 = String.valueOf(salR);
-                   
-                   Object[] data = new Object[9];
+                   System.out.printf("num : "+ numR2);
+                   Object[] data = new Object[8];
                     data[0] = numR2; 
                     data[1]= nomR;
                     data[2]= prenomR;
@@ -316,10 +317,21 @@ public class PersonPanel extends JPanel implements ActionListener{
                     data[5]= codeR;
                     data[6] = rotR;
                     data[7]= salR2;
+                    
                  ((ZModel)tab.getModel()).addRow(data);    
              }
+                 // Boucle pour enlever les lignes qui ne sont pas notre recherche
+              //On se place a la ligne d'indice Nb de ligne - le nb de ligne que
+              // lon a ajouté que si le nb de ligne initial est supêrieur a deux
+             // if( tab.getModel().getRowCount()>2)
+               // for (int y =tab.getModel().getRowCount() - strs3.size() ; y > 0 ;y--){
+                 //  ((ZModel)tab.getModel()).removeRow(y);
+                   // }
+            }
            }
        }
     }
     
-}
+
+
+

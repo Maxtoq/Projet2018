@@ -53,7 +53,7 @@ public class ServicePanel extends JPanel implements ActionListener{
        
         //Premiere ligne a afficher pour gte.class
         Object[][] data2 = {  
-            {"REA","Reanimation et Traumatologie","A","19","supp"}
+            {"","","","",""}
              
     };
         //initialisation des composant
@@ -74,18 +74,18 @@ public class ServicePanel extends JPanel implements ActionListener{
         JPanel input_pan = new JPanel(new GridLayout(0, 4, 10, 5));
         
         // On ajoute tous les composants
-        labels[0] = new JLabel("N°batiment :");
+        labels[0] = new JLabel("Code Service :");
         input_pan.add(labels[0]);
-        input_pan.add(in_batiment);
-        labels[1] = new JLabel("Nom Directeur :");
-        input_pan.add(labels[1]);
-        input_pan.add(in_dir);
-        labels[2] = new JLabel("Code Batiment :");
-        input_pan.add(labels[2]);
         input_pan.add(in_code);
-        labels[3] = new JLabel("Nom de Batiment :");
-        input_pan.add(labels[3]);
+        labels[1] = new JLabel("Nom Service :");
+        input_pan.add(labels[1]);
         input_pan.add(in_nom);
+        labels[2] = new JLabel("Lettre Batiment :");
+        input_pan.add(labels[2]);
+        input_pan.add(in_batiment);
+        labels[3] = new JLabel("Numero Directeur :");
+        input_pan.add(labels[3]);
+        input_pan.add(in_dir);
         input_pan.add(in_search);
         
         //on ajoute la pan 
@@ -125,6 +125,7 @@ public class ServicePanel extends JPanel implements ActionListener{
             
                 ArrayList<String> strs = new ArrayList<>();
                 strs.add(in_code.getText());
+                
                 strs.add(in_nom.getText());
                 strs.add(in_batiment.getText());
                 strs.add(in_dir.getText());
@@ -157,12 +158,16 @@ public class ServicePanel extends JPanel implements ActionListener{
                     data[2] = batR2;
                     data[3]= diR2;
                 ((ZModel)tab.getModel()).addRow(data);
-                   
-                
-
                     
         
           }
+             // Boucle pour enlever les lignes qui ne sont pas notre recherche
+              //On se place a la ligne d'indice Nb de ligne - le nb de ligne que
+              // lon a ajouté que si le nb de ligne initial est supêrieur a deux
+              if( tab.getModel().getRowCount()>4)
+                for (int y =tab.getModel().getRowCount() - strs2.size() ; y > 0 ;y--){
+                   ((ZModel)tab.getModel()).removeRow(y);
+                    }
             
               
           }

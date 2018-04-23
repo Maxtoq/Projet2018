@@ -107,10 +107,10 @@ public class AddPanel extends JPanel implements ActionListener {
              // On crée un panel pour les input de la recherche
              input_pan = new JPanel( new GridLayout(0, 4, 10, 5));
               // On ajoute tous les composants
-            labels[1] = new JLabel("Nom :");
+            labels[1] = new JLabel("Code Service :");
             input_pan.add(labels[1]);
             input_pan.add(in_JT1);
-            labels[0] = new JLabel("Code Batiment :");
+            labels[0] = new JLabel("Nom Service :");
             input_pan.add(labels[0]);
             input_pan.add(in_JT2);
             labels[2] = new JLabel("Batiment :");
@@ -261,7 +261,7 @@ public class AddPanel extends JPanel implements ActionListener {
             int i = Integer.parseInt(str);
             String str2 = in_JT3.getText();
             char c = str2.charAt(0);
-            obj = new Service(in_JT2.getText(),in_JT1.getText(),c,i);
+            obj = new Service(in_JT1.getText(),in_JT2.getText(),c,i);
             serv_dao3.create(obj);
        }
        //Selon le type on recupere les valeurs 
