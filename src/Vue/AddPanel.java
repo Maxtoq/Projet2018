@@ -268,6 +268,7 @@ public class AddPanel extends JPanel implements ActionListener {
            // et l'on cree un objet de ce type avec ces params
            // On cree cet objet dans la bdd
            if(S2 == "malade"){
+               
                 String str = in_JT1.getText();
                 int i = Integer.parseInt(str);
                 String str2 = combo.getSelectedItem().toString();
