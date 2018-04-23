@@ -3,16 +3,11 @@ package Vue;
 import Controleur.Main;
 import Model.Hosp;
 import Model.HospDAO;
-import Model.Service;
-import Model.ServiceDAO;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 /*
 
  */

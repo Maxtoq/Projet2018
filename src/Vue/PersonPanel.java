@@ -6,7 +6,6 @@ import Model.Docteur;
 import Model.DocteurDAO;
 import Model.Infirmier;
 import Model.InfirmierDAO;
-import Model.Service;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -5,14 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 import Controleur.*;
 import Model.MaladeDAO;
 import Model.Malade;
-import Model.Service;
-import Model.ServiceDAO;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

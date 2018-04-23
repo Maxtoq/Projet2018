@@ -3,7 +3,6 @@ package Controleur;
 import Model.*;
 import Vue.Fenetre;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  *
@@ -11,15 +10,15 @@ import java.util.ArrayList;
  */
 public class Main {
     
-    private Fenetre fen;
+    private final Fenetre fen;
     private Connexion connect;
-    private ChambreDAO ch_dao;
-    private DocteurDAO doc_dao;
-    private EmployeDAO emp_dao;
-    private HospDAO hosp_dao;
-    private InfirmierDAO inf_dao;
-    private MaladeDAO mal_dao;
-    private ServiceDAO serv_dao;
+    private final ChambreDAO ch_dao;
+    private final DocteurDAO doc_dao;
+    private final EmployeDAO emp_dao;
+    private final HospDAO hosp_dao;
+    private final InfirmierDAO inf_dao;
+    private final MaladeDAO mal_dao;
+    private final ServiceDAO serv_dao;
     
     public Main() { 
         // On initialise la connexion avec la database
@@ -47,72 +46,6 @@ public class Main {
         // On crée la nouvelle fenêtre
         fen = new Fenetre(this);
         
-        
-        /*ArrayList<String> strs = new ArrayList<>();
-        strs.add("");
-        strs.add("");
-        strs.add("A");
-        strs.add("");
-        serv_dao.select(strs);
-        
-        ArrayList<String> strmal = new ArrayList<>();
-        strmal.add("");
-        strmal.add("");
-        strmal.add("");
-        strmal.add("");
-        strmal.add("");
-        strmal.add("AG2R");
-        mal_dao.select(strmal);
-        
-        ArrayList<String> strinf = new ArrayList<>();
-        strinf.add("");
-        strinf.add("");
-        strinf.add("");
-        strinf.add("");
-        strinf.add("");
-        strinf.add("CAR");
-        strinf.add("");
-        strinf.add("");
-        inf_dao.select(strinf);
-        
-        ArrayList<String> strhosp = new ArrayList<>();
-        strhosp.add("");
-        strhosp.add("REA");
-        strhosp.add("");
-        strhosp.add("");
-        hosp_dao.select(strhosp);
-        
-        ArrayList<String> stremp = new ArrayList<>();
-        stremp.add("");
-        stremp.add("");
-        stremp.add("Andy");
-        stremp.add("");
-        stremp.add("");
-        emp_dao.select(stremp);*/
-        
-        doc_dao.delete(new Docteur(1,"Michel", "Michel", "01.42.53.64.21", "24 avenue de la Casanours, 75021 Paris", "Cardiologue"));
-        ArrayList<String> strdoc = new ArrayList<>();
-        strdoc.add("15");
-        strdoc.add("");
-        strdoc.add("");
-        strdoc.add("");
-        strdoc.add("");
-        strdoc.add("");
-        doc_dao.select(strdoc);
-        
-        /*ch_dao.delete(new Chambre(99,"REA",20,5));
-        ArrayList<String> strch = new ArrayList<>();
-        strch.add("REA");
-        strch.add("");
-        strch.add("");
-        strch.add("");
-        ch_dao.select(strch);
-        
-        Chambre ch = new Chambre(100, "REA", 10, 6);
-        ch_dao.update(ch);*/
-        
-        Docteur doc = new Docteur(1, "Michel", "MichMich", "01 42 53 64 21", "32 avenue du poulet du dimanche", "Pneumologue");
-        doc_dao.update(doc);
     }
     
     /**

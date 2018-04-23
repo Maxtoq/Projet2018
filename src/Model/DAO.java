@@ -21,14 +21,44 @@ public abstract class DAO<T> {
         table = _table;
     }
     
+    /**
+     * Envoie une requete pour ajouter un champs dans une table
+     * 
+     * @param obj Objet à créer dans la db
+     * @return 
+     */
     public abstract boolean create(T obj);
     
+    /**
+     * Envoie une requete pour supprimer un champs dans une table
+     * 
+     * @param obj Objet à supprimer dans la db
+     * @return 
+     */
     public abstract boolean delete(T obj);
     
+    /**
+     * Envoie une requete pour modifier un champs dans une table
+     * 
+     * @param obj Objet à modifier dans la db
+     * @return 
+     */
     public abstract boolean update(T obj);
     
+    /**
+     * Renvoie un nouvel objet créé grâce aux strings en paramètre
+     * 
+     * @param strings attributs du nouvel objet
+     * @return nouvel objet
+     */
     public abstract T getNewTObject(String[] strings);
     
+    /**
+     * Envoie une requete pour rechercher des champs dans une table
+     * 
+     * @param param paramètres de la recherche
+     * @return arraylist de tous les objets correspondant à la requête
+     */
     public ArrayList<T> select(ArrayList<String> param) {        
         // Si le nombre de paramètres donné pour la recherche est mauvais, la requête est rejetée (REMPLACER PAR EXCEPTION, ou enlever)
         if (param.size() != where_params.length) return null;
@@ -57,6 +87,12 @@ public abstract class DAO<T> {
         return null;
     }
     
+    /**
+     * Renvoie la partie "where ..." d'une requete select, en fonction des paramètres de la recherche
+     * 
+     * @param param paramètre de la recherche
+     * @return partie "where" de la requête
+     */
     public String getWhereStmt(ArrayList<String> param) {
         // On regarde s'il n'y a pas de paramètre pour la recherche, auquel cas on select tous les champs (pas de where)
         boolean empty_param = true;
