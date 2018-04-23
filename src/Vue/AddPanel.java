@@ -2,6 +2,8 @@
 package Vue;
 
 import Controleur.Main;
+import Model.Docteur;
+import Model.DocteurDAO;
 import Model.Hosp;
 import Model.HospDAO;
 import Model.Malade;
@@ -42,6 +44,8 @@ public class AddPanel extends JPanel implements ActionListener {
     private MaladeDAO mal_dao;
     private Hosp hosp;
     private HospDAO hosp_dao;
+    private Docteur doc;
+    private DocteurDAO doc_dao;
     
             
     
@@ -58,6 +62,7 @@ public class AddPanel extends JPanel implements ActionListener {
        this.serv_dao3 = controler2.getServDAO();
        this.mal_dao = controler2.getMalDAO();
        this.hosp_dao = controler2.getHospDAO();
+       this.doc_dao = controler2.getDocDAO();
        S2 = S;
        
        combo.setPreferredSize(new Dimension(100, 20));
@@ -102,12 +107,24 @@ public class AddPanel extends JPanel implements ActionListener {
             
          }
          if(S == "docteur"){
-            JLabel[] labels = new JLabel[2];
-            input_pan = new JPanel( new GridLayout(0, 2, 10, 5));
+            JLabel[] labels = new JLabel[6];
+            input_pan = new JPanel( new GridLayout(0, 6, 10, 5));
             labels[0] = new JLabel("N° :");
             input_pan.add(labels[0]);
             input_pan.add(in_JT1);
-           labels[1]= new JLabel ("Specialité :");
+            labels[1] = new JLabel("Nom :");
+            input_pan.add(labels[1]);
+            input_pan.add(in_JT2);
+            labels[2] = new JLabel("Prénom :");
+            input_pan.add(labels[2]);
+            input_pan.add(in_JT3);
+            labels[3] = new JLabel("Adresse :");
+            input_pan.add(labels[3]);
+            input_pan.add(in_JT5);
+            labels[4] = new JLabel("Telephone:");
+            input_pan.add(labels[4]);
+            input_pan.add(in_JT4);
+           labels[5]= new JLabel ("Specialité :");
             combo.addItem("--");
             combo.addItem("Anesthesiste");
             combo.addItem("Cardiologue");
@@ -115,7 +132,7 @@ public class AddPanel extends JPanel implements ActionListener {
             combo.addItem("Pneumologue");
             combo.addItem("Radiologue");
             combo.addItem("Traumatologue");
-            input_pan.add(labels[1]);
+            input_pan.add(labels[5]);
             input_pan.add(combo);
             input_pan.add(ajouter);
            }
@@ -227,6 +244,19 @@ public class AddPanel extends JPanel implements ActionListener {
                  System.out.println("La valeur de l'objet est " + i +" "+ str2 + " " +i2+ " " +  i3 );
                 hosp = new Hosp (i,str2 ,i2,i3);
                 hosp_dao.create(hosp);
+           }
+           if(S2 == "docteur"){
+               String str = in_JT1.getText();
+               int i = Integer.parseInt(str);
+               String str2 = in_JT2.getText();
+               String str3 = in_JT3.getText();
+               String str4 = in_JT4.getText();//tel
+               String str5 = in_JT5.getText();//adresse
+               String str6 = combo.getSelectedItem().toString();
+               doc = new Docteur(i, str2,str3,str4,str5,str6);
+               doc_dao.create(doc);
+                
+               
            }
        }
     }
