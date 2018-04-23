@@ -4,6 +4,8 @@ package Vue;
 import Controleur.Main;
 import Model.Docteur;
 import Model.DocteurDAO;
+import Model.Infirmier;
+import Model.InfirmierDAO;
 import Model.Service;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -36,6 +38,7 @@ public class PersonPanel extends JPanel implements ActionListener{
      private JTable tab;
      private Main controler2;
      private DocteurDAO doc_dao;
+     private InfirmierDAO inf_dao;
    
     public PersonPanel(int _type, Main controler) {
         type = _type;
@@ -45,6 +48,7 @@ public class PersonPanel extends JPanel implements ActionListener{
         in_search = new JButton("Rechercher");
         in_search.addActionListener(this);
         this.doc_dao = this.controler2.getDocDAO();
+        this.inf_dao = this.controler2.getInfDAO();
           //if (type == 1)
              //add_pan = new AddPanel("docteurs",controler2);
         //else if (type == 2)
@@ -135,36 +139,49 @@ public class PersonPanel extends JPanel implements ActionListener{
            add_pan = new AddPanel("infirmier",controler2 );
             this.add(add_pan,BorderLayout.SOUTH);
             Object[][] data2 = {  
-            {"19","REA", "JOUR","1256.78","supp"}};
-            JLabel[] labels = new JLabel[4];
+            {"12","Davenport","Lindsay","56 rue des Muletiers, 78660 Ablis","01 04 70 01 65","REA", "JOUR","1256.78","supp"}};
+            JLabel[] labels = new JLabel[8];
         
              // On crée un panel pour les input de la recherche
-                 JPanel input_pan = new JPanel(new GridLayout(0, 4, 10, 5));
+                 JPanel input_pan = new JPanel(new GridLayout(0, 8, 10, 5));
                  labels[0] = new JLabel("N°Infirmier :");
                  input_pan.add(labels[0]);
                  input_pan.add(in_N);
-                    labels[1]= new JLabel ("Code Service :");
+                     labels[1] = new JLabel("Nom :");
+                    input_pan.add(labels[1]);
+                    input_pan.add(in_nom);
+                    labels[2] = new JLabel("Prénom :");
+                    input_pan.add(labels[2]);
+                    input_pan.add(in_prenom);
+                    labels[3] = new JLabel("Téléphone :");
+                    input_pan.add(labels[3]);
+                    input_pan.add(in_tel);
+                    labels[4] = new JLabel("Adresse :");
+                    input_pan.add(labels[4]);
+                    input_pan.add(in_adresse);
+                    labels[5]= new JLabel ("Code Service :");
                         in_code.addItem("--");
                         in_code.addItem("CAR");
                         in_code.addItem("CHG");
                         in_code.addItem("REA");
-                        input_pan.add(labels[1]);
+                        input_pan.add(labels[5]);
                         input_pan.add(in_code);
-                 labels[2]= new JLabel ("Rotation :");
+                        
+                 labels[6]= new JLabel ("Rotation :");
                     in_rot.addItem("--");
                     in_rot.addItem("Jour");
                     in_rot.addItem("Nuit");
-                    input_pan.add(labels[2]);
+                    input_pan.add(labels[6]);
                     input_pan.add(in_rot);
-                labels[3] = new JLabel("Salaires :");
-                input_pan.add(labels[3]);
+                labels[7] = new JLabel("Salaire :");
+                input_pan.add(labels[7]);
                 input_pan.add(in_sal);     
                     input_pan.add(in_search);
                     this.add(input_pan, BorderLayout.NORTH);
                     
                 
                     
-               String title[] = {"Numero","Code Service", "Rotation"," Salaire ","Suppression"};
+               String title[] = {"Numero","Nom","Prenom","Adresse","Telephone ","Code Service", "Rotation"," Salaire ","Suppression"};
                 ZModel zModel = new ZModel(data2, title);
                 this.tab= new JTable(zModel);
                 this.tab.setRowHeight(20);
@@ -211,6 +228,53 @@ public class PersonPanel extends JPanel implements ActionListener{
                     data[3]= adresseR;
                     data[4]= telR;
                     data[5]= specR;
+                 ((ZModel)tab.getModel()).addRow(data);    
+             }
+           }
+           if (type ==2){
+               ArrayList<String> strs = new ArrayList<>();
+                strs.add(in_N.getText());
+                strs.add(in_nom.getText());
+                strs.add(in_prenom.getText());
+                strs.add(in_tel.getText());
+                strs.add(in_adresse.getText()); 
+                String str2 = in_code.getSelectedItem().toString();
+                 if (str2 != "--")
+                    strs.add(str2);
+                else strs.add("");
+                String str4 = in_rot.getSelectedItem().toString();
+                if (str4 != "--")
+                    strs.add(str4);
+                else strs.add("");
+                strs.add(in_sal.getText());
+                ArrayList<Infirmier> strs3 = new ArrayList<>();
+                strs3 = inf_dao.select(strs);
+                for(int i =0; i< strs3.size();i++)
+             {
+                 Infirmier InfR = strs3.get(i);
+                   int numR = InfR.getNum();
+                   String numR2 = new String();
+                   numR2=String.valueOf(numR);
+                   String nomR = InfR.getNom();
+                   String prenomR = InfR.getPrenom();
+                   String adresseR = InfR.getAdresse();
+                   String telR = InfR.getTel();
+                   String codeR = new String();
+                   codeR = InfR.getServ();
+                   String rotR = new String();
+                   rotR = InfR.getRot();
+                   float salR = InfR.getSal();
+                   String salR2 = String.valueOf(salR);
+                   
+                   Object[] data = new Object[9];
+                    data[0] = numR2; 
+                    data[1]= nomR;
+                    data[2]= prenomR;
+                    data[3]= adresseR;
+                    data[4]= telR;
+                    data[5]= codeR;
+                    data[6] = rotR;
+                    data[7]= salR2;
                  ((ZModel)tab.getModel()).addRow(data);    
              }
            }
