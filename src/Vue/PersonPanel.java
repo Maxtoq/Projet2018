@@ -2,9 +2,13 @@
 package Vue;
 
 import Controleur.Main;
+import Model.Docteur;
+import Model.DocteurDAO;
+import Model.Service;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -27,6 +31,7 @@ public class PersonPanel extends JPanel implements ActionListener{
      private AddPanel add_pan;
      private JTable tab;
      private Main controler2;
+     private DocteurDAO doc_dao;
    
     public PersonPanel(int _type, Main controler) {
         type = _type;
@@ -35,6 +40,7 @@ public class PersonPanel extends JPanel implements ActionListener{
         this.setLayout(new BorderLayout()); 
         in_search = new JButton("Rechercher");
         in_search.addActionListener(this);
+        this.doc_dao = this.controler2.getDocDAO();
           //if (type == 1)
              //add_pan = new AddPanel("docteurs",controler2);
         //else if (type == 2)
@@ -140,14 +146,41 @@ public class PersonPanel extends JPanel implements ActionListener{
                 this.add(new JScrollPane(tab), BorderLayout.CENTER);
                 this.tab.getColumn("Suppression").setCellEditor(new DeleteButtonEditor(new JCheckBox(),controler2, "infirmier"));
        }
-       }
+   }
        
        
        
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       if (ae.getSource().equals(in_search)){
+           if (type ==1){
+               ArrayList<String> strs = new ArrayList<>();
+                strs.add(in_N.getText());
+                String str2 = in_spec.getSelectedItem().toString();
+                if (str2 != "--")
+                    strs.add(str2);
+                else strs.add("");
+              ArrayList<Docteur> strs3 = new ArrayList<>();
+              System.out.printf("Numero : " + in_N.getText());
+              System.out.printf("Spec : " + str2);
+              strs3 = doc_dao.select(strs);
+              System.out.printf("Str3 : " + strs3.size());
+              for(int i =0; i< strs3.size();i++)
+             {
+                 Docteur docR = strs3.get(i);
+                   int numR = docR.getNum();
+                   String numR2 = new String();
+                   numR2=String.valueOf(numR);
+                   String specR = new String();
+                   specR = docR.getSpec();
+                   Object[] data = new Object[2];
+                    data[0] = numR2; 
+                    data[1]= specR;
+                 ((ZModel)tab.getModel()).addRow(data);    
+             }
+           }
+       }
     }
     
 }
