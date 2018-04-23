@@ -31,16 +31,17 @@ import Model.Infirmier;
  * @author cleme
  */
 public class DeleteButtonEditor extends DefaultCellEditor {
-     protected JButton button; 
-     private DeleteButtonListener bListener = new DeleteButtonListener();
-     private Service obj;
-     private ServiceDAO serv_dao3;
-     private MaladeDAO mal_dao;
-     private Main controler;
-     private String type;
-     private Malade mal;
-     private Hosp hosp;
-     private Infirmier Inf;
+    protected JButton button; 
+    private DeleteButtonListener bListener = new DeleteButtonListener();
+    private Service obj;
+    private ServiceDAO serv_dao3;
+    private MaladeDAO mal_dao;     
+    private Main controler;
+    private String type;
+    private Malade mal;
+    private Hosp hosp;
+    private Infirmier Inf;
+    private Docteur doc; 
     private HospDAO hosp_dao;
     private InfirmierDAO inf_dao;
     private DocteurDAO doc_dao;
@@ -154,6 +155,20 @@ public class DeleteButtonEditor extends DefaultCellEditor {
                    float i8 = Float.parseFloat(str8);
                    Inf = new Infirmier(i,str2,str3,str4,str5,str6,str7,i8);
                    inf_dao.delete(Inf);
+                                    
+                  ((ZModel)table.getModel()).removeRow(this.row);
+               }
+               if (type == "docteur"){
+                   String str = (String)table.getModel().getValueAt(row , 0);
+                   int i = Integer.parseInt(str);
+                   String str2 = (String)table.getModel().getValueAt(row , 1);
+                   String str3 = (String)table.getModel().getValueAt(row , 2);
+                   String str4 = (String)table.getModel().getValueAt(row, 3);
+                   String str5 = (String)table.getModel().getValueAt(row, 4);
+                   String str6 = (String)table.getModel().getValueAt(row, 5);
+                  
+                   doc = new Docteur(i,str2,str3,str4,str5,str6);
+                   doc_dao.delete(doc);
                                     
                   ((ZModel)table.getModel()).removeRow(this.row);
                }
