@@ -262,7 +262,6 @@ public class AddPanel extends JPanel implements ActionListener {
             String str2 = in_JT3.getText();
             char c = str2.charAt(0);
             obj = new Service(in_JT2.getText(),in_JT1.getText(),c,i);
-              System.out.println("La valeur de l'objet est " + obj.getCode() +" "+ obj.getNom()+ " " +obj.getBat()+ " " + obj.getDir() );
             serv_dao3.create(obj);
        }
        //Selon le type on recupere les valeurs 
@@ -272,7 +271,6 @@ public class AddPanel extends JPanel implements ActionListener {
                 String str = in_JT1.getText();
                 int i = Integer.parseInt(str);
                 String str2 = combo.getSelectedItem().toString();
-                 System.out.println("La valeur de l'objet est " + i +" "+ in_JT2.getText()+ " " +in_JT3.getText()+ " " +  str2 );
                 mal = new Malade(i, in_JT2.getText(),in_JT3.getText(),in_JT4.getText(),in_JT5.getText(), str2);
                 mal_dao.create(mal);
            }
@@ -283,12 +281,10 @@ public class AddPanel extends JPanel implements ActionListener {
                 String str = in_JT1.getText();
                 int i = Integer.parseInt(str);
                 String str2 = in_JT2.getText();
-                
                 String str3 = in_JT3.getText();
                 int i2 = Integer.parseInt(str3);
                 String str4 = in_JT4.getText();
                 int i3 = Integer.parseInt(str4);
-                 System.out.println("La valeur de l'objet est " + i +" "+ str2 + " " +i2+ " " +  i3 );
                 hosp = new Hosp (i,str2 ,i2,i3);
                 hosp_dao.create(hosp);
            }

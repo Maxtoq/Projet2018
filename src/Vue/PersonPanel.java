@@ -95,7 +95,7 @@ public class PersonPanel extends JPanel implements ActionListener{
             this.add(add_pan,BorderLayout.SOUTH);
             // premiere ligne d'affichage neccessaire pour getclasse de z model
              Object[][] data2 = {  
-            {"19","Safin","Marat","61 rue Fermee, 78430 Louveciennes","01 06 70 38 90","Traumatologue",""}};
+            {"","","","","","",""}};
                // On crée un tableau de JLabel pour l'affichage 
                 JLabel[] labels = new JLabel[6];
         
@@ -147,16 +147,16 @@ public class PersonPanel extends JPanel implements ActionListener{
             this.add(add_pan,BorderLayout.SOUTH);
             // premiere ligne d'affichage neccessaire pour getclasse de z model
             Object[][] data2 = {  
-            {"12","Davenport","Lindsay","56 rue des Muletiers, 78660 Ablis","01 04 70 01 65","REA", "JOUR","1256.78",""}};
+           {"","","","","","", "","",""}};
              // On crée un tableau de JLabel pour l'affichage 
-            JLabel[] labels = new JLabel[8];
+            JLabel[] labels = new JLabel[9];
         
              // On crée un panel pour les input de la recherche
-                 JPanel input_pan = new JPanel(new GridLayout(0, 8, 10, 5));
+                 JPanel input_pan = new JPanel(new GridLayout(0, 9, 10, 5));
                  labels[0] = new JLabel("N°Infirmier :");
                  input_pan.add(labels[0]);
                  input_pan.add(in_N);
-                     labels[1] = new JLabel("Nom :");
+                    labels[1] = new JLabel("Nom :");
                     input_pan.add(labels[1]);
                     input_pan.add(in_nom);
                     labels[2] = new JLabel("Prénom :");
@@ -208,6 +208,12 @@ public class PersonPanel extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
        // Si on clic sur search lance la procedure de requete search 
         if (ae.getSource().equals(in_search)){
+          Object[][] data2 = {  
+            {"","","","","","",""}};
+         // ((ZModel)tab.getModel()).addRow(data2);
+           // for (int y =1; y < tab.getModel().getRowCount()-2 ;y++){
+             //   ((ZModel)tab.getModel()).removeRow(y);
+                 //   }
            // selon le type on effectue une recherche d'infirmier ou de docteur
             if (type ==1){
                // On recupere un array list de string des param de la recherche
@@ -227,6 +233,7 @@ public class PersonPanel extends JPanel implements ActionListener{
                 else strs.add("");
               ArrayList<Docteur> strs3 = new ArrayList<>();
               strs3 = doc_dao.select(strs);
+              
               for(int i =0; i< strs3.size();i++)
              {
                   //Pour chaque docteurs dans l'array list on le recupere 
@@ -248,9 +255,17 @@ public class PersonPanel extends JPanel implements ActionListener{
                     data[3]= adresseR;
                     data[4]= telR;
                     data[5]= specR;
+               
                  ((ZModel)tab.getModel()).addRow(data);    
              }
-           }
+              // Boucle pour enlever les lignes qui ne sont pas notre recherche
+              //On se place a la ligne d'indice Nb de ligne - le nb de ligne que
+              // lon a ajouté que si le nb de ligne initial est supêrieur a deux
+              if( tab.getModel().getRowCount()>2)
+                for (int y =tab.getModel().getRowCount() - strs3.size() ; y > 0 ;y--){
+                   ((ZModel)tab.getModel()).removeRow(y);
+                    }
+            }
            if (type ==2){
                // On recupere un array list de string des param de la recherche
             // pour recuperer un array list
