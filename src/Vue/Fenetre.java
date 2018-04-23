@@ -29,7 +29,13 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     private MaladePanel malade_Panel; 
     private HospPanel hosp_pan;
     private JTabbedPane tab_pan;
-    private JPanel panel;
+    private JPanel panel1;
+    private JPanel panel2;
+    private JPanel panel3;
+    private JPanel panel4;
+    private JPanel panel5;
+    private JPanel panel6;
+    
     // Variables pour la connexion SQL
     private ServiceDAO servDAO;
     private HospDAO hospDAO;    
@@ -38,7 +44,13 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     public Fenetre(Main _controler) {
         super("Gestion centre hospitalier");
         this.setSize(1500, 1000);
-        panel = new JPanel();
+        panel1 = new JPanel();
+        panel2 = new JPanel();
+        panel3 = new JPanel();
+        panel4 = new JPanel();
+        panel5 = new JPanel();
+                    
+            
         // Recupere le controler pour creer le add pan correspondant ainsi que
         //recup les variables de connexions SQL
         controler = _controler;
@@ -105,8 +117,10 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         
         // ON l'ajout ensuite au tampon 
         // on ajout ensuite le tampon a la page
-        panel.add(tab_pan);
-        this.add(panel);
+        panel1.add(tab_pan);
+        this.add(panel1);
+        this.repaint();
+        this.revalidate();
         this.setVisible(true);
 
        
@@ -116,8 +130,10 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     private void initMaladePan(){
         // ON ajoute au tampon  le pan dejha cree avant
         // on ajout ensuite le tampon a la page
-        panel.add(malade_Panel);
-        this.add(panel,BorderLayout.CENTER);
+        panel2.add(malade_Panel);
+        this.add(panel2,BorderLayout.CENTER);
+        this.repaint();
+        this.revalidate();
         this.setVisible(true);
 
 
@@ -126,16 +142,21 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
     private void initServicePan(){  
        // ON ajoute au tampon  le pan dejha cree avant
         // on ajout ensuite le tampon a la page
-        panel.add(service_pan);
-        this.add(panel,BorderLayout.CENTER);       
+        panel3.add(service_pan);
+        this.add(panel3,BorderLayout.CENTER);  
+        this.repaint();
+        this.revalidate();
+        
         this.setVisible(true);      
     }
     
    private void initHospPan(){   
        // ON ajoute au tampon  le pan dejha cree avant
         // on ajout ensuite le tampon a la page
-       panel.add(hosp_pan, BorderLayout.CENTER);
-        this.add(panel);
+        panel4.add(hosp_pan, BorderLayout.CENTER);
+        this.add(panel4);
+        this.repaint();
+        this.revalidate();
         this.setVisible(true);
         
         
@@ -148,10 +169,16 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         if (e.getSource().equals(b_employes)) {
             
            /// Le remoove sert a eviter les pb daffichage 
-            this.remove(panel);
-            panel.removeAll();
-          
-           
+            this.remove(panel1);
+            this.remove(panel2);
+            this.remove(panel3);
+            this.remove(panel4);
+            
+            panel1.removeAll();
+            panel2.removeAll();
+            panel3.removeAll();
+            panel4.removeAll();
+            
             initEmployePan();
             
             
@@ -163,16 +190,31 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         
  if (e.getSource().equals(b_malades)) {
           /// Le remoove sert a eviter les pb daffichage 
-            this.remove(panel);
-            panel.removeAll();
+            this.remove(panel1);
+            this.remove(panel2);
+            this.remove(panel3);
+            this.remove(panel4);
+            
+            panel1.removeAll();
+            panel2.removeAll();
+            panel3.removeAll();
+            panel4.removeAll();
             initMaladePan();
  
         }
         
         if (e.getSource().equals(b_services)) {
            /// Le remoove sert a eviter les pb daffichage 
-            this.remove(panel);
-            panel.removeAll();
+            this.remove(panel1);
+            this.remove(panel2);
+            this.remove(panel3);
+            this.remove(panel4);
+            
+            panel1.removeAll();
+            panel2.removeAll();
+            panel3.removeAll();
+            panel4.removeAll();
+            
             initServicePan();
            
            
@@ -180,9 +222,15 @@ public class Fenetre extends JFrame implements ActionListener, WindowListener {
         }  
        
        if (e.getSource().equals(b_hosp))  {
-           /// Le remoove sert a eviter les pb daffichage 
-           this.remove(panel);
-           panel.removeAll();
+          this.remove(panel1);
+            this.remove(panel2);
+            this.remove(panel3);
+            this.remove(panel4);
+            
+            panel1.removeAll();
+            panel2.removeAll();
+            panel3.removeAll();
+            panel4.removeAll();
            initHospPan();
    
        }

@@ -51,24 +51,7 @@ public class PersonPanel extends JPanel implements ActionListener{
         in_search.addActionListener(this);
         this.doc_dao = this.controler2.getDocDAO();
         this.inf_dao = this.controler2.getInfDAO();
-          //if (type == 1)
-             //add_pan = new AddPanel("docteurs",controler2);
-        //else if (type == 2)
-        //  add_pan = new AddPanel("infirmier");
-       // else if ( type == 3 )
-         //   add_pan = new AddPanel("malade");
-        //this.add(add_pan,BorderLayout.SOUTH);
-       /** search_pan = new SearchPanel(type);
-        search_pan.setBorder(BorderFactory.createTitledBorder("Rechercher"));
-        search_pan.setPreferredSize(new Dimension(850,500));
-        
-        pan = new JPanel();
-        //add_pan = new AddPanel();
-        pan.setBorder(BorderFactory.createTitledBorder("Ajouter un employé"));
-        
-        this.add(search_pan);
-        this.add(pan);
-        **/
+         
        
        // Initialise les composants       
        in_N = new JTextField();
