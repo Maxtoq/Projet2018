@@ -27,6 +27,7 @@ import javax.swing.JTextField;
  * @author maxim
  */
 public class AddPanel extends JPanel implements ActionListener {
+    // On declare tous les composants
     private ServiceDAO serv_dao3;
     private JTextField in_JT1;
     private JTextField in_JT2;
@@ -40,6 +41,7 @@ public class AddPanel extends JPanel implements ActionListener {
     private JComboBox combo2 = new JComboBox();
     private Object[] donnee;
     private String S2;
+    // Variables pour la connexion SQL
     private Main controler;
     private Service obj;
     private Malade mal;
@@ -54,6 +56,7 @@ public class AddPanel extends JPanel implements ActionListener {
             
     
    public AddPanel(String S,Main controler2){
+       //initialisation des composant
        in_JT1 = new JTextField();
        in_JT2 = new JTextField();
        in_JT3 = new JTextField();
@@ -62,6 +65,7 @@ public class AddPanel extends JPanel implements ActionListener {
        in_JT6 = new JTextField();
        ajouter = new JButton("Ajouter " + S);
        ajouter.addActionListener(this);
+       // on recuperes les valeurs des variables SQL de controller
        this.controler = controler2;
        this.serv_dao3 = controler2.getServDAO();
        this.mal_dao = controler2.getMalDAO();
@@ -72,11 +76,14 @@ public class AddPanel extends JPanel implements ActionListener {
        
        combo.setPreferredSize(new Dimension(100, 20));
        
-        
+        // Selon le type on cree un add panel different 
           if(S == "hospitalisation")
          {
+              // On crée un tableau de JLabel pour l'affichage
              JLabel[] labels = new JLabel[4];
+             // On crée un panel pour les input de la recherche
              input_pan = new JPanel( new GridLayout(0, 4, 10, 5));
+              // On ajoute tous les composants
             labels[0] = new JLabel("N°Malade :");
             input_pan.add(labels[0]);
             input_pan.add(in_JT1);
@@ -92,10 +99,14 @@ public class AddPanel extends JPanel implements ActionListener {
             input_pan.add(ajouter);
             
          }
+          // Selon le type on cree un add panel different 
           if(S == "service")
          {
+              // On crée un tableau de JLabel pour l'affichage
              JLabel[] labels = new JLabel[4];
+             // On crée un panel pour les input de la recherche
              input_pan = new JPanel( new GridLayout(0, 4, 10, 5));
+              // On ajoute tous les composants
             labels[1] = new JLabel("Nom :");
             input_pan.add(labels[1]);
             input_pan.add(in_JT1);
@@ -111,9 +122,13 @@ public class AddPanel extends JPanel implements ActionListener {
             input_pan.add(ajouter);
             
          }
+          // Selon le type on cree un add panel different 
          if(S == "docteur"){
+              // On crée un tableau de JLabel pour l'affichage
             JLabel[] labels = new JLabel[6];
+            // On crée un panel pour les input de la recherche
             input_pan = new JPanel( new GridLayout(0, 6, 10, 5));
+             // On ajoute tous les composants
             labels[0] = new JLabel("N° :");
             input_pan.add(labels[0]);
             input_pan.add(in_JT1);
@@ -141,12 +156,15 @@ public class AddPanel extends JPanel implements ActionListener {
             input_pan.add(combo);
             input_pan.add(ajouter);
            }
-         
+         // Selon le type on cree un add panel different 
          
          if(S == "infirmier")
          {
+              // On crée un tableau de JLabel pour l'affichage
              JLabel[] labels = new JLabel[8];
+             // On crée un panel pour les input de la recherche
              input_pan = new JPanel( new GridLayout(0, 8, 10, 5));
+              // On ajoute tous les composants
             labels[0] = new JLabel("N° :");
             input_pan.add(labels[0]);
             input_pan.add(in_JT1);
@@ -183,11 +201,14 @@ public class AddPanel extends JPanel implements ActionListener {
             
          }
         
-         
+         // Selon le type on cree un add panel different 
          if(S == "malade")
          {
+              // On crée un tableau de JLabel pour l'affichage
               JLabel[] labels = new JLabel[6];
+              // On crée un panel pour les input de la recherche
              input_pan = new JPanel( new GridLayout(0, 6, 10, 5));
+              // On ajoute tous les composants
             labels[0] = new JLabel("N°Malade :");
             input_pan.add(labels[0]);
             input_pan.add(in_JT1);
@@ -230,8 +251,12 @@ public class AddPanel extends JPanel implements ActionListener {
    }
    
     public void actionPerformed(ActionEvent ae) {
-       if(ae.getSource().equals(ajouter))
-       { if(S2 == "service"){
+      // Si l'on appuie sur ajouter lance la requet d'ajout
+        if(ae.getSource().equals(ajouter))
+       { //Selon le type on recupere les valeurs 
+           // et l'on cree un objet de ce type avec ces params
+           // On cree cet objet dans la bdd
+           if(S2 == "service"){
             String str = in_JT4.getText();
             int i = Integer.parseInt(str);
             String str2 = in_JT3.getText();
@@ -240,7 +265,9 @@ public class AddPanel extends JPanel implements ActionListener {
               System.out.println("La valeur de l'objet est " + obj.getCode() +" "+ obj.getNom()+ " " +obj.getBat()+ " " + obj.getDir() );
             serv_dao3.create(obj);
        }
-       
+       //Selon le type on recupere les valeurs 
+           // et l'on cree un objet de ce type avec ces params
+           // On cree cet objet dans la bdd
            if(S2 == "malade"){
                 String str = in_JT1.getText();
                 int i = Integer.parseInt(str);
@@ -249,6 +276,9 @@ public class AddPanel extends JPanel implements ActionListener {
                 mal = new Malade(i, in_JT2.getText(),in_JT3.getText(),in_JT4.getText(),in_JT5.getText(), str2);
                 mal_dao.create(mal);
            }
+           //Selon le type on recupere les valeurs 
+           // et l'on cree un objet de ce type avec ces params
+           // On cree cet objet dans la bdd
            if(S2 == "hospitalisation"){
                 String str = in_JT1.getText();
                 int i = Integer.parseInt(str);
@@ -262,6 +292,9 @@ public class AddPanel extends JPanel implements ActionListener {
                 hosp = new Hosp (i,str2 ,i2,i3);
                 hosp_dao.create(hosp);
            }
+           //Selon le type on recupere les valeurs 
+           // et l'on cree un objet de ce type avec ces params
+           // On cree cet objet dans la bdd
            if(S2 == "docteur"){
                String str = in_JT1.getText();
                int i = Integer.parseInt(str);
@@ -275,6 +308,9 @@ public class AddPanel extends JPanel implements ActionListener {
                 
                
            }
+           //Selon le type on recupere les valeurs 
+           // et l'on cree un objet de ce type avec ces params
+           // On cree cet objet dans la bdd
             if(S2 == "infirmier"){
                String str = in_JT1.getText();
                int i = Integer.parseInt(str);

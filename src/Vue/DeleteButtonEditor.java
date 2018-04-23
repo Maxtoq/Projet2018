@@ -55,6 +55,7 @@ public class DeleteButtonEditor extends DefaultCellEditor {
       button.setOpaque(true);
        //On lui attribue un listener
        button.addActionListener((ActionListener) bListener);
+       // on recupere les variables SQL de controleur 
        this.controler = _controler;
        this.serv_dao3 = _controler.getServDAO();
        this.mal_dao =_controler.getMalDAO();
